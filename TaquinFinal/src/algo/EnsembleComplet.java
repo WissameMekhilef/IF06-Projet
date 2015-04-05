@@ -11,13 +11,20 @@ public class EnsembleComplet implements EnsembleMarque {
 	public EnsembleComplet(){
 		ensemble=new ArrayList<Taquin>();
 	}
-	
-	public void ajout(Taquin pSommmet) {
-		ensemble.add(pSommmet);		
+
+	public void ajout(Taquin dep, char action, Taquin arr) {
+		// TODO Auto-generated method stub
+		
 	}
 
 	public boolean appartient(Taquin pATester) {
-		return ensemble.contains(pATester);
+		// TODO Auto-generated method stub
+		return false;
+	}
+
+	@Override
+	public void ajoutInit(Taquin init) {
+		ensemble.add(init);
 	}
 
 }

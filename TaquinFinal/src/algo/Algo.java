@@ -15,7 +15,7 @@ public class Algo{
 	}
 	
 	public void run(){
-		marque.ajout(this.initial);
+		marque.ajoutInit(this.initial);
 		ArrayList<Taquin> succ=initial.succ();
 		for(Taquin p : succ)
 			aTraiter.ajout(p);
