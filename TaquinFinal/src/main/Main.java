@@ -59,10 +59,10 @@ public class Main {
 		Scanner s = new Scanner(System.in);
 		// Un jeu
 		Taquin t = new Taquin(Integer.parseInt(args[0]), Integer.parseInt(args[1]), args[2], args[3], args[4], args[5]);
-		Algo a=new Algo(t, new File(), new EnsembleIncomplet(200));
+		Algo a=new Algo(t, new Tas(new Mannathan()), new EnsembleIncomplet(200));
 		System.out.println("Taquin départ :\n"+t);
 		a.run();
-		//System.out.println("Solution : "+a.getSolution());
+		System.out.println("Chemin : "+a.getSolution());
 		// un PrintStream
 		PrintStream p=System.out;
 		//jouer(t,s,p);

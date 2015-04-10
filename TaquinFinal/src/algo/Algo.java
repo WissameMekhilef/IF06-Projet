@@ -38,11 +38,11 @@ public class Algo{
 				}
 			}
 		}
-		//setSolution();
+		setSolution();
 	}
 	
 	public void setSolution(){
-		while(finale.getPere()!=null){
+		while(finale!=null){
 			solution.push(finale.getAction());
 			finale=finale.getPere();
 		}
