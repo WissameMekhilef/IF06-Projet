@@ -5,26 +5,27 @@ import jeu.Taquin;
 
 public class EnsembleIncomplet implements EnsembleMarque {
 
-	private Object[] ensemble;
+	private int[] ensemble;
 	
-	public EnsembleIncomplet(int taille) {
-		ensemble=new Object[taille];
+	public EnsembleIncomplet (int pTaille){
+		ensemble=new int[pTaille];
 	}
-
-	public void ajout(Taquin dep, char action, Taquin arr) {
-		// TODO Auto-generated method stub
-		
-	}
-
-	public boolean appartient(Taquin pATester) {
-		// TODO Auto-generated method stub
-		return false;
+	@Override
+	public void ajout(Taquin pSommet) {
+		int indice=pSommet.hashCode()%ensemble.length;
+		if(indice<0)
+			indice=indice*-1;
+		System.out.println("On ajoute a l'indice : "+indice);
+		if(ensemble[indice]==0)
+			ensemble[indice]=1;
 	}
 
 	@Override
-	public void ajoutInit(Taquin init) {
-		
-		
+	public boolean appartient(Taquin pATester) {
+		int indice=pATester.hashCode()%ensemble.length;
+		if(indice<0)
+			indice=indice*-1;
+		System.out.println("On cherche à l'indice : "+indice);
+		return ensemble[indice]==1;
 	}
-	
 }

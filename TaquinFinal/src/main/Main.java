@@ -1,33 +1,15 @@
 package main;
 
 import java.awt.Event;
-
 import java.io.PrintStream;
-import java.util.*;
-import jeu.*;
-import algo.*;
+import java.util.Scanner;
+
 import comparateurs.*;
+import algo.*;
 import exceptions.*;
+import jeu.*;
 
 public class Main {
-	
-	private static HashMap<String, int[]> initialisationTouches(){
-		HashMap<String, int[]> deplacement= new HashMap<>();
-		int[] t1=new int[2];
-		t1[0]=-1;t1[1]=0;
-		deplacement.put("N", t1);
-		int[] t2=new int[2];
-		t2[0]=1;t2[1]=0;
-		deplacement.put("S", t2);
-		int[] t3=new int[2];
-		t3[0]=0;t3[1]=-1;
-		deplacement.put("E", t3);
-		int[] t4=new int[2];
-		t4[0]=0;t4[1]=1;
-		deplacement.put("O", t4);
-		return deplacement;
-	}	
-	
 	/**
 	 * Permet de jouer a un jeu quelconque sur un flux d'entree et de sortie
 	 * parametrable
@@ -73,16 +55,18 @@ public class Main {
 	}
 	
 	public static void main(String[] args) {
-		// On initialise un scanner d'entree
+		// on initialise un scanner d'entree
 		Scanner s = new Scanner(System.in);
-		//On initialise une map pour les deplacements
-		HashMap<String, int[]> mapDeplacement=initialisationTouches();
-		//On initialise un jeu de Taquin
-		Taquin t = new Taquin(Integer.parseInt(args[0]), Integer.parseInt(args[1]),mapDeplacement);
-		//On initialise la sortie du jeu
+		// Un jeu
+		Taquin t = new Taquin(Integer.parseInt(args[0]), Integer.parseInt(args[1]), args[2], args[3], args[4], args[5]);
+		Algo a=new Algo(t, new File(), new EnsembleIncomplet(200));
+		System.out.println("Taquin départ :\n"+t);
+		a.run();
+		//System.out.println("Solution : "+a.getSolution());
+		// un PrintStream
 		PrintStream p=System.out;
-		//On lance la partie
-		jouer(t,s,p);
+		//jouer(t,s,p);
+		System.exit(0);
 	}
 
 }

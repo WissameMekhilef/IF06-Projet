@@ -8,8 +8,12 @@ import exceptions.MauvaiseTouche;
 public class Taquin implements Jeu{
 
 	private int[][] damier;
-	public HashMap<Integer, int[]> damierFin;
-	private HashMap<String, int[]> deplacement;
+	private HashMap<Integer, Integer[]> damierFin;
+	private HashMap<String, Integer[]> deplacement;
+	private String action;
+	private Taquin pere;
+	private int profondeur;
+	
 	/**
 	 * Constructeur d'un Taquin
 	 * 
@@ -18,26 +22,60 @@ public class Taquin implements Jeu{
 	 * Taille de la matrice
 	 * </p>
 	 */
-	public Taquin(int nbL, int nbC, HashMap<String, int[]> dep) {
+	public Taquin(int nbL, int nbC, String N, String S, String E, String O) {
 		//Initialisation d'un damier initial et final
-		damierFin=new HashMap<Integer, int[]>();
+		damierFin=new HashMap<Integer, Integer[]>();
 		int numero=1;
 		this.damier= new int[nbL][nbC];
 		for(int i=0; i<nbL;i++){
 			for(int j=0; j<nbC;j++){
 				if(i==nbL-1 && j==nbC-1) numero=0;
 				damier[i][j]=numero;
-				int[] t=new int[2];
+				Integer[] t=new Integer[2];
 				t[0]=i;t[1]=j;
 				damierFin.put(numero, t);
 				numero++;
 			}
 		}
 		//Initialisation des deplacements
-		deplacement=dep;
+		deplacement=new HashMap<String, Integer[]>();
+		Integer[] t1=new Integer[2];
+		t1[0]=-1;t1[1]=0;
+		deplacement.put(N, t1);
+		Integer[] t2=new Integer[2];
+		t2[0]=1;t2[1]=0;
+		deplacement.put(S, t2);
+		Integer[] t3=new Integer[2];
+		t3[0]=0;t3[1]=-1;
+		deplacement.put(E, t3);
+		Integer[] t4=new Integer[2];
+		t4[0]=0;t4[1]=1;
+		deplacement.put(O, t4);
 		
-		for(int i=0; i<90; i++)
+		for(int i=0; i<40; i++)
 			melanger();
+		//Initialisation de l'action
+		action="";
+		//Intialisation du p�re
+		this.pere=null;
+		//Initialisation d'une profondeur
+		this.profondeur=0;
+	}
+	
+	public Taquin(String action, Taquin p){
+		this.damierFin=new HashMap<Integer, Integer[]>();
+		this.damierFin.putAll(p.damierFin);
+		this.deplacement=new HashMap<String, Integer[]>();
+		this.deplacement.putAll(p.deplacement);
+		this.damier= new int[p.damier.length][p.damier[0].length];
+		this.action=action;
+		this.pere=p;
+		this.profondeur=p.profondeur++;
+		for(int i=0; i<damier.length;i++){
+			for(int j=0; j<damier[i].length;j++){
+				damier[i][j]=p.damier[i][j];
+			}
+		}
 	}
 	/**
 	 * Melange la grille de jeu
@@ -81,9 +119,10 @@ public class Taquin implements Jeu{
 	public void deplacement(String direction) throws IndexOutOfBoundsException, MauvaiseTouche{
 		int[] pos0=this.indexOf(0);
 		if(deplacement.containsKey(direction)){
-			int[] posX=deplacement.get(direction);
+			Integer[] posX=deplacement.get(direction);
 			damier[pos0[0]][pos0[1]]=damier[pos0[0]+posX[0]][pos0[1]+posX[1]];
 			damier[pos0[0]+posX[0]][pos0[1]+posX[1]]=0;
+			
 		}else throw new MauvaiseTouche();
 	}
 	/**
@@ -95,7 +134,7 @@ public class Taquin implements Jeu{
 	 */
 	public int distanceManhattan(int i) {
 		int[]pos=this.indexOf(i);
-		int[] posFin=this.damierFin.get(i);
+		Integer[] posFin=this.damierFin.get(i);
 		double Yini=pos[0], Xini=pos[1], Yfin=posFin[0], Xfin=posFin[1];
 		return (int)(Math.sqrt(Math.pow(Xfin-Xini, 2))+Math.sqrt(Math.pow(Yfin-Yini, 2)));
 	}
@@ -105,7 +144,7 @@ public class Taquin implements Jeu{
 	 * @return Un boolean true si le jeu est resolue, false sinon
 	 */
 	public boolean estResolu() {
-		Iterator<Entry<Integer,int[]>> it=damierFin.entrySet().iterator();
+		Iterator<Entry<Integer,Integer[]>> it=damierFin.entrySet().iterator();
 		while(it.hasNext()){
 			if(this.distanceManhattan(it.next().getKey())!=0) return false;
 		}
@@ -120,7 +159,7 @@ public class Taquin implements Jeu{
 		int indice=0,permut=0;
 		while(!this.estResolu()){
 			int [] debut=indexOf(indice);
-			int [] fin=damierFin.get(indice);
+			Integer [] fin=damierFin.get(indice);
 			if(debut[0]!=fin[0] || debut[1]!=fin[1]){
 				int nb=damier[fin[0]][fin[1]];
 				damier[fin[0]][fin[1]]=damier[debut[0]][debut[1]];
@@ -156,8 +195,23 @@ public class Taquin implements Jeu{
 	}
 	/**
 	 * 
+	 * @return
+	 */
+	public Taquin getPere() {
+		return pere;
+	}
+	/**
+	 * 
+	 * @return
+	 */
+	public String getAction() {
+		return action;
+	}
+	/**
+	 * 
 	 * @param d
 	 */
+	
 	public void setDamier(int[][] d){
 		for(int i=0;i<d.length;i++){
 			for(int j=0;j<d[0].length;j++){
@@ -165,17 +219,34 @@ public class Taquin implements Jeu{
 			}
 		}
 	}
+	public int[][] getDamier() {
+		return damier;
+	}
+
+	public HashMap<Integer, Integer[]> getDamierFin() {
+		return damierFin;
+	}
+
+	public HashMap<String, Integer[]> getDeplacement() {
+		return deplacement;
+	}
+
+	public int getProfondeur() {
+		return profondeur;
+	}
+
 	/**
 	 * 
 	 */
 	public ArrayList<Taquin> succ(){
 		ArrayList<Taquin> res=new ArrayList<Taquin>();
-		Iterator<Entry<String, int[]>> it=this.deplacement.entrySet().iterator();
+		Iterator<Entry<String, Integer[]>> it=this.deplacement.entrySet().iterator();
 		int[][] first=this.clone();
 		while(it.hasNext()){
 			try {
-				this.deplacement(it.next().getKey());
-				res.add(this);
+				String action=it.next().getKey();
+				this.deplacement(action);
+				res.add(new Taquin(action, this));
 				this.setDamier(first);
 			} catch (IndexOutOfBoundsException | MauvaiseTouche e) {
 				

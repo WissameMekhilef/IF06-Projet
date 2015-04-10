@@ -10,11 +10,11 @@ public class Tas implements EnsembleATraiter {
 	private PriorityQueue<Taquin> file;
 	
 	public Tas(Comparator<Taquin> c){
-		file=new PriorityQueue<Taquin>(c);
+		file=new PriorityQueue<Taquin>(200,c);
 	}
 	
 	public boolean nonVide() {
-		return file.isEmpty();
+		return !file.isEmpty();
 	}
 
 	public Taquin prend() {
