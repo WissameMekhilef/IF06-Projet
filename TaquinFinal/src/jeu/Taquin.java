@@ -8,8 +8,8 @@ import exceptions.MauvaiseTouche;
 public class Taquin implements Jeu{
 
 	private int[][] damier;
-	private HashMap<Integer, Integer[]> damierFin;
-	private HashMap<String, Integer[]> deplacement;
+	private HashMap<Integer, int[]> damierFin;
+	private HashMap<String, int[]> deplacement;
 	private String action;
 	private Taquin pere;
 	private int profondeur;
@@ -22,50 +22,41 @@ public class Taquin implements Jeu{
 	 * Taille de la matrice
 	 * </p>
 	 */
-	public Taquin(int nbL, int nbC, String N, String S, String E, String O) {
+	public Taquin(int nbL, int nbC, HashMap<String, int[]> commande) {
 		//Initialisation d'un damier initial et final
-		damierFin=new HashMap<Integer, Integer[]>();
+		damierFin=new HashMap<Integer, int[]>();
 		int numero=1;
 		this.damier= new int[nbL][nbC];
 		for(int i=0; i<nbL;i++){
 			for(int j=0; j<nbC;j++){
 				if(i==nbL-1 && j==nbC-1) numero=0;
 				damier[i][j]=numero;
-				Integer[] t=new Integer[2];
+				int[] t=new int[2];
 				t[0]=i;t[1]=j;
 				damierFin.put(numero, t);
 				numero++;
 			}
 		}
-		//Initialisation des deplacements
-		deplacement=new HashMap<String, Integer[]>();
-		Integer[] t1=new Integer[2];
-		t1[0]=-1;t1[1]=0;
-		deplacement.put(N, t1);
-		Integer[] t2=new Integer[2];
-		t2[0]=1;t2[1]=0;
-		deplacement.put(S, t2);
-		Integer[] t3=new Integer[2];
-		t3[0]=0;t3[1]=-1;
-		deplacement.put(E, t3);
-		Integer[] t4=new Integer[2];
-		t4[0]=0;t4[1]=1;
-		deplacement.put(O, t4);
 		
+		//On initialise les deplacements
+		deplacement = commande;
+		
+		//On melange le jeu
 		for(int i=0; i<40; i++)
 			melanger();
+		
 		//Initialisation de l'action
 		action="";
-		//Intialisation du p�re
+		//Intialisation du pere
 		this.pere=null;
 		//Initialisation d'une profondeur
 		this.profondeur=0;
 	}
 	
 	public Taquin(String action, Taquin p){
-		this.damierFin=new HashMap<Integer, Integer[]>();
+		this.damierFin=new HashMap<Integer, int[]>();
 		this.damierFin.putAll(p.damierFin);
-		this.deplacement=new HashMap<String, Integer[]>();
+		this.deplacement=new HashMap<String, int[]>();
 		this.deplacement.putAll(p.deplacement);
 		this.damier= new int[p.damier.length][p.damier[0].length];
 		this.action=action;
@@ -79,8 +70,6 @@ public class Taquin implements Jeu{
 	}
 	/**
 	 * Melange la grille de jeu
-	 * 
-	 * @return Retourne la grille de jeu, permet de melanger successivement
 	 */
 	public void melanger() {
 		Object[] t=this.deplacement.keySet().toArray();
@@ -88,12 +77,8 @@ public class Taquin implements Jeu{
 			int entier=(int) (Math.random() * 4);
 			try {
 				deplacement((String)t[entier]);
-			} catch (MauvaiseTouche e) {
-				
-			}
-		}catch(IndexOutOfBoundsException e){
-			
-		}
+			} catch (MauvaiseTouche e) {}
+		}catch(IndexOutOfBoundsException e){}
 	}
 
 	/**
@@ -119,7 +104,7 @@ public class Taquin implements Jeu{
 	public void deplacement(String direction) throws IndexOutOfBoundsException, MauvaiseTouche{
 		int[] pos0=this.indexOf(0);
 		if(deplacement.containsKey(direction)){
-			Integer[] posX=deplacement.get(direction);
+			int[] posX=deplacement.get(direction);
 			damier[pos0[0]][pos0[1]]=damier[pos0[0]+posX[0]][pos0[1]+posX[1]];
 			damier[pos0[0]+posX[0]][pos0[1]+posX[1]]=0;
 			
@@ -134,7 +119,7 @@ public class Taquin implements Jeu{
 	 */
 	public int distanceManhattan(int i) {
 		int[]pos=this.indexOf(i);
-		Integer[] posFin=this.damierFin.get(i);
+		int[] posFin=this.damierFin.get(i);
 		double Yini=pos[0], Xini=pos[1], Yfin=posFin[0], Xfin=posFin[1];
 		return (int)(Math.sqrt(Math.pow(Xfin-Xini, 2))+Math.sqrt(Math.pow(Yfin-Yini, 2)));
 	}
@@ -144,7 +129,7 @@ public class Taquin implements Jeu{
 	 * @return Un boolean true si le jeu est resolue, false sinon
 	 */
 	public boolean estResolu() {
-		Iterator<Entry<Integer,Integer[]>> it=damierFin.entrySet().iterator();
+		Iterator<Entry<Integer,int[]>> it=damierFin.entrySet().iterator();
 		while(it.hasNext()){
 			if(this.distanceManhattan(it.next().getKey())!=0) return false;
 		}
@@ -155,11 +140,11 @@ public class Taquin implements Jeu{
 	 * @return
 	 */
 	public int nbPermutFin(){
-		int[][] ini=this.clone();
+		int[][] ini=this.copieTableau();
 		int indice=0,permut=0;
 		while(!this.estResolu()){
 			int [] debut=indexOf(indice);
-			Integer [] fin=damierFin.get(indice);
+			int [] fin=damierFin.get(indice);
 			if(debut[0]!=fin[0] || debut[1]!=fin[1]){
 				int nb=damier[fin[0]][fin[1]];
 				damier[fin[0]][fin[1]]=damier[debut[0]][debut[1]];
@@ -182,9 +167,9 @@ public class Taquin implements Jeu{
 		return this.distanceManhattan(0)%2==this.nbPermutFin()%2;
 	}
 	/**
-	 * @return un clone du tableau nommer damier
+	 * @return un copieTableau du tableau nommer damier
 	 */
-	public int[][] clone(){
+	public int[][] copieTableau(){
 		int[][]t=new int[damier.length][damier[0].length];
 		for(int i=0;i<this.damier.length;i++){
 			for(int j=0;j<this.damier[0].length;j++){
@@ -223,11 +208,11 @@ public class Taquin implements Jeu{
 		return damier;
 	}
 
-	public HashMap<Integer, Integer[]> getDamierFin() {
+	public HashMap<Integer, int[]> getDamierFin() {
 		return damierFin;
 	}
 
-	public HashMap<String, Integer[]> getDeplacement() {
+	public HashMap<String, int[]> getDeplacement() {
 		return deplacement;
 	}
 
@@ -240,8 +225,8 @@ public class Taquin implements Jeu{
 	 */
 	public ArrayList<Taquin> succ(){
 		ArrayList<Taquin> res=new ArrayList<Taquin>();
-		Iterator<Entry<String, Integer[]>> it=this.deplacement.entrySet().iterator();
-		int[][] first=this.clone();
+		Iterator<Entry<String, int[]>> it=this.deplacement.entrySet().iterator();
+		int[][] first=this.copieTableau();
 		while(it.hasNext()){
 			try {
 				String action=it.next().getKey();
@@ -272,7 +257,7 @@ public class Taquin implements Jeu{
 		int hash=1;
 		for(int i=0;i<this.damier.length;i++){
 			for(int j=0;j<this.damier[0].length;j++){
-				hash=hash*31+damier[i][j];
+				hash=hash*107+damier[i][j];
 			}
 		}
 		return hash;

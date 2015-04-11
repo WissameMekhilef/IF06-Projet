@@ -10,7 +10,30 @@ import exceptions.*;
 import jeu.*;
 
 public class Main {
-	private HashMap<String, Integer[]> commande=new HashMap<>();
+	private static HashMap<String, int[]> commande;
+	/**
+	 * Initialise les commandes du jeu
+	 */
+	private static void initialiserCommande(){
+		//Initialisation des deplacements
+		commande=new HashMap<String, int[]>();
+		
+		int[] t1=new int[2];
+		t1[0]=-1;t1[1]=0;
+		commande.put("z", t1);
+		
+		int[] t2=new int[2];
+		t2[0]=1;t2[1]=0;
+		commande.put("s", t2);
+		
+		int[] t3=new int[2];
+		t3[0]=0;t3[1]=-1;
+		commande.put("q", t3);
+		
+		int[] t4=new int[2];
+		t4[0]=0;t4[1]=1;
+		commande.put("d", t4);
+	}
 	
 	/**
 	 * Permet de jouer a un jeu quelconque sur un flux d'entree et de sortie
@@ -23,7 +46,7 @@ public class Main {
 	 * @param pSortie
 	 *            Le flux de sortie
 	 */
-	public static void jouer(Jeu pJeu, Scanner pScan, PrintStream pSortie) {
+	public static void jouer(Jeu pJeu, Scanner pScan, PrintStream pSortie, HashMap<String, int[]> commande) {
 		// Un string pour enregistrer les deplacements
 		String deplacements = "";
 		// On enregistre la posistion du curseur au debut du programme, pour y
@@ -59,17 +82,25 @@ public class Main {
 	
 	
 	public static void main(String[] args) {
-		//On initialise un scanner d'entree
-		Scanner s = new Scanner(System.in);
-		// Un jeu
-		Taquin t = new Taquin(Integer.parseInt(args[0]), Integer.parseInt(args[1]), args[2], args[3], args[4], args[5]);
-		Algo a=new Algo(t, new Tas(new Mannathan()), new EnsembleIncomplet(200));
-		System.out.println("Taquin départ :\n"+t);
+		//On initialise les commandes du jeu
+		initialiserCommande();
+
+		//On cree un jeu
+		Taquin t = new Taquin(Integer.parseInt(args[0]), Integer.parseInt(args[1]), commande);
+		//On initialise un algo
+		Algo a=new Algo(t, new File(), new EnsembleIncomplet(3373));
+		//On lance l'algo
 		a.run();
-		System.out.println("Chemin : "+a.getSolution());
-		// un PrintStream
+		//On interprete le resultat de l'algo
+		if(a.getFinale()==null)
+			System.out.println("Pas de solution trouvé");
+		else
+			System.out.println("Chemin : "+a.getSolution());
+
+		
+/*		Scanner s = new Scanner(System.in);
 		PrintStream p=System.out;
-		//jouer(t,s,p);
+		jouer(t,s,p,commande);*/
 		System.exit(0);
 	}
 

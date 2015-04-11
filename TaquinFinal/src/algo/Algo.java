@@ -5,6 +5,10 @@ import jeu.*;
 
 public class Algo{
 	private EnsembleMarque marque;
+	public Taquin getFinale() {
+		return finale;
+	}
+
 	private EnsembleATraiter aTraiter;
 	private Taquin initial;
 	private Taquin finale;
@@ -18,6 +22,7 @@ public class Algo{
 	}
 	
 	public void run(){
+		System.out.println("Taquin depart :\n"+initial);
 		boolean fin=false;
 		marque.ajout(this.initial);
 		ArrayList<Taquin> succ=initial.succ();
@@ -42,9 +47,10 @@ public class Algo{
 	}
 	
 	public void setSolution(){
-		while(finale!=null){
-			solution.push(finale.getAction());
-			finale=finale.getPere();
+		Taquin parcours=finale;
+		while(parcours!=null){
+			solution.push(parcours.getAction());
+			parcours=parcours.getPere();
 		}
 	}
 	
