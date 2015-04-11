@@ -257,7 +257,7 @@ public class Taquin implements Jeu{
 		int hash=1;
 		for(int i=0;i<this.damier.length;i++){
 			for(int j=0;j<this.damier[0].length;j++){
-				hash=hash*107+damier[i][j];
+				hash=hash*37+damier[i][j];
 			}
 		}
 		return hash;

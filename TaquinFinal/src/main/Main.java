@@ -9,6 +9,7 @@ import algo.*;
 import exceptions.*;
 import jeu.*;
 
+@SuppressWarnings("unused")
 public class Main {
 	private static HashMap<String, int[]> commande;
 	/**
@@ -88,7 +89,7 @@ public class Main {
 		//On cree un jeu
 		Taquin t = new Taquin(Integer.parseInt(args[0]), Integer.parseInt(args[1]), commande);
 		//On initialise un algo
-		Algo a=new Algo(t, new File(), new EnsembleIncomplet(3373));
+		Algo a=new Algo(t, new File(), new EnsembleIncomplet(2729));
 		//On lance l'algo
 		a.run();
 		//On interprete le resultat de l'algo
