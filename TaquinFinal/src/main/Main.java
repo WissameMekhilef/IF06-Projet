@@ -2,7 +2,7 @@ package main;
 
 import java.awt.Event;
 import java.io.PrintStream;
-import java.util.Scanner;
+import java.util.*;
 
 import comparateurs.*;
 import algo.*;
@@ -10,6 +10,8 @@ import exceptions.*;
 import jeu.*;
 
 public class Main {
+	private HashMap<String, Integer[]> commande=new HashMap<>();
+	
 	/**
 	 * Permet de jouer a un jeu quelconque sur un flux d'entree et de sortie
 	 * parametrable
@@ -54,8 +56,10 @@ public class Main {
 				pSortie.println("Voici la liste des mouvements effectues : " + deplacements);
 	}
 	
+	
+	
 	public static void main(String[] args) {
-		// on initialise un scanner d'entree
+		//On initialise un scanner d'entree
 		Scanner s = new Scanner(System.in);
 		// Un jeu
 		Taquin t = new Taquin(Integer.parseInt(args[0]), Integer.parseInt(args[1]), args[2], args[3], args[4], args[5]);
