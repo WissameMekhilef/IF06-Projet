@@ -7,25 +7,25 @@ import jeu.*;
 
 public class Tas implements EnsembleATraiter {
 	
-	private PriorityQueue<Taquin> file;
+	private PriorityQueue<Jeu> file;
 	
-	public Tas(Comparator<Taquin> c){
-		file=new PriorityQueue<Taquin>(1031,c);
+	public Tas(Comparator<Jeu> c){
+		file=new PriorityQueue<Jeu>(1031,c);
 	}
 	
 	public boolean nonVide() {
 		return !file.isEmpty();
 	}
 
-	public Taquin prend() {
+	public Jeu prend() {
 		return file.peek();
 	}
 
-	public boolean appartient(Taquin p) {
+	public boolean appartient(Jeu p) {
 		return file.contains(p);
 	}
 
-	public boolean ajout(Taquin p) {
+	public boolean ajout(Jeu p) {
 		return file.add(p);
 	}
 

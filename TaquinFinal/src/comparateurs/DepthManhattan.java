@@ -2,11 +2,11 @@ package comparateurs;
 
 import java.util.Comparator;
 
-import jeu.Taquin;
+import jeu.*;
 
-public class DepthManhattan implements Comparator<Taquin> {
+public class DepthManhattan implements Comparator<Jeu> {
 	
-	public int compare(Taquin t1, Taquin t2) {
+	public int compare(Jeu t1, Jeu t2) {
 		int m1=t1.nbPermutFin()+t1.getProfondeur();
 		int m2=t2.nbPermutFin()+t2.getProfondeur();
 		if(m1<m2)

@@ -2,15 +2,15 @@ package algo;
 
 import java.util.ArrayList;
 
-import jeu.Taquin;
+import jeu.*;
 
 
 public class File implements EnsembleATraiter{
 	
-	private ArrayList<Taquin> file;
+	private ArrayList<Jeu> file;
 	
 	public File(){
-		file= new ArrayList<Taquin>();
+		file= new ArrayList<Jeu>();
 	}
 	
 
@@ -18,15 +18,15 @@ public class File implements EnsembleATraiter{
 		return !file.isEmpty();
 	}
 
-	public Taquin prend() {
+	public Jeu prend() {
 		return file.remove(0);
 	}
 
-	public boolean appartient(Taquin p) {
+	public boolean appartient(Jeu p) {
 		return file.contains(p);
 	}
 
-	public boolean ajout(Taquin p) {
+	public boolean ajout(Jeu p) {
 		return file.add(p);
 	}
 

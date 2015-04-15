@@ -1,7 +1,7 @@
 package algo;
 
 
-import jeu.Taquin;
+import jeu.*;
 
 public class EnsembleIncomplet implements EnsembleMarque {
 
@@ -10,7 +10,7 @@ public class EnsembleIncomplet implements EnsembleMarque {
 	public EnsembleIncomplet (int pTaille){
 		ensemble=new int[pTaille];
 	}
-	public void ajout(Taquin pSommet) {
+	public void ajout(Jeu pSommet) {
 		int indice=pSommet.hashCode()%ensemble.length;
 		if(indice<0)
 			indice=indice*-1;
@@ -18,7 +18,7 @@ public class EnsembleIncomplet implements EnsembleMarque {
 			ensemble[indice]=1;
 	}
 
-	public boolean appartient(Taquin pATester) {
+	public boolean appartient(Jeu pATester) {
 		int indice=pATester.hashCode()%ensemble.length;
 		if(indice<0)
 			indice=indice*-1;

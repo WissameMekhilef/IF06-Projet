@@ -1,10 +1,10 @@
 package algo;
 
-import jeu.Taquin;
+import jeu.*;
 
 public interface EnsembleATraiter {
 	public boolean nonVide();
-	public Taquin prend();
-	public boolean appartient(Taquin p);
-	public boolean ajout(Taquin p);
+	public Jeu prend();
+	public boolean appartient(Jeu p);
+	public boolean ajout(Jeu p);
 }

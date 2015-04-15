@@ -1,13 +1,13 @@
 package algo;
 
-import jeu.Taquin;
+import jeu.*;
 import java.util.*;
 
 public class Pile implements EnsembleATraiter{
-	private Stack<Taquin> pile;
+	private Stack<Jeu> pile;
 	
 	public Pile(){
-		pile=new Stack<Taquin>();
+		pile=new Stack<Jeu>();
 	}
 
 	/**
@@ -20,21 +20,21 @@ public class Pile implements EnsembleATraiter{
 	/**
 	 * Renvoie le Taquin de la pile
 	 */
-	public Taquin prend() {
+	public Jeu prend() {
 		return pile.pop();
 	}
 
 	/**
-	 * Teste l'appartenance de p à la pile, renvoie un boolean
+	 * Teste l'appartenance de p �� la pile, renvoie un boolean
 	 */
-	public boolean appartient(Taquin p) {
+	public boolean appartient(Jeu p) {
 		return pile.contains(p);
 	}
 
 	/**
-	 * Ajoute un Taquin à la pile
+	 * Ajoute un Taquin �� la pile
 	 */
-	public boolean ajout(Taquin p) {
+	public boolean ajout(Jeu p) {
 		return pile.add(p);
 	}
 

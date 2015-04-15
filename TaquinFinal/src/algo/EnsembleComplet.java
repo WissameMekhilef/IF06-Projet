@@ -6,17 +6,17 @@ import jeu.*;
 
 public class EnsembleComplet implements EnsembleMarque {
 	
-	private ArrayList<Taquin> ensemble;
+	private ArrayList<Jeu> ensemble;
 
 	public EnsembleComplet(){
-		ensemble=new ArrayList<Taquin>();
+		ensemble=new ArrayList<Jeu>();
 	}
 	
-	public void ajout(Taquin pSommmet) {
+	public void ajout(Jeu pSommmet) {
 		ensemble.add(pSommmet);		
 	}
 
-	public boolean appartient(Taquin pATester) {
+	public boolean appartient(Jeu pATester) {
 		return ensemble.contains(pATester);
 	}
 

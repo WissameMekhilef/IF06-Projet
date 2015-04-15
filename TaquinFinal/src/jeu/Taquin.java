@@ -42,8 +42,10 @@ public class Taquin implements Jeu{
 		deplacement = commande;
 		
 		//On melange le jeu
-		for(int i=0; i<40; i++)
-			melanger();
+		do{
+			for(int i=0; i<50; i++)
+				melanger();
+		}while(this.estResolu());
 		
 		//Initialisation de l'action
 		action="";
@@ -223,8 +225,8 @@ public class Taquin implements Jeu{
 	/**
 	 * 
 	 */
-	public ArrayList<Taquin> succ(){
-		ArrayList<Taquin> res=new ArrayList<Taquin>();
+	public ArrayList<Jeu> succ(){
+		ArrayList<Jeu> res=new ArrayList<Jeu>();
 		Iterator<Entry<String, int[]>> it=this.deplacement.entrySet().iterator();
 		int[][] first=this.copieTableau();
 		while(it.hasNext()){
