@@ -6,6 +6,7 @@ import com.carrotsearch.junitbenchmarks.*;
 import com.carrotsearch.junitbenchmarks.annotation.AxisRange;
 import com.carrotsearch.junitbenchmarks.annotation.BenchmarkMethodChart;
 
+import comparateurs.*;
 import jeu.*;
 import algo.*;
 
@@ -18,7 +19,7 @@ import org.junit.rules.TestRule;
 
 @AxisRange(min = 0, max = 1)
 @BenchmarkMethodChart(filePrefix = "map-types-benchmark-barchart")
-@BenchmarkOptions(callgc = false, benchmarkRounds = 40, warmupRounds = 3)
+@BenchmarkOptions(callgc = false, benchmarkRounds = 1, warmupRounds = 1)
 
 public class TaquinTest extends AbstractBenchmark{
 	HashMap<String, int[]> commande;
@@ -76,8 +77,37 @@ public class TaquinTest extends AbstractBenchmark{
 	public void PileComplet(){
 		runTest(taq1, new EnsembleComplet(), new Pile());
 	}
-
+	
+	@Test
+	public void ManhattanIncomplet(){
+		runTest(taq1, new EnsembleIncomplet(6000301), new Tas(new Manhattan()));
+	}
+	
+/*	@Test
+	public void ManhattanComplet(){
+		runTest(taq1, new EnsembleComplet(), new Tas(new Manhattan()));
+	}*/
+	
+/*	@Test
+	public void PManhattanIncomplet(){
+		runTest(taq1, new EnsembleIncomplet(6000301), new Tas(new DepthManhattan()));
+	}*/
+	
+/*	@Test
+	public void PManhattanComplet(){
+		runTest(taq1, new EnsembleComplet(), new Tas(new DepthManhattan()));
+	}*/
+	/**
+	 * Execute un algo
+	 * @param jeu
+	 * Le jeu à résoudre
+	 * @param em
+	 * L'ensemble marqué
+	 * @param eat
+	 * L'ensemble à traiter
+	 */
 	private void runTest(Jeu jeu, EnsembleMarque em, EnsembleATraiter eat){
+		System.out.println("Nouveau test en cours");
 		Algo algo = new Algo(jeu, eat, em);
 		algo.run();
 		assertTrue("Doit etre resolu",algo.getFinale().estResolu());

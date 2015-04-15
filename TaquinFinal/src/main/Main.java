@@ -80,20 +80,68 @@ public class Main {
 				pSortie.println("Voici la liste des mouvements effectues : " + deplacements);
 	}
 	
-	private static void anim(Jeu jeu, String action) throws IndexOutOfBoundsException, MauvaiseTouche{
-		System.out.println((char) Event.ESCAPE + "7");
+	private static void anim(Jeu jeu, String action) throws IndexOutOfBoundsException, MauvaiseTouche, InterruptedException{
+		System.out.println((char) Event.ESCAPE + "[s");
 		System.out.println(jeu);
 		int nbAction = action.length();
-		for (int i=0; i<nbAction; i++){
+		System.out.println("On a "+nbAction+" action à réaliser");
+		for(int i=0; i<nbAction; i++){
 			jeu.deplacement(Character.toString(action.charAt(i)));
-			//System.out.println((char) Event.ESCAPE + "8");
-			System.out.println(jeu);			
+			System.out.println((char) Event.ESCAPE + "[u");
+			System.out.println(jeu);
+			Thread.sleep(1000);
 		}
 		
 	}
 	
+	private static void printName(){
+		System.out.println("Ce programme à été développé par : ARNOULT Simon, MEKHILEF Wissame, OUSSAD Jihad et RETY Martin");
+	}
+	
+	private static void printOptionList(){
+		System.out.print("Voici une liste des options disponible :\n");
+		System.out.print("\t-name : java -jar taquin.jar -name\n\t\tAfficher le nom des développeurs\n");
+		System.out.print("\t-h : java -jar taquin.jar -h\n\t\tAfficher les différentes options possible\n");
+		System.out.print("\t-sol : Test si le fichier .taq passé en paramètre à une solution, finir par -j\n");
+		System.out.print("\t-joue : Permet de jouer sur un fichier .taq placé en paramètre\n");
+		System.out.print("\t-cal : \n");
+
+
+
+	}
+	
 	public static void main(String[] args) {
-		//On initialise les commandes du jeu
+		
+		//Lecture des paramètres
+		switch(args[0]){
+		case "-name":
+			printName();
+			break;
+		case "-h":
+			printOptionList();
+			break;
+		case "-sol":
+			
+			break;
+		case "-joue":
+			
+			break;
+		case "-cal":
+			
+			break;
+		case "-anime":
+			
+			break;
+		case "-stat":
+			
+			break;
+		case "-aleatoire":
+			
+			break;
+		}
+		
+		
+	/*	//On initialise les commandes du jeu
 		initialiserCommande();
 
 		//On cree un jeu
@@ -104,17 +152,17 @@ public class Main {
 		Algo a=new Algo(t, new File(), new EnsembleIncomplet(2000003));
 		//On lance l'algorithme
 		a.run();
-		
+		String soluce = a.getSolution();
 		//On interprete le resultat de l'algo
 		if(a.getFinale()==null)
 			System.out.println("Pas de solution trouvé");
 		else
-			System.out.println("Chemin : "+a.getSolution());
+			System.out.println("Chemin : "+soluce);
 
 		
 		try {
-			anim(s,a.getSolution());
-		} catch (IndexOutOfBoundsException | MauvaiseTouche e) {}
+			anim(s,soluce);
+		} catch (IndexOutOfBoundsException | MauvaiseTouche | InterruptedException e) {}
 
 /*		Scanner s = new Scanner(System.in);
 		PrintStream p=System.out;

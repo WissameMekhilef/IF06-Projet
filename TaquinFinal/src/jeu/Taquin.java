@@ -1,5 +1,6 @@
 package jeu;
 
+import java.awt.Event;
 import java.util.*;
 import java.util.Map.Entry;
 
@@ -248,6 +249,8 @@ public class Taquin implements Jeu{
 		String s="";
 		for(int i=0; i<damier.length; i++){
 			for(int j=0; j<damier[0].length;j++){
+				if(damier[i][j]==0)
+					s+=((char) Event.ESCAPE + "[8m")+damier[i][j]+((char) Event.ESCAPE +"[0m")+"\t";
 				s+=damier[i][j]+"\t";
 			}
 			s+="\n";

@@ -25,7 +25,6 @@ public class Algo extends Thread{
 		//System.out.println("Taquin depart :\n"+initial);
 		if(initial.estResolu())
 			System.out.println("Le jeu est déjà résolu");
-		
 		else{
 			boolean fin=false;
 			marque.ajout(this.initial);
