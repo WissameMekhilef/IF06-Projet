@@ -3,7 +3,7 @@ package algo;
 import java.util.*;
 import jeu.*;
 
-public class Algo{
+public class Algo extends Thread{
 	private EnsembleMarque marque;
 	public Taquin getFinale() {
 		return finale;

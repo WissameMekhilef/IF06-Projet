@@ -80,7 +80,17 @@ public class Main {
 				pSortie.println("Voici la liste des mouvements effectues : " + deplacements);
 	}
 	
-	
+	private static void anim(Jeu jeu, String action) throws IndexOutOfBoundsException, MauvaiseTouche{
+		System.out.println((char) Event.ESCAPE + "7");
+		System.out.println(jeu);
+		int nbAction = action.length();
+		for (int i=0; i<nbAction; i++){
+			jeu.deplacement(Character.toString(action.charAt(i)));
+			//System.out.println((char) Event.ESCAPE + "8");
+			System.out.println(jeu);			
+		}
+		
+	}
 	
 	public static void main(String[] args) {
 		//On initialise les commandes du jeu
@@ -88,10 +98,13 @@ public class Main {
 
 		//On cree un jeu
 		Taquin t = new Taquin(Integer.parseInt(args[0]), Integer.parseInt(args[1]), commande);
+		Taquin s = new Taquin(Integer.parseInt(args[0]), Integer.parseInt(args[1]), commande);
+		s.setDamier(t.copieTableau());
 		//On initialise un algo
-		Algo a=new Algo(t, new File(), new EnsembleIncomplet(2729));
-		//On lance l'algo
+		Algo a=new Algo(t, new File(), new EnsembleIncomplet(2000003));
+		//On lance l'algorithme
 		a.run();
+		
 		//On interprete le resultat de l'algo
 		if(a.getFinale()==null)
 			System.out.println("Pas de solution trouvé");
@@ -99,6 +112,10 @@ public class Main {
 			System.out.println("Chemin : "+a.getSolution());
 
 		
+		try {
+			anim(s,a.getSolution());
+		} catch (IndexOutOfBoundsException | MauvaiseTouche e) {}
+
 /*		Scanner s = new Scanner(System.in);
 		PrintStream p=System.out;
 		jouer(t,s,p,commande);*/
