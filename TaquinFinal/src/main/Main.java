@@ -36,6 +36,10 @@ public class Main {
 		commande.put("d", t4);
 	}
 	
+	private static void joue(String destJeu){
+		jouer(new Taquin(3,3),new Scanner(System.in),System.out,commande);
+	}
+	
 	/**
 	 * Permet de jouer a un jeu quelconque sur un flux d'entree et de sortie
 	 * parametrable
@@ -99,15 +103,18 @@ public class Main {
 	}
 	
 	private static void printOptionList(){
+		String gras = (char) Event.ESCAPE+"[1m";
+		String defaut = (char) Event.ESCAPE+"[0m";
 		System.out.print("Voici une liste des options disponible :\n");
-		System.out.print("\t-name : java -jar taquin.jar -name\n\t\tAfficher le nom des développeurs\n");
-		System.out.print("\t-h : java -jar taquin.jar -h\n\t\tAfficher les différentes options possible\n");
-		System.out.print("\t-sol : Test si le fichier .taq passé en paramètre à une solution, finir par -j\n");
-		System.out.print("\t-joue : Permet de jouer sur un fichier .taq placé en paramètre\n");
-		System.out.print("\t-cal : \n");
-
-
-
+		System.out.print("\t"+gras+"-name"+defaut+"\t: java -jar taquin.jar -name\n\t\tAfficher le nom des développeurs\n");
+		System.out.print("\t"+gras+"-h"+defaut+"\t: java -jar taquin.jar -h\n\t\tAfficher les différentes options possible\n");
+		System.out.print("\t"+gras+"-sol"+defaut+"\t: java -jar taquin.jar -sol [fichier.taq] -j\n\t\tTest si le fichier .taq passé en paramètre à une solution, finir par -j\n");
+		System.out.print("\t"+gras+"-joue"+defaut+"\t: java -jar taquin.jar -joue [fichier.taq]\n\t\t Permet de jouer sur un fichier .taq placé en paramètre\n");
+		System.out.print("\t"+gras+"-cal"+defaut+"\t: java -jar taquin.jar -cal [delai] [algo] fichier.taq\n\t\tCalcule une position en utilisant l'ago dans le temps du delai\n");
+		System.out.print("\t"+gras+"-anime"+defaut+"\t: java -jar taquin.jar -anime [delai] [algo] fichier.taq\n\t\tComme précédement mais avec une animation de la solution\n");
+		System.out.print("\t"+gras+"-stat"+defaut+"\t: java -jar taquin.jar -stat [delai] [algo] fichier.taq\n\t\tComme précédement mais avec un retour de statistiques sur l'exection.\n");
+		System.out.print("\t"+gras+"-stat"+defaut+"\t: java -jar taquin.jar -stat [delai] fichier.taq\n\t\tComme précédement mais avec un retour html de toutes les statistiques.\n");
+		System.out.print("\t"+gras+"-alea"+defaut+"\t: java -jar taquin.jar -aleatoire [n] [largeur] [hauteur] [delai] fichier.taq\n\t\tApplique tous les algorithmes n fois a des taquin de largeur et hauteur.\n\t\tOn recoit des informations détaillées sur le déroulement.\n");
 	}
 	
 	public static void main(String[] args) {
@@ -124,7 +131,10 @@ public class Main {
 			
 			break;
 		case "-joue":
-			
+			if(args[1]!=null)
+				joue(args[1]);
+			else
+				System.out.println("Erreur vous n'avez pas spécifié de fichier de jeu");
 			break;
 		case "-cal":
 			
