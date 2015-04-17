@@ -37,7 +37,7 @@ public class Main {
 	}
 	
 	private static void joue(String destJeu){
-		jouer(new Taquin(3,3),new Scanner(System.in),System.out,commande);
+		jouer(new Taquin(3,3,commande),new Scanner(System.in),System.out,commande);
 	}
 	
 	/**

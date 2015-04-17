@@ -19,7 +19,7 @@ import org.junit.rules.TestRule;
 
 @AxisRange(min = 0, max = 1)
 @BenchmarkMethodChart(filePrefix = "map-types-benchmark-barchart")
-@BenchmarkOptions(callgc = false, benchmarkRounds = 1, warmupRounds = 1)
+@BenchmarkOptions(callgc = false, benchmarkRounds = 50, warmupRounds = 1)
 
 public class TaquinTest extends AbstractBenchmark{
 	HashMap<String, int[]> commande;
@@ -73,15 +73,15 @@ public class TaquinTest extends AbstractBenchmark{
 		runTest(taq1, new EnsembleIncomplet(6000301), new Pile());
 	}
 
-	@Test
-	public void PileComplet(){
-		runTest(taq1, new EnsembleComplet(), new Pile());
-	}
+//	@Test
+//	public void PileComplet(){
+//		runTest(taq1, new EnsembleComplet(), new Pile());
+//	}
 	
-	@Test
-	public void ManhattanIncomplet(){
-		runTest(taq1, new EnsembleIncomplet(6000301), new Tas(new Manhattan()));
-	}
+//	@Test
+//	public void ManhattanIncomplet(){
+//		runTest(taq1, new EnsembleIncomplet(6000301), new Tas(new Manhattan()));
+//	}
 	
 /*	@Test
 	public void ManhattanComplet(){
