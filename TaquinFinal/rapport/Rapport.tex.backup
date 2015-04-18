@@ -49,11 +49,11 @@ stringstyle=\color[rgb]{0.627,0.126,0.941},
                         \lstinputlisting[inputencoding=utf8/latin1]{#1}
                         \end{center}}
 
-\newcommand{\monimage}[3]{
+\newcommand{\monimage}[4]{
 \par\noindent
 \begin{figure}[H] %on ouvre l'environnement figure
 \begin{center}
-\includegraphics[width=0.7\textwidth]{#1} %ou image.png, .jpeg etc.
+\includegraphics[width=0.9\textwidth]{#1} %ou image.png, .jpeg etc.
 \caption{#2} %la lÃÂÃÂÃÂÃÂ©gende
 \label{#3} %l'ÃÂÃÂÃÂÃÂ©tiquette pour faire rÃÂÃÂÃÂÃÂ©fÃÂÃÂÃÂÃÂ©rence ÃÂÃÂÃÂÃÂ  cette image
 \end{center}
@@ -135,7 +135,7 @@ On explique les choix qu'on a fais
 On a utilisé les benchmark pour améliorer l'efficacité de l'algorithme de solution, en effet on a remarquer entre autre que la taille de l'ensemble
 incomplet avais une importance dans le temps de résolution. On a donc créer un test avec plusieurs taille d'ensemble pour voir laquelle 
 permetté une resolution rapide.
-\monimage{ttt.pdf}{Exemple}{EX}
+\includegraphics{xxx.pdf}
 \chapter{Analyse et Conclusion}
 %
 \section{Analyse des Benchmark}

@@ -18,8 +18,8 @@ import org.junit.Test;
 import org.junit.rules.TestRule;
 
 @AxisRange(min = 0, max = 1)
-@BenchmarkMethodChart(filePrefix = "map-types-benchmark-barchart")
-@BenchmarkOptions(callgc = false, benchmarkRounds = 50, warmupRounds = 1)
+@BenchmarkMethodChart(filePrefix = "testMethodeTaquin")
+@BenchmarkOptions(callgc = false, benchmarkRounds = 5, warmupRounds = 1)
 
 public class TaquinTest extends AbstractBenchmark{
 	HashMap<String, int[]> commande;
@@ -30,8 +30,6 @@ public class TaquinTest extends AbstractBenchmark{
 		
 	@Before
 	public void setUp(){
-		//System.out.println("On initialise des commandes");
-		//Initialisation des deplacements
 		commande=new HashMap<String, int[]>();
 		
 		int[] t1=new int[2];
@@ -56,61 +54,6 @@ public class TaquinTest extends AbstractBenchmark{
 		taq3 = new Taquin(4,5,commande);
 		taq4 = new Taquin(4,3,commande);
 
-	}
-	
-	@Test
-	public void FileIncomplet(){
-		runTest(taq1, new EnsembleIncomplet(6000301), new File());
-	}
-	
-	@Test
-	public void FileComplet(){
-		runTest(taq1, new EnsembleComplet(), new File());
-	}
-	
-	@Test
-	public void PileIncomplet(){
-		runTest(taq1, new EnsembleIncomplet(6000301), new Pile());
-	}
-
-//	@Test
-//	public void PileComplet(){
-//		runTest(taq1, new EnsembleComplet(), new Pile());
-//	}
-	
-//	@Test
-//	public void ManhattanIncomplet(){
-//		runTest(taq1, new EnsembleIncomplet(6000301), new Tas(new Manhattan()));
-//	}
-	
-/*	@Test
-	public void ManhattanComplet(){
-		runTest(taq1, new EnsembleComplet(), new Tas(new Manhattan()));
-	}*/
-	
-/*	@Test
-	public void PManhattanIncomplet(){
-		runTest(taq1, new EnsembleIncomplet(6000301), new Tas(new DepthManhattan()));
-	}*/
-	
-/*	@Test
-	public void PManhattanComplet(){
-		runTest(taq1, new EnsembleComplet(), new Tas(new DepthManhattan()));
-	}*/
-	/**
-	 * Execute un algo
-	 * @param jeu
-	 * Le jeu à résoudre
-	 * @param em
-	 * L'ensemble marqué
-	 * @param eat
-	 * L'ensemble à traiter
-	 */
-	private void runTest(Jeu jeu, EnsembleMarque em, EnsembleATraiter eat){
-		System.out.println("Nouveau test en cours");
-		Algo algo = new Algo(jeu, eat, em);
-		algo.run();
-		assertTrue("Doit etre resolu",algo.getFinale().estResolu());
 	}
 		
 	@Test
