@@ -34,7 +34,7 @@ public class AlgoTest extends AbstractBenchmark{
 		
 	@Before
 	public void setUp(){
-		taq1=new Taquin(3,2,commande);
+		taq1=new Taquin(3,3,commande);
 	}
 	
 	@Test

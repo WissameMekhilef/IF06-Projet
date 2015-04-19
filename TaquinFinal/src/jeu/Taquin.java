@@ -216,17 +216,13 @@ public class Taquin implements Jeu{
 	 */
 	public ArrayList<Jeu> succ(){
 		ArrayList<Jeu> res=new ArrayList<Jeu>();
-		Iterator<Entry<String, int[]>> it=this.commande.getDeplacement().entrySet().iterator();
 		int[][] first=this.copieTableau();
-		while(it.hasNext()){
-			try {
-				String action=it.next().getKey();
-				this.deplacement(action);
-				res.add(new Taquin(action, this));
+		for(String p : commande.getListeDesClefs()){
+			try{
+				this.deplacement(p);
+				res.add(new Taquin(action,this));
 				this.setDamier(first);
-			} catch (IndexOutOfBoundsException | MauvaiseTouche e) {
-				
-			}
+			}catch (IndexOutOfBoundsException | MauvaiseTouche e) {}
 		}
 		return res;
 	}

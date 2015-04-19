@@ -1,10 +1,12 @@
 package jeu;
 
 import java.util.HashMap;
+import java.util.Set;
 
 public class Commande {
 	private HashMap<String, int[]> deplacement;
-	
+	private Set<String> listeDesClefs;
+
 	public Commande(){
 		deplacement=new HashMap<String, int[]>();
 		int[] t1=new int[2];
@@ -22,6 +24,8 @@ public class Commande {
 		int[] t4=new int[2];
 		t4[0]=0;t4[1]=1;
 		deplacement.put("d", t4);
+		
+		listeDesClefs=deplacement.keySet();
 	}
 
 	public HashMap<String, int[]> getDeplacement() {
@@ -32,4 +36,11 @@ public class Commande {
 		this.deplacement = deplacement;
 	}
 	
+	public Set<String> getListeDesClefs() {
+		return listeDesClefs;
+	}
+
+	public void setListeDesClefs(Set<String> listeDesClefs) {
+		this.listeDesClefs = listeDesClefs;
+	}
 }
