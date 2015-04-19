@@ -11,33 +11,9 @@ import jeu.*;
 
 @SuppressWarnings("unused")
 public class Main {
-	private static HashMap<String, int[]> commande;
-	/**
-	 * Initialise les commandes du jeu
-	 */
-	private static void initialiserCommande(){
-		//Initialisation des deplacements
-		commande=new HashMap<String, int[]>();
-		
-		int[] t1=new int[2];
-		t1[0]=-1;t1[1]=0;
-		commande.put("z", t1);
-		
-		int[] t2=new int[2];
-		t2[0]=1;t2[1]=0;
-		commande.put("s", t2);
-		
-		int[] t3=new int[2];
-		t3[0]=0;t3[1]=-1;
-		commande.put("q", t3);
-		
-		int[] t4=new int[2];
-		t4[0]=0;t4[1]=1;
-		commande.put("d", t4);
-	}
+	private static Commande commande;
 	
 	private static void joue(String destJeu){
-		initialiserCommande();
 		jouer(new Taquin(3,3,commande),new Scanner(System.in),System.out,commande);
 	}
 	
@@ -52,7 +28,7 @@ public class Main {
 	 * @param pSortie
 	 *            Le flux de sortie
 	 */
-	public static void jouer(Jeu pJeu, Scanner pScan, PrintStream pSortie, HashMap<String, int[]> commande) {
+	public static void jouer(Jeu pJeu, Scanner pScan, PrintStream pSortie, Commande commande) {
 		// Un string pour enregistrer les deplacements
 		String deplacements = "";
 		// On enregistre la posistion du curseur au debut du programme, pour y
@@ -151,9 +127,6 @@ public class Main {
 			break;
 		}*/
 		
-		
-		//On initialise les commandes du jeu
-		initialiserCommande();
 
 		//On cree un jeu
 		Taquin t = new Taquin(Integer.parseInt(args[0]), Integer.parseInt(args[1]), commande);

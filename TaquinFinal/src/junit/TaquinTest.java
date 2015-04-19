@@ -22,7 +22,7 @@ import org.junit.rules.TestRule;
 @BenchmarkOptions(callgc = false, benchmarkRounds = 5, warmupRounds = 1)
 
 public class TaquinTest extends AbstractBenchmark{
-	HashMap<String, int[]> commande;
+	Commande commande= new Commande();
 	Taquin taq1, taq2, taq3, taq4;
 	
 	@Rule
@@ -30,25 +30,6 @@ public class TaquinTest extends AbstractBenchmark{
 		
 	@Before
 	public void setUp(){
-		commande=new HashMap<String, int[]>();
-		
-		int[] t1=new int[2];
-		t1[0]=-1;t1[1]=0;
-		commande.put("z", t1);
-		
-		int[] t2=new int[2];
-		t2[0]=1;t2[1]=0;
-		commande.put("s", t2);
-		
-		int[] t3=new int[2];
-		t3[0]=0;t3[1]=-1;
-		commande.put("q", t3);
-		
-		int[] t4=new int[2];
-		t4[0]=0;t4[1]=1;
-		commande.put("d", t4);		
-
-	
 		taq1 = new Taquin(3,3,commande);
 		taq2 = new Taquin(4,4,commande);
 		taq3 = new Taquin(4,5,commande);
