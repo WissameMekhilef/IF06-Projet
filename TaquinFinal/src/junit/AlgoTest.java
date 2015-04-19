@@ -52,7 +52,7 @@ public class AlgoTest extends AbstractBenchmark{
 		t4[0]=0;t4[1]=1;
 		commande.put("d", t4);
 		
-		taq1=new Taquin(3,3,commande);
+		taq1=new Taquin(3,2,commande);
 	}
 	
 	@Test
@@ -75,25 +75,25 @@ public class AlgoTest extends AbstractBenchmark{
 		runTest(taq1, new EnsembleComplet(), new Pile());
 	}
 	
-/*	@Test
+	@Test
 	public void ManhattanIncomplet(){
 		runTest(taq1, new EnsembleIncomplet(tailleEnsembleIncomplet), new Tas(new Manhattan()));
-	}*/
+	}
 	
-/*	@Test
+	@Test
 	public void ManhattanComplet(){
 		runTest(taq1, new EnsembleComplet(), new Tas(new Manhattan()));
-	}*/
+	}
 	
-/*	@Test
+	@Test
 	public void PManhattanIncomplet(){
 		runTest(taq1, new EnsembleIncomplet(tailleEnsembleIncomplet), new Tas(new DepthManhattan()));
-	}*/
+	}
 	
-/*	@Test
+	@Test
 	public void PManhattanComplet(){
 		runTest(taq1, new EnsembleComplet(), new Tas(new DepthManhattan()));
-	}*/
+	}
 	
 	/**
 	 * Execute un algo

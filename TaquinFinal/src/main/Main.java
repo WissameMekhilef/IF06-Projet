@@ -160,18 +160,18 @@ public class Main {
 		Taquin s = new Taquin(Integer.parseInt(args[0]), Integer.parseInt(args[1]), commande);
 		s.setDamier(t.copieTableau());
 		//On initialise un algo
-		Algo a=new Algo(t, new File(), new EnsembleIncomplet(2000003));
-		Algo b=new Algo(t, new File(), new EnsembleIncomplet(200171));
+		Algo a=new Algo(t, new Pile(), new EnsembleComplet());
+		Algo b=new Algo(t, new Pile(), new EnsembleIncomplet(20000791));
 		//On lance l'algorithme
-		a.run();
+		b.run();
 		
-		String soluce = a.getSolution();
+		String soluce = b.getSolution();
 		//On interprete le resultat de l'algo
-		if(a.getFinale()==null)
+		if(b.getFinale()==null)
 			System.out.println("Pas de solution trouvé");
 		else{
 			System.out.println("Chemin : "+soluce);
-			System.out.println("L'algorithme à traité : "+ a.getNombrePositionTraite()+" position(s)");
+			System.out.println("L'algorithme à traité : "+ b.getNombrePositionTraite()+" position(s)");
 		}
 
 		

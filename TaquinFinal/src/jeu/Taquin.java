@@ -120,7 +120,7 @@ public class Taquin implements Jeu{
 	 * @return un entier qui sera la distance dite de Mannathan
 	 */
 	public int distanceManhattan(int i) {
-		int[]pos=this.indexOf(i);
+		int[] pos=this.indexOf(i);
 		int[] posFin=this.damierFin.get(i);
 		double Yini=pos[0], Xini=pos[1], Yfin=posFin[0], Xfin=posFin[1];
 		return (int)(Math.sqrt(Math.pow(Xfin-Xini, 2))+Math.sqrt(Math.pow(Yfin-Yini, 2)));
@@ -142,21 +142,11 @@ public class Taquin implements Jeu{
 	 * @return
 	 */
 	public int nbPermutFin(){
-		int[][] ini=this.copieTableau();
-		int indice=0,permut=0;
-		while(!this.estResolu()){
-			int [] debut=indexOf(indice);
-			int [] fin=damierFin.get(indice);
-			if(debut[0]!=fin[0] || debut[1]!=fin[1]){
-				int nb=damier[fin[0]][fin[1]];
-				damier[fin[0]][fin[1]]=damier[debut[0]][debut[1]];
-				damier[debut[0]][debut[1]]=nb;
-				permut++;
-			}
-			indice++;
-		}
-		this.setDamier(ini);
-		return permut;
+		int res=0;
+		for(int j=0; j<damier.length;j++)
+			for(int i=0; i<damier[0].length;i++)
+				res+=this.distanceManhattan(damier[j][i]);
+		return res;
 	}
 	/**
 	 * Methode qui permet de determiner si ce taquin

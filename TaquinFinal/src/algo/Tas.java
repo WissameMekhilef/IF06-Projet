@@ -20,7 +20,8 @@ public class Tas implements EnsembleATraiter {
 	}
 
 	public Jeu prend() {
-		return file.peek();
+		nombrePositionTraite++;
+		return file.poll();
 	}
 
 	public boolean appartient(Jeu p) {
