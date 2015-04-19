@@ -5,9 +5,11 @@ import java.util.*;
 
 public class Pile implements EnsembleATraiter{
 	private Stack<Jeu> pile;
+	private int nombrePositionTraite;
 	
 	public Pile(){
 		pile=new Stack<Jeu>();
+		nombrePositionTraite=0;
 	}
 
 	/**
@@ -36,6 +38,10 @@ public class Pile implements EnsembleATraiter{
 	 */
 	public boolean ajout(Jeu p) {
 		return pile.add(p);
+	}
+
+	public int positionTraite() {
+		return nombrePositionTraite;
 	}
 
 }

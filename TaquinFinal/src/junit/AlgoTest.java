@@ -20,9 +20,9 @@ import org.junit.Rule;
 import org.junit.Test;
 import org.junit.rules.TestRule;
 
-@AxisRange(min = 0, max = 1)
-@BenchmarkMethodChart(filePrefix = "testDesAlgo")
-@BenchmarkOptions(callgc = false, benchmarkRounds = 50, warmupRounds = 1)
+@AxisRange(min = 0, max = 0.05)
+@BenchmarkMethodChart(filePrefix = "testdesalgo")
+@BenchmarkOptions(callgc = false, benchmarkRounds = 50)
 
 public class AlgoTest extends AbstractBenchmark{
 	HashMap<String, int[]> commande;
@@ -70,10 +70,10 @@ public class AlgoTest extends AbstractBenchmark{
 		runTest(taq1, new EnsembleIncomplet(tailleEnsembleIncomplet), new Pile());
 	}
 
-/*	@Test
+	@Test
 	public void PileComplet(){
 		runTest(taq1, new EnsembleComplet(), new Pile());
-	}*/
+	}
 	
 /*	@Test
 	public void ManhattanIncomplet(){

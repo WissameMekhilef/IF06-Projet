@@ -7,4 +7,5 @@ public interface EnsembleATraiter {
 	public Jeu prend();
 	public boolean appartient(Jeu p);
 	public boolean ajout(Jeu p);
+	public int positionTraite();
 }

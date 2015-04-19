@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.1415926-2.5-1.40.14 (TeX Live 2013/Debian) (format=pdflatex 2015.4.17)  18 APR 2015 17:47
+This is pdfTeX, Version 3.1415926-2.5-1.40.14 (TeX Live 2013/Debian) (format=pdflatex 2015.4.17)  18 APR 2015 18:23
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -412,46 +412,62 @@ Chapitre 2.
 
 ]
 Chapitre 3.
-[7
+<DiagrammeDeGantt.pdf, id=36, 469.755pt x 245.91875pt>
+File: DiagrammeDeGantt.pdf Graphic file (type pdf)
 
-]
-Chapitre 4.
-<ttt.pdf, id=39, 456.70625pt x 291.0875pt>
-File: ttt.pdf Graphic file (type pdf)
- <use ttt.pdf>
-Package pdftex.def Info: ttt.pdf used on input line 138.
-(pdftex.def)             Requested size: 308.59184pt x 196.68877pt.
+<use DiagrammeDeGantt.pdf>
+Package pdftex.def Info: DiagrammeDeGantt.pdf used on input line 127.
+(pdftex.def)             Requested size: 308.59184pt x 161.54887pt.
 
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
- [8
+ [7
 
 ]
 File: Logo-univ-orleans.png Graphic file (type png)
 
 <use Logo-univ-orleans.png>
-Package pdftex.def Info: Logo-univ-orleans.png used on input line 139.
+Package pdftex.def Info: Logo-univ-orleans.png used on input line 128.
 (pdftex.def)             Requested size: 36.135pt x 32.30505pt.
- [9 <./ttt.pdf>]
+ [8 <./DiagrammeDeGantt.pdf>]
+Chapitre 4.
+<ensembleincomplettest2.pdf, id=60, 456.70625pt x 291.0875pt>
+File: ensembleincomplettest2.pdf Graphic file (type pdf)
+
+<use ensembleincomplettest2.pdf>
+Package pdftex.def Info: ensembleincomplettest2.pdf used on input line 140.
+(pdftex.def)             Requested size: 308.59184pt x 196.68877pt.
+
+Underfull \vbox (badness 10000) has occurred while \output is active []
+
+ [9
+
+]
+File: Logo-univ-orleans.png Graphic file (type png)
+
+<use Logo-univ-orleans.png>
+Package pdftex.def Info: Logo-univ-orleans.png used on input line 141.
+(pdftex.def)             Requested size: 36.135pt x 32.30505pt.
+ [10 <./ensembleincomplettest2.pdf>]
 Chapitre 5.
-[10
+[11
 
 ] (./Rapport.bbl
 
 LaTeX Warning: Empty `thebibliography' environment on input line 3.
 
-) [11
+) [12
 
 ]
 Chapitre 6.
-[12
+[13
 
 ] (./Rapport.aux) ) 
 Here is how much of TeX's memory you used:
- 6056 strings out of 493304
- 85122 string characters out of 6139871
+ 6062 strings out of 493304
+ 85340 string characters out of 6139871
  172716 words of memory out of 5000000
- 9409 multiletter control sequences out of 15000+600000
+ 9414 multiletter control sequences out of 15000+600000
  14326 words of font info for 34 fonts, out of 8000000 for 9000
  957 hyphenation exceptions out of 8191
  38i,15n,43p,325b,575s stack positions out of 5000i,500n,10000p,200000b,80000s
@@ -464,10 +480,10 @@ ts/type1/public/cm-super/sfcc1200.pfb></usr/share/texmf/fonts/type1/public/cm-s
 uper/sfrm0800.pfb></usr/share/texmf/fonts/type1/public/cm-super/sfrm1200.pfb></
 usr/share/texmf/fonts/type1/public/cm-super/sfrm1728.pfb></usr/share/texmf/font
 s/type1/public/cm-super/sfrm2488.pfb>
-Output written on Rapport.pdf (13 pages, 319052 bytes).
+Output written on Rapport.pdf (14 pages, 338895 bytes).
 PDF statistics:
- 109 PDF objects out of 1000 (max. 8388607)
- 77 compressed objects within 1 object stream
+ 129 PDF objects out of 1000 (max. 8388607)
+ 90 compressed objects within 1 object stream
  0 named destinations out of 1000 (max. 500000)
- 11 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 16 words of extra memory for PDF output out of 10000 (max. 10000000)
 

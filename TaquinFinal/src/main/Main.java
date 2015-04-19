@@ -37,6 +37,7 @@ public class Main {
 	}
 	
 	private static void joue(String destJeu){
+		initialiserCommande();
 		jouer(new Taquin(3,3,commande),new Scanner(System.in),System.out,commande);
 	}
 	
@@ -119,7 +120,7 @@ public class Main {
 	
 	public static void main(String[] args) {
 		
-		//Lecture des paramètres
+/*		//Lecture des paramètres
 		switch(args[0]){
 		case "-name":
 			printName();
@@ -148,10 +149,10 @@ public class Main {
 		case "-aleatoire":
 			
 			break;
-		}
+		}*/
 		
 		
-	/*	//On initialise les commandes du jeu
+		//On initialise les commandes du jeu
 		initialiserCommande();
 
 		//On cree un jeu
@@ -160,14 +161,18 @@ public class Main {
 		s.setDamier(t.copieTableau());
 		//On initialise un algo
 		Algo a=new Algo(t, new File(), new EnsembleIncomplet(2000003));
+		Algo b=new Algo(t, new File(), new EnsembleIncomplet(200171));
 		//On lance l'algorithme
 		a.run();
+		
 		String soluce = a.getSolution();
 		//On interprete le resultat de l'algo
 		if(a.getFinale()==null)
 			System.out.println("Pas de solution trouvé");
-		else
+		else{
 			System.out.println("Chemin : "+soluce);
+			System.out.println("L'algorithme à traité : "+ a.getNombrePositionTraite()+" position(s)");
+		}
 
 		
 		try {
@@ -177,7 +182,7 @@ public class Main {
 /*		Scanner s = new Scanner(System.in);
 		PrintStream p=System.out;
 		jouer(t,s,p,commande);*/
-		System.exit(0);
+		//System.exit(0);
 	}
 
 }
