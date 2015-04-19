@@ -52,10 +52,10 @@ public class AlgoTest extends AbstractBenchmark{
 		runTest(taq1, new EnsembleIncomplet(tailleEnsembleIncomplet), new Pile());
 	}
 
-	@Test
+/*	@Test
 	public void PileComplet(){
 		runTest(taq1, new EnsembleComplet(), new Pile());
-	}
+	}*/
 	
 	@Test
 	public void ManhattanIncomplet(){
@@ -87,10 +87,10 @@ public class AlgoTest extends AbstractBenchmark{
 	 * L'ensemble à traiter
 	 */
 	private void runTest(Jeu jeu, EnsembleMarque em, EnsembleATraiter eat){
-		System.out.println("Nouveau test en cours");
+		//System.out.println("Nouveau test en cours");
 		Algo algo = new Algo(jeu, eat, em);
 		algo.run();
-		//assertTrue("Doit etre resolu",algo.getFinale().estResolu());
+		assertTrue("Doit etre resolu",algo.getFinale().estResolu());
 	}
 	
 

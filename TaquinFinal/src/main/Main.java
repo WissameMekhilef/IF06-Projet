@@ -11,7 +11,7 @@ import jeu.*;
 
 @SuppressWarnings("unused")
 public class Main {
-	private static Commande commande;
+	private static Commande commande=new Commande();
 	
 	private static void joue(String destJeu){
 		jouer(new Taquin(3,3,commande),new Scanner(System.in),System.out,commande);
@@ -130,11 +130,8 @@ public class Main {
 
 		//On cree un jeu
 		Taquin t = new Taquin(Integer.parseInt(args[0]), Integer.parseInt(args[1]), commande);
-		Taquin s = new Taquin(Integer.parseInt(args[0]), Integer.parseInt(args[1]), commande);
-		s.setDamier(t.copieTableau());
 		//On initialise un algo
-		Algo a=new Algo(t, new Pile(), new EnsembleComplet());
-		Algo b=new Algo(t, new Pile(), new EnsembleIncomplet(20000791));
+		Algo b=new Algo(t, new Tas(new DepthManhattan()), new EnsembleIncomplet(200383));
 		//On lance l'algorithme
 		b.run();
 		
@@ -149,7 +146,7 @@ public class Main {
 
 		
 		try {
-			anim(s,soluce);
+			anim(t,soluce);
 		} catch (IndexOutOfBoundsException | MauvaiseTouche | InterruptedException e) {}
 
 /*		Scanner s = new Scanner(System.in);

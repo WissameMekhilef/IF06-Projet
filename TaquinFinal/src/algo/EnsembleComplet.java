@@ -13,7 +13,7 @@ public class EnsembleComplet implements EnsembleMarque {
 	}
 	
 	public void ajout(Jeu pSommmet) {
-		ensemble.add(pSommmet);		
+		ensemble.add(pSommmet);
 	}
 
 	public boolean appartient(Jeu pATester) {

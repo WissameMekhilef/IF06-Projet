@@ -8,7 +8,7 @@ import exceptions.MauvaiseTouche;
 public class Taquin implements Jeu{
 
 	private int[][] damier;
-	private HashMap<Integer, int[]> damierFin;
+	private PositionFinale situationFinale;
 	private Commande commande;
 	private String action;
 	private Taquin pere;
@@ -23,10 +23,10 @@ public class Taquin implements Jeu{
 	 * </p>
 	 */
 	public Taquin(int nbL, int nbC, Commande pCommande) {
-		//Initialisation d'un damier initial et final
-		damierFin=new HashMap<Integer, int[]>();
-		int numero=1;
+		//Initialisation d'un damier initial
+		HashMap<Integer, int[]> damierFin=new HashMap<Integer, int[]>();
 		this.damier= new int[nbL][nbC];
+		int numero=1;
 		for(int i=0; i<nbL;i++){
 			for(int j=0; j<nbC;j++){
 				if(i==nbL-1 && j==nbC-1) numero=0;
@@ -36,7 +36,8 @@ public class Taquin implements Jeu{
 				damierFin.put(numero, t);
 				numero++;
 			}
-		}
+		}	
+		situationFinale = new PositionFinale(damierFin);
 		
 		//On initialise les deplacements
 		commande = pCommande;
@@ -56,8 +57,7 @@ public class Taquin implements Jeu{
 	}
 	
 	public Taquin(String action, Taquin p){
-		this.damierFin=new HashMap<Integer, int[]>();
-		this.damierFin.putAll(p.damierFin);
+		this.situationFinale=p.getSituationFinale();
 		this.commande=p.commande;
 		this.damier= new int[p.damier.length][p.damier[0].length];
 		this.action=action;
@@ -73,13 +73,10 @@ public class Taquin implements Jeu{
 	 * Melange la grille de jeu
 	 */
 	public void melanger() {
-		Object[] t=this.commande.getDeplacement().keySet().toArray();
-		try{
-			int entier=(int) (Math.random() * 4);
-			try {
-				deplacement((String)t[entier]);
-			} catch (MauvaiseTouche e) {}
-		}catch(IndexOutOfBoundsException e){}
+		int entier = (int) (Math.random() * 4);
+		try {
+			deplacement((String) commande.getTabClef()[entier]);
+		} catch (IndexOutOfBoundsException | MauvaiseTouche e) {}
 	}
 
 	/**
@@ -120,9 +117,11 @@ public class Taquin implements Jeu{
 	 */
 	public int distanceManhattan(int i) {
 		int[] pos=this.indexOf(i);
-		int[] posFin=this.damierFin.get(i);
-		double Yini=pos[0], Xini=pos[1], Yfin=posFin[0], Xfin=posFin[1];
-		return (int)(Math.sqrt(Math.pow(Xfin-Xini, 2))+Math.sqrt(Math.pow(Yfin-Yini, 2)));
+		int[] posFin=this.situationFinale.getDamierFin().get(i);
+//		double Yini=pos[0], Xini=pos[1], Yfin=posFin[0], Xfin=posFin[1];
+//		return (int)(Math.sqrt(Math.pow(Xfin-Xini, 2))+Math.sqrt(Math.pow(Yfin-Yini, 2)));
+		return (int)(Math.abs(posFin[1]-pos[1])+Math.abs(posFin[0]-pos[0]));
+		
 	}
 	/**
 	 * Methode pour savoir si le jeu est resolu
@@ -130,7 +129,7 @@ public class Taquin implements Jeu{
 	 * @return Un boolean true si le jeu est resolue, false sinon
 	 */
 	public boolean estResolu() {
-		Iterator<Entry<Integer,int[]>> it=damierFin.entrySet().iterator();
+		Iterator<Entry<Integer,int[]>> it=situationFinale.getDamierFin().entrySet().iterator();
 		while(it.hasNext()){
 			if(this.distanceManhattan(it.next().getKey())!=0) return false;
 		}
@@ -199,10 +198,6 @@ public class Taquin implements Jeu{
 		return damier;
 	}
 
-	public HashMap<Integer, int[]> getDamierFin() {
-		return damierFin;
-	}
-
 	public Commande getCommande() {
 		return commande;
 	}
@@ -256,6 +251,14 @@ public class Taquin implements Jeu{
 			return t.hashCode()==this.hashCode();
 		}
 		else return false;
+	}
+
+	public PositionFinale getSituationFinale() {
+		return situationFinale;
+	}
+
+	public void setSituationFinale(PositionFinale situationFinale) {
+		this.situationFinale = situationFinale;
 	}
 	
 }

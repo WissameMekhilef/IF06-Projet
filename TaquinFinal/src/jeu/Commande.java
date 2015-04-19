@@ -6,6 +6,7 @@ import java.util.Set;
 public class Commande {
 	private HashMap<String, int[]> deplacement;
 	private Set<String> listeDesClefs;
+	private Object[] tabClef;
 
 	public Commande(){
 		deplacement=new HashMap<String, int[]>();
@@ -26,6 +27,7 @@ public class Commande {
 		deplacement.put("d", t4);
 		
 		listeDesClefs=deplacement.keySet();
+		tabClef=listeDesClefs.toArray();
 	}
 
 	public HashMap<String, int[]> getDeplacement() {
@@ -43,4 +45,14 @@ public class Commande {
 	public void setListeDesClefs(Set<String> listeDesClefs) {
 		this.listeDesClefs = listeDesClefs;
 	}
+
+	public Object[] getTabClef() {
+		return tabClef;
+	}
+
+	public void setTabClef(Object[] tabClef) {
+		this.tabClef = tabClef;
+	}
+	
+	
 }
