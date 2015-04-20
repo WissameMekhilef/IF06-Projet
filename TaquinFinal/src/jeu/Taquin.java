@@ -1,5 +1,7 @@
 package jeu;
 
+import java.io.BufferedReader;
+import java.io.IOException;
 import java.util.*;
 import java.util.Map.Entry;
 
@@ -14,6 +16,26 @@ public class Taquin implements Jeu{
 	private int profondeur;
 	private int nbCoupsfinale;
 	private int ameliorant;
+	
+	public Taquin(BufferedReader fic, Commande pCommande) throws NumberFormatException, IOException{
+		this.damier = new int[Integer.parseInt(fic.readLine())][Integer.parseInt(fic.readLine())];
+		StringTokenizer valeurs=new StringTokenizer(fic.readLine());
+		for(int i=0; i<damier.length;i++){
+			for(int j=0; j<damier[0].length;j++){
+				damier[i][j]=Integer.parseInt(valeurs.nextToken());
+			}
+				
+		}
+		this.commande=pCommande;
+		this.pere=null;
+		this.profondeur=0;
+		action="";
+		
+		Taquin t = new Taquin(damier.length, damier[0].length, commande);
+		situationFinale=t.situationFinale;
+		nbCoupsfinale=nbPermutFin();
+	
+	}
 	
 	/**
 	 * Constructeur d'un Taquin

@@ -1,6 +1,10 @@
 package main;
 
 import java.awt.Event;
+import java.io.BufferedReader;
+import java.io.FileNotFoundException;
+import java.io.FileReader;
+import java.io.IOException;
 import java.io.PrintStream;
 import java.util.*;
 
@@ -129,7 +133,11 @@ public class Main {
 		
 
 		//On cree un jeu
-		Taquin t = new Taquin(Integer.parseInt(args[0]), Integer.parseInt(args[1]), commande);
+		//Taquin t = new Taquin(Integer.parseInt(args[0]), Integer.parseInt(args[1]), commande);
+		Taquin t = null;
+		try {
+			t = new Taquin(new BufferedReader(new FileReader("taquin/taq1.taq")),commande);
+		} catch (NumberFormatException | IOException e1) {} 
 		//On initialise un algo
 		Algo b=new Algo(t, new Tas(new Manhattan()), new EnsembleIncomplet(21061));
 		//On lance l'algorithme		
