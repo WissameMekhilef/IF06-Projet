@@ -22,7 +22,7 @@ import org.junit.rules.TestRule;
 
 @AxisRange(min = 0, max = 0.05)
 @BenchmarkMethodChart(filePrefix = "testdesalgo")
-@BenchmarkOptions(callgc = false, benchmarkRounds = 5)
+@BenchmarkOptions(callgc = false, benchmarkRounds = 50)
 
 public class AlgoSpeed extends AbstractBenchmark{
 	Commande commande=new Commande();
@@ -34,23 +34,23 @@ public class AlgoSpeed extends AbstractBenchmark{
 		
 	@Before
 	public void setUp(){
-		taq1=new Taquin(3,3,commande);
+		taq1=new Taquin(9,9,commande);
 	}
 	
-	@Test
+/*	@Test
 	public void FileIncomplet(){
 		runTest(taq1, new EnsembleIncomplet(tailleEnsembleIncomplet), new File());
-	}
+	}*/
 	
 /*	@Test
 	public void FileComplet(){
 		runTest(taq1, new EnsembleComplet(), new File());
 	}*/
 	
-	@Test
+/*	@Test
 	public void PileIncomplet(){
 		runTest(taq1, new EnsembleIncomplet(tailleEnsembleIncomplet), new Pile());
-	}
+	}*/
 
 /*	@Test
 	public void PileComplet(){
@@ -62,20 +62,20 @@ public class AlgoSpeed extends AbstractBenchmark{
 		runTest(taq1, new EnsembleIncomplet(tailleEnsembleIncomplet), new Tas(new Manhattan()));
 	}
 	
-	@Test
+/*	@Test
 	public void ManhattanComplet(){
 		runTest(taq1, new EnsembleComplet(), new Tas(new Manhattan()));
-	}
+	}*/
 	
 	@Test
 	public void PManhattanIncomplet(){
 		runTest(taq1, new EnsembleIncomplet(tailleEnsembleIncomplet), new Tas(new DepthManhattan()));
 	}
 	
-	@Test
+/*	@Test
 	public void PManhattanComplet(){
 		runTest(taq1, new EnsembleComplet(), new Tas(new DepthManhattan()));
-	}
+	}*/
 	
 	/**
 	 * Execute un algo

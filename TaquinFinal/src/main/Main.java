@@ -96,7 +96,7 @@ public class Main {
 	
 	public static void main(String[] args) {
 		
-		//Lecture des paramètres
+/*		//Lecture des paramètres
 		switch(args[0]){
 		case "-name":
 			printName();
@@ -125,13 +125,13 @@ public class Main {
 		case "-aleatoire":
 			
 			break;
-		}
+		}*/
 		
 
-/*		//On cree un jeu
+		//On cree un jeu
 		Taquin t = new Taquin(Integer.parseInt(args[0]), Integer.parseInt(args[1]), commande);
 		//On initialise un algo
-		Algo b=new Algo(t, new Tas(new DepthManhattan()), new EnsembleIncomplet(200383));
+		Algo b=new Algo(t, new Tas(new Manhattan()), new EnsembleIncomplet(21061));
 		//On lance l'algorithme		
 		b.run();
 		

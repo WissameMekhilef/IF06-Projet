@@ -45,7 +45,7 @@ public class Taquin implements Jeu{
 		
 		//On melange le jeu
 		do{
-			for(int i=0; i<50; i++)
+			for(int i=0; i<90; i++)
 				melanger();
 		}while(this.estResolu());
 		
@@ -71,10 +71,10 @@ public class Taquin implements Jeu{
 				damier[i][j]=p.damier[i][j];
 			}
 		}
-//		System.out.println("nbCoupsfinal pere : "+pere.nbCoupsfinale);
-//		System.out.println("ameliorant pere : "+pere.ameliorant);
-//		System.out.println("La différence donne  : "+(pere.nbCoupsfinale-pere.ameliorant));
-		nbCoupsfinale=pere.nbCoupsfinale-pere.ameliorant;
+/*		System.out.println("nbCoupsfinal pere : "+pere.nbCoupsfinale);
+		System.out.println("ameliorant pere : "+pere.ameliorant);
+		System.out.println("La différence donne  : "+(pere.nbCoupsfinale+pere.ameliorant));*/
+		nbCoupsfinale=pere.nbCoupsfinale+pere.ameliorant;
 	}
 	/**
 	 * Melange la grille de jeu
@@ -161,6 +161,54 @@ public class Taquin implements Jeu{
 		return res;
 	}
 	/**
+	 * 
+	 */
+	public ArrayList<Jeu> succ(){
+		ArrayList<Jeu> res=new ArrayList<Jeu>();
+		int[][] first=this.copieTableau();
+		for(String p : commande.getListeDesClefs()){
+			try{
+				this.deplacement(p);
+				res.add(new Taquin(action,this));
+				this.setDamier(first);
+			}catch (IndexOutOfBoundsException | MauvaiseTouche e) {}
+		}
+		return res;
+	}
+
+	public int hashCode(){
+		int hash=1;
+		for(int i=0;i<this.damier.length;i++){
+			for(int j=0;j<this.damier[0].length;j++){
+				hash=hash*107+damier[i][j];
+			}
+		}
+		return hash;
+	}
+
+	/**
+	 * Affichage du jeu
+	 */
+	public String toString() {
+		String s="";
+		for(int i=0; i<damier.length; i++){
+			for(int j=0; j<damier[0].length;j++){
+				s+=damier[i][j]+"\t";
+			}
+			s+="\n";
+		}
+		return s;
+	}
+
+	public boolean equals(Object o){
+		if(o instanceof Taquin){
+			Taquin t =(Taquin)o;
+			return t.hashCode()==this.hashCode();
+		}
+		else return false;
+	}
+
+	/**
 	 * Methode qui permet de determiner si ce taquin
 	 * est resolvable ou non en regardant si le nombre de 
 	 * permutation permettant d avoir un taquin resolu est identique
@@ -184,20 +232,6 @@ public class Taquin implements Jeu{
 	}
 	/**
 	 * 
-	 * @return
-	 */
-	public Taquin getPere() {
-		return pere;
-	}
-	/**
-	 * 
-	 * @return
-	 */
-	public String getAction() {
-		return action;
-	}
-	/**
-	 * 
 	 * @param d
 	 */
 	
@@ -209,6 +243,26 @@ public class Taquin implements Jeu{
 		}
 		nbCoupsfinale=nbPermutFin();
 	}
+	public void setSituationFinale(PositionFinale situationFinale) {
+		this.situationFinale = situationFinale;
+	}
+
+	/**
+	 * 
+	 * @return
+	 */
+	public Taquin getPere() {
+		return pere;
+	}
+
+	/**
+	 * 
+	 * @return
+	 */
+	public String getAction() {
+		return action;
+	}
+
 	public int[][] getDamier() {
 		return damier;
 	}
@@ -221,59 +275,8 @@ public class Taquin implements Jeu{
 		return profondeur;
 	}
 
-	/**
-	 * 
-	 */
-	public ArrayList<Jeu> succ(){
-		ArrayList<Jeu> res=new ArrayList<Jeu>();
-		int[][] first=this.copieTableau();
-		for(String p : commande.getListeDesClefs()){
-			try{
-				this.deplacement(p);
-				res.add(new Taquin(action,this));
-				this.setDamier(first);
-			}catch (IndexOutOfBoundsException | MauvaiseTouche e) {}
-		}
-		return res;
-	}
-	/**
-	 * Affichage du jeu
-	 */
-	public String toString() {
-		String s="";
-		for(int i=0; i<damier.length; i++){
-			for(int j=0; j<damier[0].length;j++){
-				s+=damier[i][j]+"\t";
-			}
-			s+="\n";
-		}
-		return s;
-	}
-	
-	public int hashCode(){
-		int hash=1;
-		for(int i=0;i<this.damier.length;i++){
-			for(int j=0;j<this.damier[0].length;j++){
-				hash=hash*107+damier[i][j];
-			}
-		}
-		return hash;
-	}
-	
-	public boolean equals(Object o){
-		if(o instanceof Taquin){
-			Taquin t =(Taquin)o;
-			return t.hashCode()==this.hashCode();
-		}
-		else return false;
-	}
-
 	public PositionFinale getSituationFinale() {
 		return situationFinale;
-	}
-
-	public void setSituationFinale(PositionFinale situationFinale) {
-		this.situationFinale = situationFinale;
 	}
 
 	public int getNbCoupsfinale() {

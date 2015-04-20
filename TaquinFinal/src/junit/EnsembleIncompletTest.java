@@ -25,44 +25,44 @@ public class EnsembleIncompletTest{
 	Commande commande= new Commande();
 	Taquin taq1;
 	int[] nbPremier={149,1213,13997,21061,200383};
+	EnsembleATraiter eat = new Tas(new Manhattan());
 	
 	@Rule
 	public TestRule benchmarkRun = new BenchmarkRule();
 	
 	@Before
 	public void setUp() throws Exception {
-		taq1= new Taquin(4,3,commande);
+		taq1= new Taquin(15, 15,commande);
 	}
 
 	@Test
 	public void T149(){
-		runAlgo(taq1, new File(), new EnsembleIncomplet(149));
+		runAlgo(taq1, new EnsembleIncomplet(149));
 	}
 	
 	@Test
 	public void T1213(){
-		runAlgo(taq1, new File(), new EnsembleIncomplet(1213));
+		runAlgo(taq1, new EnsembleIncomplet(1213));
 	}
 	
 	@Test
 	public void T13997(){
-		runAlgo(taq1, new File(), new EnsembleIncomplet(13997));
+		runAlgo(taq1, new EnsembleIncomplet(13997));
 	}
 
 	@Test
 	public void T21061(){
-		runAlgo(taq1, new File(), new EnsembleIncomplet(21061));
+		runAlgo(taq1, new EnsembleIncomplet(21061));
 	}
 
 	@Test
 	public void T200383(){
-		runAlgo(taq1, new File(), new EnsembleIncomplet(200383));
+		runAlgo(taq1, new EnsembleIncomplet(200383));
 	}
 	
-	private void runAlgo(Jeu jeu, EnsembleATraiter eat, EnsembleMarque em) {
+	private void runAlgo(Jeu jeu, EnsembleMarque em) {
 		Algo alg= new Algo(jeu, eat, em);
 		alg.run();
-		//assertTrue("Doit etre resolu",alg.getFinale().estResolu());
 	}
 
 }
