@@ -6,13 +6,14 @@ import java.util.Map.Entry;
 import exceptions.MauvaiseTouche;
 
 public class Taquin implements Jeu{
-
 	private int[][] damier;
 	private PositionFinale situationFinale;
 	private Commande commande;
 	private String action;
 	private Taquin pere;
 	private int profondeur;
+	private int nbCoupsfinale;
+	private int ameliorant;
 	
 	/**
 	 * Constructeur d'un Taquin
@@ -54,6 +55,8 @@ public class Taquin implements Jeu{
 		this.pere=null;
 		//Initialisation d'une profondeur
 		this.profondeur=0;
+		//Init nombre coups finaux
+		this.nbCoupsfinale=this.nbPermutFin();
 	}
 	
 	public Taquin(String action, Taquin p){
@@ -68,6 +71,10 @@ public class Taquin implements Jeu{
 				damier[i][j]=p.damier[i][j];
 			}
 		}
+//		System.out.println("nbCoupsfinal pere : "+pere.nbCoupsfinale);
+//		System.out.println("ameliorant pere : "+pere.ameliorant);
+//		System.out.println("La différence donne  : "+(pere.nbCoupsfinale-pere.ameliorant));
+		nbCoupsfinale=pere.nbCoupsfinale-pere.ameliorant;
 	}
 	/**
 	 * Melange la grille de jeu
@@ -85,6 +92,7 @@ public class Taquin implements Jeu{
 	 * Un tableau d'entier avec numero  de la ligne et celle de la colonne
 	 */
 	public int[] indexOf(int nb){
+		//System.out.println("\t\tAppel a indexOf");
 		int[] t=new int[2];
 		for(int i=0; i<damier.length;i++){
 			for(int j=0; j<damier[0].length; j++){
@@ -100,12 +108,19 @@ public class Taquin implements Jeu{
 	 * Permet de deplacer la case vide 
 	 */
 	public void deplacement(String direction) throws IndexOutOfBoundsException, MauvaiseTouche{
+		//System.out.println("\t\t\tAppel a indexOf de 0");
 		int[] pos0=this.indexOf(0);
 		if(commande.getDeplacement().containsKey(direction)){
+			int temp=damier[pos0[0]][pos0[1]];
+			int ancienMan=distanceManhattan(temp);
+			//System.out.println("La distance de manhattan de l'ancienne position eé : "+ancienMan);
 			int[] posX=commande.getDeplacement().get(direction);
 			damier[pos0[0]][pos0[1]]=damier[pos0[0]+posX[0]][pos0[1]+posX[1]];
 			damier[pos0[0]+posX[0]][pos0[1]+posX[1]]=0;
 			
+			
+			ameliorant=ancienMan-distanceManhattan(temp);
+			nbCoupsfinale=nbPermutFin();
 		}else throw new MauvaiseTouche();
 	}
 	/**
@@ -118,8 +133,6 @@ public class Taquin implements Jeu{
 	public int distanceManhattan(int i) {
 		int[] pos=this.indexOf(i);
 		int[] posFin=this.situationFinale.getDamierFin().get(i);
-//		double Yini=pos[0], Xini=pos[1], Yfin=posFin[0], Xfin=posFin[1];
-//		return (int)(Math.sqrt(Math.pow(Xfin-Xini, 2))+Math.sqrt(Math.pow(Yfin-Yini, 2)));
 		return (int)(Math.abs(posFin[1]-pos[1])+Math.abs(posFin[0]-pos[0]));
 		
 	}
@@ -143,7 +156,8 @@ public class Taquin implements Jeu{
 		int res=0;
 		for(int j=0; j<damier.length;j++)
 			for(int i=0; i<damier[0].length;i++)
-				res+=this.distanceManhattan(damier[j][i]);
+				if(damier[j][i]!=0)
+					res+=this.distanceManhattan(damier[j][i]);
 		return res;
 	}
 	/**
@@ -193,6 +207,7 @@ public class Taquin implements Jeu{
 				this.damier[i][j]=d[i][j];
 			}
 		}
+		nbCoupsfinale=nbPermutFin();
 	}
 	public int[][] getDamier() {
 		return damier;
@@ -260,5 +275,14 @@ public class Taquin implements Jeu{
 	public void setSituationFinale(PositionFinale situationFinale) {
 		this.situationFinale = situationFinale;
 	}
+
+	public int getNbCoupsfinale() {
+		return nbCoupsfinale;
+	}
+
+	public void setNbCoupsfinale(int nbCoupsfinale) {
+		this.nbCoupsfinale = nbCoupsfinale;
+	}
+	
 	
 }

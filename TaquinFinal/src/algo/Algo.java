@@ -22,7 +22,7 @@ public class Algo extends Thread{
 	}
 	
 	public void run(){
-		System.out.println("Taquin depart :\n"+initial);
+//		System.out.println("Taquin depart :\n"+initial);
 		if(initial.estResolu())
 			System.out.println("Le jeu est déjà résolu");
 		else{
@@ -39,7 +39,7 @@ public class Algo extends Thread{
 						if(p.estResolu()){
 							fin=true;
 							finale=p;
-							System.out.println("Solution :\n"+p);
+//							System.out.println("Solution :\n"+p);
 						}
 						marque.ajout(p);
 						aTraiter.ajout(p);

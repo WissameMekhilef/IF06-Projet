@@ -22,12 +22,12 @@ import org.junit.rules.TestRule;
 
 @AxisRange(min = 0, max = 0.05)
 @BenchmarkMethodChart(filePrefix = "testdesalgo")
-@BenchmarkOptions(callgc = false, benchmarkRounds = 50)
+@BenchmarkOptions(callgc = false, benchmarkRounds = 5)
 
-public class AlgoTest extends AbstractBenchmark{
+public class AlgoSpeed extends AbstractBenchmark{
 	Commande commande=new Commande();
 	Taquin taq1;
-	int tailleEnsembleIncomplet=1213;
+	int tailleEnsembleIncomplet=200383;
 	
 	@Rule
 	public TestRule benchmarkRun = new BenchmarkRule();
@@ -42,10 +42,10 @@ public class AlgoTest extends AbstractBenchmark{
 		runTest(taq1, new EnsembleIncomplet(tailleEnsembleIncomplet), new File());
 	}
 	
-	@Test
+/*	@Test
 	public void FileComplet(){
 		runTest(taq1, new EnsembleComplet(), new File());
-	}
+	}*/
 	
 	@Test
 	public void PileIncomplet(){
@@ -90,7 +90,6 @@ public class AlgoTest extends AbstractBenchmark{
 		//System.out.println("Nouveau test en cours");
 		Algo algo = new Algo(jeu, eat, em);
 		algo.run();
-		assertTrue("Doit etre resolu",algo.getFinale().estResolu());
 	}
 	
 

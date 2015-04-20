@@ -41,6 +41,6 @@ public interface Jeu {
 	
 	public int hashCode();
 	
-	
+	public int getNbCoupsfinale();
 	
 }

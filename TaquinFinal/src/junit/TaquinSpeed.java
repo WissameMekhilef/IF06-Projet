@@ -14,11 +14,11 @@ import org.junit.Rule;
 import org.junit.Test;
 import org.junit.rules.TestRule;
 
-@AxisRange(min = 0, max = 1)
+@AxisRange(min = 0, max = 0.05)
 @BenchmarkMethodChart(filePrefix = "testMethodeTaquin")
-@BenchmarkOptions(callgc = false, benchmarkRounds = 5)
+@BenchmarkOptions(callgc = false, benchmarkRounds = 50)
 
-public class TaquinTest{
+public class TaquinSpeed{
 	Commande commande= new Commande();
 	Taquin taq1;
 	
@@ -27,7 +27,7 @@ public class TaquinTest{
 		
 	@Before
 	public void setUp(){
-		taq1 = new Taquin(7,7,commande);
+		taq1 = new Taquin(20,24,commande);
 	}
 	
 	@Test
