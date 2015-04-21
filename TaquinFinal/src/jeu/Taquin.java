@@ -93,9 +93,6 @@ public class Taquin implements Jeu{
 				damier[i][j]=p.damier[i][j];
 			}
 		}
-/*		System.out.println("nbCoupsfinal pere : "+pere.nbCoupsfinale);
-		System.out.println("ameliorant pere : "+pere.ameliorant);
-		System.out.println("La différence donne  : "+(pere.nbCoupsfinale+pere.ameliorant));*/
 		nbCoupsfinale=pere.nbCoupsfinale+pere.ameliorant;
 	}
 	/**

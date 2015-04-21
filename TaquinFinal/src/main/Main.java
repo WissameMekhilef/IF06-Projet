@@ -133,11 +133,11 @@ public class Main {
 		
 
 		//On cree un jeu
-		//Taquin t = new Taquin(Integer.parseInt(args[0]), Integer.parseInt(args[1]), commande);
-		Taquin t = null;
+		Taquin t = new Taquin(Integer.parseInt(args[0]), Integer.parseInt(args[1]), commande);
+		/*Taquin t = null;
 		try {
 			t = new Taquin(new BufferedReader(new FileReader("taquin/taq1.taq")),commande);
-		} catch (NumberFormatException | IOException e1) {} 
+		} catch (NumberFormatException | IOException e1) {} */
 		//On initialise un algo
 		Algo b=new Algo(t, new Tas(new Manhattan()), new EnsembleIncomplet(21061));
 		//On lance l'algorithme		
@@ -150,6 +150,7 @@ public class Main {
 		else{
 			System.out.println("Chemin : "+soluce);
 			System.out.println("L'algorithme à traité : "+ b.getNombrePositionTraite()+" position(s)");
+			System.out.println("La solution à étais trouvé en : "+b.getTempExec()+"ms");
 		}
 
 		

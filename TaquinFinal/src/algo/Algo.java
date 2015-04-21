@@ -9,6 +9,7 @@ public class Algo extends Thread{
 	private Jeu initial;
 	private Jeu finale;
 	private Stack<String> solution;
+	private long tempExec;
 	
 	public Algo(Jeu pInit, EnsembleATraiter pTraiter, EnsembleMarque pMarque){
 		this.initial=pInit;
@@ -18,6 +19,7 @@ public class Algo extends Thread{
 	}
 	
 	public void run(){
+		long timeDeb=System.currentTimeMillis();
 		System.out.println("Taquin depart :\n"+initial);
 		if(initial.estResolu())
 			System.out.println("Le jeu est déjà résolu");
@@ -44,6 +46,8 @@ public class Algo extends Thread{
 			}
 			setSolution();
 		}
+		long timeFin = System.currentTimeMillis();
+		tempExec=timeFin-timeDeb;
 	}
 	
 	public void setSolution(){
@@ -68,6 +72,10 @@ public class Algo extends Thread{
 
 	public Jeu getFinale() {
 		return finale;
+	}
+
+	public long getTempExec() {
+		return tempExec;
 	}
 	
 }
