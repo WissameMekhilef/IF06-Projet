@@ -17,7 +17,7 @@ public class Noeud implements Automate {
 	public Noeud(EnsembleMarque pMarque, Commande c){
 		fail = new ArrayList<String>();
 		for(Action a: c.getTabClef()){
-			fail.add(a.getAction()+a.getInverse());
+			fail.add(a.getAction()+a.getInverse().getAction());
 		}
 		marque = pMarque;
 		chemin="";

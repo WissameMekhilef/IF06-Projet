@@ -2,8 +2,8 @@
 <classpath>
 	<classpathentry kind="src" path="src"/>
 	<classpathentry exported="true" kind="con" path="org.eclipse.jdt.junit.JUNIT_CONTAINER/4"/>
-	<classpathentry exported="true" kind="lib" path="/home/wissame/git/IF06-Projet/TaquinFinal/h2-1.4.187.jar"/>
-	<classpathentry exported="true" kind="lib" path="/home/wissame/git/IF06-Projet/TaquinFinal/junit-benchmarks-0.7.2.jar"/>
+	<classpathentry kind="lib" path="C:/Users/Simon/git/IF06-Projet/TaquinFinal/h2-1.4.187.jar"/>
+	<classpathentry kind="lib" path="C:/Users/Simon/git/IF06-Projet/TaquinFinal/junit-benchmarks-0.7.2.jar"/>
 	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>
