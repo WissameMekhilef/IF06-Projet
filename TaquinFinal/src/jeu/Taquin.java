@@ -11,7 +11,7 @@ public class Taquin implements Jeu{
 	private int[][] damier;
 	private PositionFinale situationFinale;
 	private Commande commande;
-	private String action;
+	private Action action;
 	private Taquin pere;
 	private int profondeur;
 	private int nbCoupsfinale;
@@ -29,7 +29,7 @@ public class Taquin implements Jeu{
 		this.commande=pCommande;
 		this.pere=null;
 		this.profondeur=0;
-		action="";
+		action=null;
 		
 		Taquin t = new Taquin(damier.length, damier[0].length, commande);
 		situationFinale=t.situationFinale;
@@ -72,7 +72,7 @@ public class Taquin implements Jeu{
 		}while(this.estResolu());
 		
 		//Initialisation de l'action
-		action="";
+		action=null;
 		//Intialisation du pere
 		this.pere=null;
 		//Initialisation d'une profondeur
@@ -81,7 +81,7 @@ public class Taquin implements Jeu{
 		this.nbCoupsfinale=this.nbPermutFin();
 	}
 	
-	public Taquin(String action, Taquin p){
+	public Taquin(Action action, Taquin p){
 		this.situationFinale=p.getSituationFinale();
 		this.commande=p.commande;
 		this.damier= new int[p.damier.length][p.damier[0].length];
@@ -101,7 +101,7 @@ public class Taquin implements Jeu{
 	public void melanger() {
 		int entier = (int) (Math.random() * 4);
 		try {
-			deplacement((String) commande.getTabClef()[entier]);
+			deplacement((Action) commande.getTabClef()[entier]);
 		} catch (IndexOutOfBoundsException | MauvaiseTouche e) {}
 	}
 
@@ -126,7 +126,7 @@ public class Taquin implements Jeu{
 	/**
 	 * Permet de deplacer la case vide 
 	 */
-	public void deplacement(String direction) throws IndexOutOfBoundsException, MauvaiseTouche{
+	public void deplacement(Action direction) throws IndexOutOfBoundsException, MauvaiseTouche{
 		//System.out.println("\t\t\tAppel a indexOf de 0");
 		int[] pos0=this.indexOf(0);
 		if(commande.getDeplacement().containsKey(direction)){
@@ -153,7 +153,6 @@ public class Taquin implements Jeu{
 		int[] pos=this.indexOf(i);
 		int[] posFin=this.situationFinale.getDamierFin().get(i);
 		return (int)(Math.abs(posFin[1]-pos[1])+Math.abs(posFin[0]-pos[0]));
-		
 	}
 	/**
 	 * Methode pour savoir si le jeu est resolu
@@ -185,10 +184,10 @@ public class Taquin implements Jeu{
 	public ArrayList<Jeu> succ(){
 		ArrayList<Jeu> res=new ArrayList<Jeu>();
 		int[][] first=this.copieTableau();
-		for(String p : commande.getListeDesClefs()){
+		for(Action p : commande.getListeDesClefs()){
 			try{
 				this.deplacement(p);
-				res.add(new Taquin(action,this));
+				res.add(new Taquin(p,this));
 				this.setDamier(first);
 			}catch (IndexOutOfBoundsException | MauvaiseTouche e) {}
 		}
@@ -199,7 +198,7 @@ public class Taquin implements Jeu{
 		int hash=1;
 		for(int i=0;i<this.damier.length;i++){
 			for(int j=0;j<this.damier[0].length;j++){
-				hash=hash*107+damier[i][j];
+				hash=hash*31+damier[i][j];
 			}
 		}
 		return hash;
@@ -278,7 +277,7 @@ public class Taquin implements Jeu{
 	 * 
 	 * @return
 	 */
-	public String getAction() {
+	public Action getAction() {
 		return action;
 	}
 

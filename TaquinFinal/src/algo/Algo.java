@@ -1,6 +1,9 @@
 package algo;
 
 import java.util.*;
+
+import automate.Automate;
+import automate.Noeud;
 import jeu.*;
 
 public class Algo extends Thread{
@@ -8,14 +11,16 @@ public class Algo extends Thread{
 	private EnsembleATraiter aTraiter;
 	private Jeu initial;
 	private Jeu finale;
-	private Stack<String> solution;
+	private Stack<Action> solution;
 	private long tempExec;
+	private Automate automate;
 	
 	public Algo(Jeu pInit, EnsembleATraiter pTraiter, EnsembleMarque pMarque){
 		this.initial=pInit;
 		aTraiter=pTraiter;
 		marque=pMarque;
-		solution=new Stack<String>();
+		solution=new Stack<Action>();
+		automate = new Noeud(marque,pInit.getCommande());
 	}
 	
 	public void run(){
@@ -32,7 +37,8 @@ public class Algo extends Thread{
 			while(aTraiter.nonVide() && !fin){
 				Jeu pos = aTraiter.prend();
 				succ = pos.succ();
-				for(Jeu p: succ){
+				ArrayList<Jeu>succR = reduireSucc(succ);
+				for(Jeu p: succR){
 					if(!marque.appartient(p)){
 						if(p.estResolu()){
 							fin=true;
@@ -48,6 +54,24 @@ public class Algo extends Thread{
 		}
 		long timeFin = System.currentTimeMillis();
 		tempExec=timeFin-timeDeb;
+	}
+	
+	public Automate getAutomate() {
+		return automate;
+	}
+
+	public void setAutomate(Automate automate) {
+		this.automate = automate;
+	}
+
+	private ArrayList<Jeu> reduireSucc(ArrayList<Jeu> aReduire){
+		ArrayList<Jeu> res = new ArrayList<Jeu>();
+		for(Jeu j : aReduire){
+			//System.out.println("action de j : "+ j.getAction());
+			if (automate.suivant(j, j.getAction()))
+				res.add(j);
+		}
+		return res;
 	}
 	
 	public void setSolution(){

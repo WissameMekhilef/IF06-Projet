@@ -11,7 +11,7 @@ public interface Jeu {
 	 * @throws ImpossibleMoveException
 	 * Une exception est leve si le deplacement est impossible
 	 */
-	public void deplacement(String direction) throws IndexOutOfBoundsException, MauvaiseTouche;
+	public void deplacement(Action direction) throws IndexOutOfBoundsException, MauvaiseTouche;
 	/**
 	 * Affiche le jeu
 	 * @return
@@ -31,7 +31,7 @@ public interface Jeu {
 	
 	public Jeu getPere();
 	
-	public String getAction();
+	public Action getAction();
 	
 	public int getProfondeur();
 	
@@ -42,5 +42,7 @@ public interface Jeu {
 	public int hashCode();
 	
 	public int getNbCoupsfinale();
+	
+	public Commande getCommande();
 	
 }

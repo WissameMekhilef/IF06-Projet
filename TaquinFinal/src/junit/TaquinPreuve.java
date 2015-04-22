@@ -18,7 +18,7 @@ public class TaquinPreuve {
 		
 	}
 	
-	@Test
+/*	@Test
 	public void testAmeliorant(){
 		Taquin t= new Taquin(3,3,commande);
 		int [][] temp = {{1,3,2},{4,0,6},{5,7,8}};
@@ -38,6 +38,6 @@ public class TaquinPreuve {
 		
 		//System.out.println("La distance de la case '0' est : "+t.distanceManhattan(0));
 		//System.out.println("Le jeu est solvable? : "+t.estSoluble());
-	}
+	}*/
 
 }

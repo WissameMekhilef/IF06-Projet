@@ -13,11 +13,10 @@ import algo.*;
 import exceptions.*;
 import jeu.*;
 
-@SuppressWarnings("unused")
 public class Main {
 	private static Commande commande=new Commande();
 	
-	private static void joue(String destJeu){
+/*	private static void joue(String destJeu){
 		jouer(new Taquin(3,3,commande),new Scanner(System.in),System.out,commande);
 	}
 	
@@ -32,7 +31,7 @@ public class Main {
 	 * @param pSortie
 	 *            Le flux de sortie
 	 */
-	public static void jouer(Jeu pJeu, Scanner pScan, PrintStream pSortie, Commande commande) {
+/*	public static void jouer(Jeu pJeu, Scanner pScan, PrintStream pSortie, Commande commande) {
 		// Un string pour enregistrer les deplacements
 		String deplacements = "";
 		// On enregistre la posistion du curseur au debut du programme, pour y
@@ -65,7 +64,7 @@ public class Main {
 				pSortie.println("Voici la liste des mouvements effectues : " + deplacements);
 	}
 	
-	private static void anim(Jeu jeu, String action) throws IndexOutOfBoundsException, MauvaiseTouche, InterruptedException{
+/*	private static void anim(Jeu jeu, String action) throws IndexOutOfBoundsException, MauvaiseTouche, InterruptedException{
 		System.out.println((char) Event.ESCAPE + "[s");
 		System.out.println(jeu);
 		int nbAction = action.length();
@@ -77,7 +76,7 @@ public class Main {
 			Thread.sleep(1000);
 		}
 		
-	}
+	}*/
 	
 	private static void printName(){
 		System.out.println("Ce programme à été développé par : ARNOULT Simon, MEKHILEF Wissame, OUSSAD Jihad et RETY Martin");
@@ -136,11 +135,12 @@ public class Main {
 		Taquin t = new Taquin(Integer.parseInt(args[0]), Integer.parseInt(args[1]), commande);
 		/*Taquin t = null;
 		try {
-			t = new Taquin(new BufferedReader(new FileReader("taquin/taq1.taq")),commande);
-		} catch (NumberFormatException | IOException e1) {} */
+			t = new Taquin(new BufferedReader(new FileReader("taquin/taq2.taq")),commande);
+		} catch (NumberFormatException | IOException e1) {}*/
 		//On initialise un algo
-		Algo b=new Algo(t, new Tas(new Manhattan()), new EnsembleIncomplet(21061));
-		//On lance l'algorithme		
+		Algo b=new Algo(t, new File(), new EnsembleComplet());
+		//On lance l'algorithme	
+		System.out.println("Le jeu est solvable : "+t.estSoluble());
 		b.run();
 		
 		String soluce = b.getSolution();
@@ -152,8 +152,10 @@ public class Main {
 			System.out.println("L'algorithme à traité : "+ b.getNombrePositionTraite()+" position(s)");
 			System.out.println("La solution à étais trouvé en : "+b.getTempExec()+"ms");
 		}
-
 		
+		System.out.println("L'algorithme à supprimé : "+b.getAutomate().getFail().size()+" coup(s) redondant");
+
+/*		
 		try {
 			anim(t,soluce);
 		} catch (IndexOutOfBoundsException | MauvaiseTouche | InterruptedException e) {}

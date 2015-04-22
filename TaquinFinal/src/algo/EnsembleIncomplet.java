@@ -6,22 +6,20 @@ import jeu.*;
 public class EnsembleIncomplet implements EnsembleMarque {
 
 	private int[] ensemble;
+	private int taille;
 	
 	public EnsembleIncomplet (int pTaille){
-		ensemble=new int[pTaille];
+		taille=pTaille;
+		ensemble=new int[taille];
 	}
 	public void ajout(Jeu pSommet) {
-		int indice=pSommet.hashCode()%ensemble.length;
-		if(indice<0)
-			indice=indice*-1;
+		int indice=Math.abs(pSommet.hashCode()%taille);
 		if(ensemble[indice]==0)
 			ensemble[indice]=1;
 	}
 
 	public boolean appartient(Jeu pATester) {
-		int indice=pATester.hashCode()%ensemble.length;
-		if(indice<0)
-			indice=indice*-1;
+		int indice=Math.abs(pATester.hashCode()%taille);
 		return ensemble[indice]==1;
 	}
 }
