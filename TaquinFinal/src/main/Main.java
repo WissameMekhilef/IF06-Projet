@@ -91,6 +91,13 @@ public class Main {
 		
 	}*/
 	
+	private static void testSolvable(String jeuaTester){
+		String res = "Le jeu a tester est ";
+		(new Taquin(("/taquin"+jeuaTester), commande)).estSoluble()?res+="":res+="non";
+		res+="resolvable";
+		System.out.println(res);
+	}
+	
 	private static void printName(){
 		System.out.println("Ce programme a� �t� d�velopp� par : ARNOULT Simon, MEKHILEF Wissame, OUSSAD Jihad et RETY Martin");
 	}
@@ -121,7 +128,10 @@ public class Main {
 			printOptionList();
 			break;
 		case "-sol":
-			
+			if(args[1]!=null)
+				testSolvable(args[1]);
+			else
+				System.out.println("Erreur vous n'avez pas spécifié de fichier de jeu");			
 			break;
 		case "-joue":
 			if(args[1]!=null)
@@ -130,7 +140,10 @@ public class Main {
 				System.out.println("Erreur vous n'avez pas spécifié de fichier de jeu");
 			break;
 		case "-cal":
-			
+			if(args[1]!=null)
+				
+			else
+				System.out.println("Erreur vous n'avez pas spécifié de fichier de jeu");
 			break;
 		case "-anime":
 			
