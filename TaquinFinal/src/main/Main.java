@@ -2,22 +2,34 @@ package main;
 
 import java.awt.Event;
 import java.io.BufferedReader;
-import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
 import java.io.PrintStream;
-import java.util.*;
+import java.util.HashMap;
+import java.util.Scanner;
+import java.util.Stack;
+import java.util.Vector;
 
-import comparateurs.*;
-import algo.*;
-import exceptions.*;
-import jeu.*;
+import jeu.Action;
+import jeu.Commande;
+import jeu.Jeu;
+import jeu.Taquin;
+import exceptions.MauvaiseTouche;
 
 public class Main {
 	private static Commande commande=new Commande();
+	private static HashMap <String,Action> tableCorrespondance = new HashMap<String,Action>();
+
+	private static void joue(String destJeu){
+		try {
+			jouer(new Taquin(new BufferedReader(new FileReader("taquin/"+destJeu)),commande),new Scanner(System.in),System.out);
+		} catch (NumberFormatException | IOException e) {
+			System.out.println("Le jeu n'a pas Ã©tÃ© trouvÃ©");
+		}
+	}
 	
-/*	private static void joue(String destJeu){
-		jouer(new Taquin(3,3,commande),new Scanner(System.in),System.out,commande);
+	private static Action lireAction(Scanner pScan){
+		return commande.getTabCorrespondance().get(pScan.nextLine());
 	}
 	
 	/**
@@ -31,9 +43,10 @@ public class Main {
 	 * @param pSortie
 	 *            Le flux de sortie
 	 */
-/*	public static void jouer(Jeu pJeu, Scanner pScan, PrintStream pSortie, Commande commande) {
+	public static void jouer(Jeu pJeu, Scanner pScan, PrintStream pSortie) {
+		Action actionARealiser;
 		// Un string pour enregistrer les deplacements
-		String deplacements = "";
+		Stack<Action> deplacementsEffectuer = new Stack<Action>();
 		// On enregistre la posistion du curseur au debut du programme, pour y
 		// revenir apres
 		pSortie.println((char) Event.ESCAPE + "7");
@@ -41,14 +54,14 @@ public class Main {
 		// On boucle tant que le jeu n'est pas resolu
 		while (!pJeu.estResolu()) {
 			// Lecture du caractere tappe au clavier
-			String sc = pScan.next();
+			actionARealiser=lireAction(pScan);
 			// On essaie d'effectuer le deplacement voulue
 			try {
 				// On recupere la correspondance touche | deplacement
 				// C'est la methode deplacement qui peut retourner une erreur
-				pJeu.deplacement(sc);
+				pJeu.deplacement(actionARealiser);
 				// On ajoute les deplacements au deplacement effectuer
-				deplacements += sc;
+				deplacementsEffectuer.push(actionARealiser);
 				// On revient a la position de depart
 				pSortie.println((char) Event.ESCAPE + "8");
 				// Et on reecrit le jeu par dessus l'ancien
@@ -61,7 +74,7 @@ public class Main {
 				pSortie.println((char) Event.ESCAPE + "8");
 				pSortie.println(pJeu);
 				pSortie.println("Bravo vous avez gagne");
-				pSortie.println("Voici la liste des mouvements effectues : " + deplacements);
+				//pSortie.println("Voici la liste des mouvements effectues : " + deplacements);
 	}
 	
 /*	private static void anim(Jeu jeu, String action) throws IndexOutOfBoundsException, MauvaiseTouche, InterruptedException{
@@ -79,7 +92,7 @@ public class Main {
 	}*/
 	
 	private static void printName(){
-		System.out.println("Ce programme a  été développé par : ARNOULT Simon, MEKHILEF Wissame, OUSSAD Jihad et RETY Martin");
+		System.out.println("Ce programme aï¿½ ï¿½tï¿½ dï¿½veloppï¿½ par : ARNOULT Simon, MEKHILEF Wissame, OUSSAD Jihad et RETY Martin");
 	}
 	
 	private static void printOptionList(){
@@ -99,7 +112,7 @@ public class Main {
 	
 	public static void main(String[] args) {
 		
-/*		//Lecture des paramÃ¨tres
+		//Lecture des paramÃ¨tres
 		switch(args[0]){
 		case "-name":
 			printName();
@@ -128,17 +141,17 @@ public class Main {
 		case "-aleatoire":
 			
 			break;
-		}*/
-		
+		}
+		/*
 
 		//On cree un jeu
-		Taquin t = new Taquin(Integer.parseInt(args[0]), Integer.parseInt(args[1]), commande);
-		/*Taquin t = null;
+		//Taquin t = new Taquin(Integer.parseInt(args[0]), Integer.parseInt(args[1]), commande);
+		Taquin t = null;
 		try {
-			t = new Taquin(new BufferedReader(new FileReader("taquin/taq2.taq")),commande);
-		} catch (NumberFormatException | IOException e1) {}*/
+			t = new Taquin(new BufferedReader(new FileReader("taquin/taq5.taq")),commande);
+		} catch (NumberFormatException | IOException e1) {}
 		//On initialise un algo
-		Algo b=new Algo(t,  new Tas(new Manhattan()), new EnsembleComplet());
+		Algo b=new Algo(t,  new Tas(new Manhattan()), new EnsembleIncomplet(20000623));
 		//On lance l'algorithme	
 		System.out.println("Le jeu est solvable : "+t.estSoluble());
 		b.run();

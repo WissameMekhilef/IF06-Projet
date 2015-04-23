@@ -1,10 +1,13 @@
 package algo;
 
-import java.util.*;
+import java.awt.Toolkit;
+import java.util.ArrayList;
+import java.util.Stack;
 
+import jeu.Action;
+import jeu.Jeu;
 import automate.Automate;
 import automate.Noeud;
-import jeu.*;
 
 public class Algo extends Thread{
 	private EnsembleMarque marque;
@@ -14,6 +17,7 @@ public class Algo extends Thread{
 	private Stack<Action> solution;
 	private long tempExec;
 	private Automate automate;
+	private int nombrePositionsTraite;
 	
 	public Algo(Jeu pInit, EnsembleATraiter pTraiter, EnsembleMarque pMarque){
 		this.initial=pInit;
@@ -21,6 +25,7 @@ public class Algo extends Thread{
 		marque=pMarque;
 		solution=new Stack<Action>();
 		automate = new Noeud(pTraiter,pInit.getCommande());
+		nombrePositionsTraite=0;
 	}
 	/**
 	 * L'automate peut etre desactive en remplacant "succR" par "succ" a la ligne 44.
@@ -46,6 +51,7 @@ public class Algo extends Thread{
 						if(p.estResolu()){
 							fin=true;
 							finale=p;
+							Toolkit.getDefaultToolkit().beep();
 							System.out.println("Solution :\n"+p);
 						}
 						marque.ajout(p);
