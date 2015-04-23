@@ -20,7 +20,7 @@ public class Algo extends Thread{
 		aTraiter=pTraiter;
 		marque=pMarque;
 		solution=new Stack<Action>();
-		automate = new Noeud(marque,pInit.getCommande());
+		automate = new Noeud(pTraiter,pInit.getCommande());
 	}
 	/**
 	 * L'automate peut etre desactive en remplacant "succR" par "succ" a la ligne 44.

@@ -79,7 +79,7 @@ public class Main {
 	}*/
 	
 	private static void printName(){
-		System.out.println("Ce programme Ã  Ã©tÃ© dÃ©veloppÃ© par : ARNOULT Simon, MEKHILEF Wissame, OUSSAD Jihad et RETY Martin");
+		System.out.println("Ce programme a  été développé par : ARNOULT Simon, MEKHILEF Wissame, OUSSAD Jihad et RETY Martin");
 	}
 	
 	private static void printOptionList(){
@@ -138,7 +138,7 @@ public class Main {
 			t = new Taquin(new BufferedReader(new FileReader("taquin/taq2.taq")),commande);
 		} catch (NumberFormatException | IOException e1) {}*/
 		//On initialise un algo
-		Algo b=new Algo(t, new File(), new EnsembleComplet());
+		Algo b=new Algo(t,  new Tas(new Manhattan()), new EnsembleComplet());
 		//On lance l'algorithme	
 		System.out.println("Le jeu est solvable : "+t.estSoluble());
 		b.run();

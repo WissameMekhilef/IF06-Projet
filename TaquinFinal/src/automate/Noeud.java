@@ -2,24 +2,23 @@ package automate;
 
 import java.util.ArrayList;
 
-import algo.EnsembleMarque;
-
+import algo.EnsembleATraiter;
 import jeu.Action;
 import jeu.Commande;
 import jeu.Jeu;
 
 public class Noeud implements Automate {
 	
-	private EnsembleMarque marque;
+	private EnsembleATraiter traite;
 	private String chemin;
 	private ArrayList<String> fail;
 	
-	public Noeud(EnsembleMarque pMarque, Commande c){
+	public Noeud(EnsembleATraiter pTraite, Commande c){
 		fail = new ArrayList<String>();
 		for(Action a: c.getTabClef()){
 			fail.add(a.getAction()+a.getInverse().getAction());
 		}
-		marque = pMarque;
+		traite = pTraite;
 		chemin="";
 	}
 	
@@ -35,7 +34,7 @@ public class Noeud implements Automate {
 		//System.out.println("chemin : "+chemin);
 		//System.out.println("action : "+action.getAction());
 		if (!fail.contains(chemin+action.getAction())){
-			if(marque.appartient(pJeu)){
+			if(traite.appartient(pJeu)){
 				fail.add(chemin+action.getAction());
 				return false;
 			}
