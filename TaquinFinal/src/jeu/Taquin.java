@@ -160,11 +160,7 @@ public class Taquin implements Jeu{
 	 * @return Un boolean true si le jeu est resolue, false sinon
 	 */
 	public boolean estResolu() {
-		Iterator<Entry<Integer,int[]>> it=situationFinale.getDamierFin().entrySet().iterator();
-		while(it.hasNext()){
-			if(this.distanceManhattan(it.next().getKey())!=0) return false;
-		}
-		return true;
+		return situationFinale.equals(damier);
 	}
 	/**
 	 * 
