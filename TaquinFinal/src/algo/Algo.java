@@ -3,6 +3,7 @@ package algo;
 import java.awt.Toolkit;
 import java.util.ArrayList;
 import java.util.Stack;
+import java.util.Timer;
 
 import jeu.Action;
 import jeu.Jeu;
@@ -18,6 +19,7 @@ public class Algo extends Thread{
 	private long tempExec;
 	private Automate automate;
 	private int nombrePositionsTraite;
+	private int nbIterations;
 	
 	public Algo(Jeu pInit, EnsembleATraiter pTraiter, EnsembleMarque pMarque){
 		this.initial=pInit;
@@ -26,12 +28,17 @@ public class Algo extends Thread{
 		solution=new Stack<Action>();
 		automate = new Noeud(pTraiter,pInit.getCommande());
 		nombrePositionsTraite=0;
+		nbIterations = 0;
 	}
 	/**
 	 * L'automate peut etre desactive en remplacant "succR" par "succ" a la ligne 44.
 	 * Dans ce cas l'algo fonctionne mais est moins efficace.
 	 */
-	public void run(){
+	public void run(int temps){
+		if(temps != 0) {
+			Timer t = new Timer();
+			t.schedule(new Arret(), temps);
+		}
 		long timeDeb=System.currentTimeMillis();
 		System.out.println("Taquin depart :\n"+initial);
 		if(initial.estResolu())
@@ -47,6 +54,7 @@ public class Algo extends Thread{
 				succ = pos.succ();
 				ArrayList<Jeu>succR = reduireSucc(succ);
 				for(Jeu p: succR){
+					nbIterations++;
 					if(!marque.appartient(p)){
 						if(p.estResolu()){
 							fin=true;
@@ -63,6 +71,18 @@ public class Algo extends Thread{
 		}
 		long timeFin = System.currentTimeMillis();
 		tempExec=timeFin-timeDeb;
+	}
+	
+	public String description() {
+		String solution = getSolution();
+		return initial.description() + "\n\nL'algorithme a dure " + nbIterations
+				+ " iterations, au cours desquelles il a traite " + aTraiter.positionTraite()
+				+ " positions du jeu.\nSon execution a pris " + tempExec
+				+ " ms.\n\nAu cours de son execution, l'algorithme est parti "
+				+ (automate.getFail().size() - 4)
+				+ " fois dans une mauvaise direction.\n\nAu final, il aura supprime " + automate.getFail().size()
+				+ " combinaisons de coups redondants afin de donner une solution optimale de longueur "
+				+ solution.length() + ".\nChemin : " + solution;
 	}
 	
 	public Automate getAutomate() {

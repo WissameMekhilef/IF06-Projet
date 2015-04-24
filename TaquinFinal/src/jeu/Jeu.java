@@ -45,4 +45,6 @@ public interface Jeu {
 	
 	public Commande getCommande();
 	
+	public String description();
+	
 }

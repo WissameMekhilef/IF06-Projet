@@ -20,4 +20,7 @@ public class EnsembleComplet implements EnsembleMarque {
 		return ensemble.contains(pATester);
 	}
 
+	public int taille() {
+		return ensemble.size();
+	}
 }

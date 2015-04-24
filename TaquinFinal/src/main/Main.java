@@ -2,6 +2,7 @@ package main;
 
 import java.awt.Event;
 import java.io.BufferedReader;
+import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
 import java.io.PrintStream;
@@ -10,6 +11,10 @@ import java.util.Scanner;
 import java.util.Stack;
 import java.util.Vector;
 
+import algo.Algo;
+import algo.EnsembleIncomplet;
+import algo.Tas;
+import comparateurs.Manhattan;
 import jeu.Action;
 import jeu.Commande;
 import jeu.Jeu;
@@ -77,23 +82,35 @@ public class Main {
 				//pSortie.println("Voici la liste des mouvements effectues : " + deplacements);
 	}
 	
-/*	private static void anim(Jeu jeu, String action) throws IndexOutOfBoundsException, MauvaiseTouche, InterruptedException{
+	private static void anim(Jeu jeu, String action) throws IndexOutOfBoundsException, MauvaiseTouche, InterruptedException{
 		System.out.println((char) Event.ESCAPE + "[s");
 		System.out.println(jeu);
 		int nbAction = action.length();
 		System.out.println("On a "+nbAction+" action à réaliser");
 		for(int i=0; i<nbAction; i++){
-			jeu.deplacement(Character.toString(action.charAt(i)));
+			jeu.deplacement(new Action(action));
 			System.out.println((char) Event.ESCAPE + "[u");
 			System.out.println(jeu);
 			Thread.sleep(1000);
 		}
 		
-	}*/
+	}
 	
 	private static void testSolvable(String jeuaTester){
 		String res = "Le jeu a tester est ";
-		(new Taquin(("/taquin"+jeuaTester), commande)).estSoluble()?res+="":res+="non";
+		try {
+			if((new Taquin(new BufferedReader(new FileReader ("/taquin"+jeuaTester)), commande)).estSoluble()) res+="";
+			else res+="non";
+		} catch (NumberFormatException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (FileNotFoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 		res+="resolvable";
 		System.out.println(res);
 	}
@@ -118,9 +135,8 @@ public class Main {
 	}
 	
 	public static void main(String[] args) {
-		
 		//Lecture des paramètres
-		switch(args[0]){
+		/*switch(args[0]){
 		case "-name":
 			printName();
 			break;
@@ -140,9 +156,7 @@ public class Main {
 				System.out.println("Erreur vous n'avez pas spécifié de fichier de jeu");
 			break;
 		case "-cal":
-			if(args[1]!=null)
-				
-			else
+			if(args[1]==null)
 				System.out.println("Erreur vous n'avez pas spécifié de fichier de jeu");
 			break;
 		case "-anime":
@@ -153,43 +167,37 @@ public class Main {
 			break;
 		case "-aleatoire":
 			
-			break;
-		}
-		/*
+			break;*/
+		
+		
 
 		//On cree un jeu
 		//Taquin t = new Taquin(Integer.parseInt(args[0]), Integer.parseInt(args[1]), commande);
 		Taquin t = null;
 		try {
-			t = new Taquin(new BufferedReader(new FileReader("taquin/taq5.taq")),commande);
+			t = new Taquin(new BufferedReader(new FileReader("taquin/taq1.taq")),commande);
 		} catch (NumberFormatException | IOException e1) {}
 		//On initialise un algo
 		Algo b=new Algo(t,  new Tas(new Manhattan()), new EnsembleIncomplet(20000623));
 		//On lance l'algorithme	
 		System.out.println("Le jeu est solvable : "+t.estSoluble());
-		b.run();
-		
-		String soluce = b.getSolution();
+		b.run(0);
 		//On interprete le resultat de l'algo
 		if(b.getFinale()==null)
 			System.out.println("Pas de solution trouvé");
 		else{
-			System.out.println("Chemin : "+soluce);
-			System.out.println("L'algorithme à traité : "+ b.getNombrePositionTraite()+" position(s)");
-			System.out.println("La solution à étais trouvé en : "+b.getTempExec()+"ms");
+			System.out.println(b.description());
 		}
 		
-		System.out.println("L'algorithme à supprimé : "+b.getAutomate().getFail().size()+" coup(s) redondant");
-
-/*		
-		try {
+		/*try {
 			anim(t,soluce);
 		} catch (IndexOutOfBoundsException | MauvaiseTouche | InterruptedException e) {}
 
-/*		Scanner s = new Scanner(System.in);
+		Scanner s = new Scanner(System.in);
 		PrintStream p=System.out;
-		jouer(t,s,p,commande);*/
+		jouer(t,s,p);*/
 		//System.exit(0);
+		
 	}
 
 }

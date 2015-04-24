@@ -305,5 +305,12 @@ public class Taquin implements Jeu{
 		this.nbCoupsfinale = nbCoupsfinale;
 	}
 	
+	public String description() {
+		int n = 0;
+		for(int i = 1; i < damier.length * damier[0].length; i++) n += distanceManhattan(i);
+		return "Le jeu de taquin a resoudre etait de taille " + damier.length + "x" + damier[0].length
+				+ ".\nLa distance de Manhattan de la case vide valait " + distanceManhattan(0)
+				+ ".\nLa somme des distances des autres cases etait de " + n + ".";
+	}
 	
 }

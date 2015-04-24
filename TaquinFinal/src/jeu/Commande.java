@@ -14,19 +14,19 @@ public class Commande {
 		deplacement=new HashMap<Action, int[]>();
 		int[] t1=new int[2];
 		t1[0]=-1;t1[1]=0;
-		deplacement.put(new Action("Nord", new Action("Sud")), t1);
+		deplacement.put(new Action("N", new Action("S")), t1);
 		
 		int[] t2=new int[2];
 		t2[0]=1;t2[1]=0;
-		deplacement.put(new Action("Sud", new Action("N")), t2);
+		deplacement.put(new Action("S", new Action("N")), t2);
 		
 		int[] t3=new int[2];
 		t3[0]=0;t3[1]=-1;
-		deplacement.put(new Action("Est", new Action("Ouest")), t3);
+		deplacement.put(new Action("E", new Action("O")), t3);
 		
 		int[] t4=new int[2];
 		t4[0]=0;t4[1]=1;
-		deplacement.put(new Action("Ouest", new Action("Est")), t4);
+		deplacement.put(new Action("O", new Action("E")), t4);
 		
 		listeDesClefs=deplacement.keySet();
 		tabClef = new Action[listeDesClefs.size()];

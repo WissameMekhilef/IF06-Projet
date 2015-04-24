@@ -22,4 +22,8 @@ public class EnsembleIncomplet implements EnsembleMarque {
 		int indice=Math.abs(pATester.hashCode()%taille);
 		return ensemble[indice]==1;
 	}
+	
+	public int taille() {
+		return taille;
+	}
 }

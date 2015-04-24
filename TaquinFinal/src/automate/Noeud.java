@@ -38,7 +38,7 @@ public class Noeud implements Automate {
 				fail.add(chemin+action.getAction());
 				return false;
 			}
-			chemin+=action;
+			chemin+=action.getAction();
 			return true;
 		}
 		return false;
