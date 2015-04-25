@@ -20,17 +20,29 @@ import jeu.Commande;
 import jeu.Jeu;
 import jeu.Taquin;
 import exceptions.MauvaiseTouche;
+import exceptions.NombreDouble;
 
 public class Main {
 	private static Commande commande=new Commande();
 	private static HashMap <String,Action> tableCorrespondance = new HashMap<String,Action>();
 
-	private static void joue(String destJeu){
+	private static Jeu jeuFromFile(String destJeu){
 		try {
-			jouer(new Taquin(new BufferedReader(new FileReader("taquin/"+destJeu)),commande),new Scanner(System.in),System.out);
-		} catch (NumberFormatException | IOException e) {
-			System.out.println("Le jeu n'a pas été trouvé");
+			return new Taquin(destJeu, commande);
+		} catch (NumberFormatException e) {
+			System.out.println("Erreur lors de la lecture du fichier .taq un entier été attendu");
+		} catch (NombreDouble e) {
+			System.out.println(e.getMessage());
+		}catch (FileNotFoundException e){
+			System.out.println("Fichier introuvable");
+		} catch (IOException e) {
+			System.out.println("Erreur lors de la lecture du fichier,  il manque des arguments");
 		}
+		return null;
+	}
+	
+	private static void joue(String destJeu){
+		jouer(jeuFromFile(destJeu),new Scanner(System.in),System.out);
 	}
 	
 	private static Action lireAction(Scanner pScan){
@@ -71,7 +83,7 @@ public class Main {
 				pSortie.println((char) Event.ESCAPE + "8");
 				// Et on reecrit le jeu par dessus l'ancien
 				pSortie.println(pJeu);
-			} catch (IndexOutOfBoundsException | MauvaiseTouche err) {
+			} catch (MauvaiseTouche err) {
 				
 			}
 		}
@@ -82,14 +94,16 @@ public class Main {
 				//pSortie.println("Voici la liste des mouvements effectues : " + deplacements);
 	}
 	
-	private static void anim(Jeu jeu, String action) throws IndexOutOfBoundsException, MauvaiseTouche, InterruptedException{
-		System.out.println((char) Event.ESCAPE + "[s");
+	private static void anim(Jeu jeu, Stack<Action> action) throws InterruptedException{
 		System.out.println(jeu);
-		int nbAction = action.length();
+		int nbAction = action.size();
 		System.out.println("On a "+nbAction+" action à réaliser");
-		for(int i=0; i<nbAction; i++){
-			jeu.deplacement(new Action(action));
-			System.out.println((char) Event.ESCAPE + "[u");
+		for(Action act : action){
+			try {
+				jeu.deplacement(act);
+			} catch (MauvaiseTouche e) {
+				//On ne rentre jamais dans ce cas car les actions a réaliser sont possible
+			}
 			System.out.println(jeu);
 			Thread.sleep(1000);
 		}
@@ -98,19 +112,8 @@ public class Main {
 	
 	private static void testSolvable(String jeuaTester){
 		String res = "Le jeu a tester est ";
-		try {
-			if((new Taquin(new BufferedReader(new FileReader ("/taquin"+jeuaTester)), commande)).estSoluble()) res+="";
-			else res+="non";
-		} catch (NumberFormatException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		} catch (FileNotFoundException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
+		if(jeuFromFile(jeuaTester).estSoluble()) res+="";
+		else res+="non";
 		res+="resolvable";
 		System.out.println(res);
 	}
@@ -135,8 +138,8 @@ public class Main {
 	}
 	
 	public static void main(String[] args) {
-		//Lecture des paramètres
-		/*switch(args[0]){
+/*		//Lecture des paramètres
+		switch(args[0]){
 		case "-name":
 			printName();
 			break;
@@ -144,39 +147,26 @@ public class Main {
 			printOptionList();
 			break;
 		case "-sol":
-			if(args[1]!=null)
-				testSolvable(args[1]);
-			else
-				System.out.println("Erreur vous n'avez pas spécifié de fichier de jeu");			
-			break;
 		case "-joue":
-			if(args[1]!=null)
-				joue(args[1]);
-			else
-				System.out.println("Erreur vous n'avez pas spécifié de fichier de jeu");
-			break;
 		case "-cal":
-			if(args[1]==null)
-				System.out.println("Erreur vous n'avez pas spécifié de fichier de jeu");
-			break;
 		case "-anime":
-			
-			break;
 		case "-stat":
-			
-			break;
 		case "-aleatoire":
-			
-			break;*/
-		
+			break;
+		default:
+			System.out.println("Option invalide");
+			printOptionList();
+			System.exit(1);
+		}
+		System.exit(0);*/
+				
+				
+				
 		
 
 		//On cree un jeu
-		//Taquin t = new Taquin(Integer.parseInt(args[0]), Integer.parseInt(args[1]), commande);
-		Taquin t = null;
-		try {
-			t = new Taquin(new BufferedReader(new FileReader("taquin/taq1.taq")),commande);
-		} catch (NumberFormatException | IOException e1) {}
+		Jeu t = new Taquin(Integer.parseInt(args[0]), Integer.parseInt(args[1]), commande);
+		//Jeu t = jeuFromFile("taquin/taq3.taq");;
 		//On initialise un algo
 		Algo b=new Algo(t,  new Tas(new Manhattan()), new EnsembleIncomplet(20000623));
 		//On lance l'algorithme	

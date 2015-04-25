@@ -4,6 +4,6 @@ import java.util.TimerTask;
 
 public class Arret extends TimerTask {
 	public void run() {
-		System.exit(0);
+		System.exit(1);
 	}
 }

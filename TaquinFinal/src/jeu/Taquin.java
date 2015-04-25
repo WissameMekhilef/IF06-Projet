@@ -1,11 +1,13 @@
 package jeu;
 
 import java.io.BufferedReader;
+import java.io.FileNotFoundException;
+import java.io.FileReader;
 import java.io.IOException;
 import java.util.*;
 import java.util.Map.Entry;
 
-import exceptions.MauvaiseTouche;
+import exceptions.*;
 
 public class Taquin implements Jeu{
 	private int[][] damier;
@@ -17,15 +19,22 @@ public class Taquin implements Jeu{
 	private int nbCoupsfinale;
 	private int ameliorant;
 	
-	public Taquin(BufferedReader fic, Commande pCommande) throws NumberFormatException, IOException{
+	public Taquin(String destfic, Commande pCommande) throws NombreDouble, NumberFormatException, FileNotFoundException, IOException{
+		BufferedReader fic = new BufferedReader( new FileReader (destfic));
+		ArrayList<Integer> nombresPresent = new ArrayList<Integer>();
 		this.damier = new int[Integer.parseInt(fic.readLine())][Integer.parseInt(fic.readLine())];
-		StringTokenizer valeurs=new StringTokenizer(fic.readLine());
+		StringTokenizer valeurs = new StringTokenizer(fic.readLine());
 		for(int i=0; i<damier.length;i++){
 			for(int j=0; j<damier[0].length;j++){
-				damier[i][j]=Integer.parseInt(valeurs.nextToken());
+				int aAjouter = Integer.parseInt(valeurs.nextToken());
+				if(nombresPresent.contains(aAjouter))
+					throw new NombreDouble(aAjouter);
+				damier[i][j]=aAjouter;
+				nombresPresent.add(damier[i][j]);
 			}
 				
 		}
+
 		this.commande=pCommande;
 		this.pere=null;
 		this.profondeur=0;
@@ -34,6 +43,8 @@ public class Taquin implements Jeu{
 		Taquin t = new Taquin(damier.length, damier[0].length, commande);
 		situationFinale=t.situationFinale;
 		nbCoupsfinale=nbPermutFin();
+		
+		fic.close();
 	
 	}
 	
@@ -125,8 +136,9 @@ public class Taquin implements Jeu{
 	}
 	/**
 	 * Permet de deplacer la case vide 
+	 * @throws MauvaiseTouche 
 	 */
-	public void deplacement(Action direction) throws IndexOutOfBoundsException, MauvaiseTouche{
+	public void deplacement(Action direction) throws MauvaiseTouche{
 		//System.out.println("\t\t\tAppel a indexOf de 0");
 		int[] pos0=this.indexOf(0);
 		if(commande.getDeplacement().containsKey(direction)){

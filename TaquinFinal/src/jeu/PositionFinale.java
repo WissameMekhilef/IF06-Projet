@@ -20,7 +20,8 @@ public class PositionFinale {
 	public boolean equals(int [][] damier){
 		for(int i=0; i<damier.length;i++)
 			for(int j=0; j<damier[0].length; j++)
-				return (damierFin.get(damier[i][j])[0]!=i)&&(damierFin.get(damier[i][j])[1]!=j);
+				if ((damierFin.get(damier[i][j])[0]!=i)||(damierFin.get(damier[i][j])[1]!=j))
+					return false;
 		return true;
 	}
 }

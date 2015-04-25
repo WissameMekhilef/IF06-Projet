@@ -74,7 +74,7 @@ public class Algo extends Thread{
 	}
 	
 	public String description() {
-		String solution = getSolution();
+		String solution = getStringSolution();
 		return initial.description() + "\n\nL'algorithme a dure " + nbIterations
 				+ " iterations, au cours desquelles il a traite " + aTraiter.positionTraite()
 				+ " positions du jeu.\nSon execution a pris " + tempExec
@@ -111,13 +111,17 @@ public class Algo extends Thread{
 		}
 	}
 	
-	public String getSolution(){
+	public String getStringSolution(){
 		String s="";
 		while(!solution.isEmpty()){
 			if(solution.peek() != null) s+=solution.pop().getAction();
 			else solution.pop();
 		}
 		return s;
+	}
+	
+	public Stack<Action> getSolution(){
+		return solution;
 	}
 	
 	public int getNombrePositionTraite(){
