@@ -15,7 +15,7 @@ public class Algo extends Thread{
 	private EnsembleATraiter aTraiter;
 	private Jeu initial;
 	private Jeu finale;
-	private Stack<Action> solution;
+	private ArrayList<Action> solution;
 	private long tempExec;
 	private Automate automate;
 	private int nombrePositionsTraite;
@@ -25,7 +25,7 @@ public class Algo extends Thread{
 		this.initial=pInit;
 		aTraiter=pTraiter;
 		marque=pMarque;
-		solution=new Stack<Action>();
+		solution=new ArrayList<Action>();
 		automate = new Noeud(pTraiter,pInit.getCommande());
 		nombrePositionsTraite=0;
 		nbIterations = 0;
@@ -52,8 +52,8 @@ public class Algo extends Thread{
 			while(aTraiter.nonVide() && !fin){
 				Jeu pos = aTraiter.prend();
 				succ = pos.succ();
-				//ArrayList<Jeu>succR = reduireSucc(succ);
-				for(Jeu p: succ){
+				ArrayList<Jeu>succR = reduireSucc(succ);
+				for(Jeu p: succR){
 					nbIterations++;
 					if(!marque.appartient(p)){
 						if(p.estResolu()){
@@ -74,7 +74,6 @@ public class Algo extends Thread{
 	}
 	
 	public String description() {
-		String solution = getStringSolution();
 		if(finale==null)
 			return "L'algorithme n'a pas trouvé de solution";
 		return initial.description() + "\n\nL'algorithme a dure " + nbIterations
@@ -84,7 +83,7 @@ public class Algo extends Thread{
 				+ (automate.getFail().size() - 4)
 				+ " fois dans une mauvaise direction.\n\nAu final, il aura supprime " + automate.getFail().size()
 				+ " combinaisons de coups redondants afin de donner une solution optimale de longueur "
-				+ solution.length() + ".\nChemin : " + solution;
+				+ getStringSolution().length() + ".\nChemin : " + getStringSolution();
 	}
 	
 	public Automate getAutomate() {
@@ -107,10 +106,17 @@ public class Algo extends Thread{
 	
 	public void setSolution(){
 		Jeu parcours=finale;
+		Stack<Action> temp = new Stack<Action>();
 		while(parcours!=null){
-			solution.push(parcours.getAction());
+			temp.push(parcours.getAction());
 			parcours=parcours.getPere();
 		}
+		
+		solution = new ArrayList<Action>(); 
+		while(!temp.isEmpty()){
+			solution.add(temp.pop());
+		}
+		
 	}
 	
 	public String getStringSolution(){
@@ -122,7 +128,7 @@ public class Algo extends Thread{
 		return s;
 	}
 	
-	public Stack<Action> getSolution(){
+	public ArrayList<Action> getSolution(){
 		return solution;
 	}
 	

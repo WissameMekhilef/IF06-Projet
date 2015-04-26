@@ -1,24 +1,24 @@
 package main;
 
 import java.awt.Event;
-import java.io.BufferedReader;
 import java.io.FileNotFoundException;
-import java.io.FileReader;
 import java.io.IOException;
 import java.io.PrintStream;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Scanner;
 import java.util.Stack;
-import java.util.Vector;
 
-import algo.Algo;
-import algo.EnsembleIncomplet;
-import algo.Tas;
-import comparateurs.Manhattan;
 import jeu.Action;
 import jeu.Commande;
 import jeu.Jeu;
 import jeu.Taquin;
+import algo.Algo;
+import algo.EnsembleIncomplet;
+import algo.Tas;
+
+import comparateurs.Manhattan;
+
 import exceptions.MauvaiseTouche;
 import exceptions.NombreDouble;
 
@@ -94,7 +94,7 @@ public class Main {
 				//pSortie.println("Voici la liste des mouvements effectues : " + deplacements);
 	}
 	
-	private static void anim(Jeu jeu, Stack<Action> action) throws InterruptedException{
+	private static void anim(Jeu jeu, ArrayList<Action> action) throws InterruptedException{
 		System.out.println(jeu);
 		int nbAction = action.size();
 		System.out.println("On a "+nbAction+" action à réaliser");
@@ -102,8 +102,10 @@ public class Main {
 			//System.out.print(act.getAction());
 			try {
 				jeu.deplacement(act);
-			} catch (IndexOutOfBoundsException | MauvaiseTouche e) {
+			} catch (IndexOutOfBoundsException e) {
 				//On ne rentre jamais dans ce cas car les actions a réaliser sont possible
+			} catch (MauvaiseTouche e) {
+				System.out.println("Mauvaise touche ");
 			}
 			System.out.println(jeu);
 			Thread.sleep(10);
@@ -163,12 +165,12 @@ public class Main {
 				
 		//On cree un jeu
 		//Jeu t = new Taquin(Integer.parseInt(args[0]), Integer.parseInt(args[1]), commande);
-		Jeu t = jeuFromFile("taquin/taq3.taq");
+		Jeu t = jeuFromFile("taquin/taq1.taq");
 		//On initialise un algo
 		Algo b=new Algo(t,  new Tas(new Manhattan()), new EnsembleIncomplet(20000623));
 		//On lance l'algorithme	
 		System.out.println("Le jeu est solvable : "+t.estSoluble());
-		b.run(528);
+		b.run(0);
 		//On interprete le resultat de l'algo
 		System.out.println(b.description());
 		

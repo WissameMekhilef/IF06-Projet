@@ -21,12 +21,12 @@ public class Commande {
 		deplacement.put(new Action("S", new Action("N")), t2);
 		
 		int[] t3=new int[2];
-		t3[0]=0;t3[1]=-1;
+		t3[0]=0;t3[1]=1;
 		deplacement.put(new Action("E", new Action("O")), t3);
 		
 		int[] t4=new int[2];
 		t4[0]=0;t4[1]=1;
-		deplacement.put(new Action("O", new Action("E")), t4);
+		deplacement.put(new Action("0", new Action("E")), t4);
 		
 		listeDesClefs=deplacement.keySet();
 		tabClef = new Action[listeDesClefs.size()];
