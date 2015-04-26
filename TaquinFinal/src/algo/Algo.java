@@ -30,10 +30,7 @@ public class Algo extends Thread{
 		nombrePositionsTraite=0;
 		nbIterations = 0;
 	}
-	/**
-	 * L'automate peut etre desactive en remplacant "succR" par "succ" a la ligne 44.
-	 * Dans ce cas l'algo fonctionne mais est moins efficace.
-	 */
+	
 	public void run(int temps){
 		if(temps != 0) {
 			Timer t = new Timer();
