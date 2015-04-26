@@ -108,8 +108,6 @@ public class Algo extends Thread{
 			temp.push(parcours.getAction());
 			parcours=parcours.getPere();
 		}
-		
-		solution = new ArrayList<Action>(); 
 		while(!temp.isEmpty()){
 			solution.add(temp.pop());
 		}
