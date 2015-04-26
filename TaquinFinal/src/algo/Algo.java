@@ -52,8 +52,8 @@ public class Algo extends Thread{
 			while(aTraiter.nonVide() && !fin){
 				Jeu pos = aTraiter.prend();
 				succ = pos.succ();
-				ArrayList<Jeu>succR = reduireSucc(succ);
-				for(Jeu p: succR){
+				//ArrayList<Jeu>succR = reduireSucc(succ);
+				for(Jeu p: succ){
 					nbIterations++;
 					if(!marque.appartient(p)){
 						if(p.estResolu()){
@@ -61,9 +61,10 @@ public class Algo extends Thread{
 							finale=p;
 							Toolkit.getDefaultToolkit().beep();
 							System.out.println("Solution :\n"+p);
+						}else{
+							marque.ajout(p);
+							aTraiter.ajout(p);
 						}
-						marque.ajout(p);
-						aTraiter.ajout(p);
 					}
 				}
 			}
@@ -75,6 +76,8 @@ public class Algo extends Thread{
 	
 	public String description() {
 		String solution = getStringSolution();
+		if(finale==null)
+			return "L'algorithme n'a pas trouvé de solution";
 		return initial.description() + "\n\nL'algorithme a dure " + nbIterations
 				+ " iterations, au cours desquelles il a traite " + aTraiter.positionTraite()
 				+ " positions du jeu.\nSon execution a pris " + tempExec
@@ -113,9 +116,9 @@ public class Algo extends Thread{
 	
 	public String getStringSolution(){
 		String s="";
-		while(!solution.isEmpty()){
-			if(solution.peek() != null) s+=solution.pop().getAction();
-			else solution.pop();
+		for(Action act : solution){
+			if(act!=null)
+				s+=act.getAction();
 		}
 		return s;
 	}

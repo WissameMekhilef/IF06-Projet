@@ -99,13 +99,14 @@ public class Main {
 		int nbAction = action.size();
 		System.out.println("On a "+nbAction+" action à réaliser");
 		for(Action act : action){
+			//System.out.print(act.getAction());
 			try {
 				jeu.deplacement(act);
-			} catch (MauvaiseTouche e) {
+			} catch (IndexOutOfBoundsException | MauvaiseTouche e) {
 				//On ne rentre jamais dans ce cas car les actions a réaliser sont possible
 			}
 			System.out.println(jeu);
-			Thread.sleep(1000);
+			Thread.sleep(10);
 		}
 		
 	}
@@ -160,10 +161,6 @@ public class Main {
 		}
 		System.exit(0);*/
 				
-				
-				
-		
-
 		//On cree un jeu
 		Jeu t = new Taquin(Integer.parseInt(args[0]), Integer.parseInt(args[1]), commande);
 		//Jeu t = jeuFromFile("taquin/taq3.taq");;
@@ -173,20 +170,20 @@ public class Main {
 		System.out.println("Le jeu est solvable : "+t.estSoluble());
 		b.run(0);
 		//On interprete le resultat de l'algo
-		if(b.getFinale()==null)
-			System.out.println("Pas de solution trouvé");
-		else{
-			System.out.println(b.description());
-		}
+		System.out.println(b.description());
 		
-		/*try {
-			anim(t,soluce);
-		} catch (IndexOutOfBoundsException | MauvaiseTouche | InterruptedException e) {}
+		try {
+			anim(t,b.getSolution());
+		} catch (InterruptedException e) {
+			System.out.println("L'animation n'a pas pu reprendre après le sleep");
+		}
 
-		Scanner s = new Scanner(System.in);
+		/*Scanner s = new Scanner(System.in);
 		PrintStream p=System.out;
 		jouer(t,s,p);*/
-		//System.exit(0);
+		
+		//On quite le programme avec comme sortie 0 car il n'y a pas eu d'erreur
+		System.exit(0);
 		
 	}
 

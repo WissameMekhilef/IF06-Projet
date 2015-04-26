@@ -138,7 +138,7 @@ public class Taquin implements Jeu{
 	 * Permet de deplacer la case vide 
 	 * @throws MauvaiseTouche 
 	 */
-	public void deplacement(Action direction) throws MauvaiseTouche{
+	public void deplacement(Action direction) throws MauvaiseTouche, ArrayIndexOutOfBoundsException {
 		//System.out.println("\t\t\tAppel a indexOf de 0");
 		int[] pos0=this.indexOf(0);
 		if(commande.getDeplacement().containsKey(direction)){
