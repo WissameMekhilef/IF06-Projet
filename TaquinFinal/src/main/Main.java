@@ -162,13 +162,13 @@ public class Main {
 		System.exit(0);*/
 				
 		//On cree un jeu
-		Jeu t = new Taquin(Integer.parseInt(args[0]), Integer.parseInt(args[1]), commande);
-		//Jeu t = jeuFromFile("taquin/taq3.taq");;
+		//Jeu t = new Taquin(Integer.parseInt(args[0]), Integer.parseInt(args[1]), commande);
+		Jeu t = jeuFromFile("taquin/taq3.taq");
 		//On initialise un algo
 		Algo b=new Algo(t,  new Tas(new Manhattan()), new EnsembleIncomplet(20000623));
 		//On lance l'algorithme	
 		System.out.println("Le jeu est solvable : "+t.estSoluble());
-		b.run(0);
+		b.run(528);
 		//On interprete le resultat de l'algo
 		System.out.println(b.description());
 		

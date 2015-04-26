@@ -61,10 +61,9 @@ public class Algo extends Thread{
 							finale=p;
 							Toolkit.getDefaultToolkit().beep();
 							System.out.println("Solution :\n"+p);
-						}else{
+						}
 							marque.ajout(p);
 							aTraiter.ajout(p);
-						}
 					}
 				}
 			}
