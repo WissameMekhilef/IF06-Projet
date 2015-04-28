@@ -14,7 +14,7 @@ import jeu.Commande;
 import jeu.Jeu;
 import jeu.Taquin;
 import algo.Algo;
-import algo.EnsembleIncomplet;
+import algo.EnsembleComplet;
 import algo.Tas;
 
 import comparateurs.Manhattan;
@@ -165,16 +165,16 @@ public class Main {
 				
 		//On cree un jeu
 		//Jeu t = new Taquin(Integer.parseInt(args[0]), Integer.parseInt(args[1]), commande);
-		Jeu t = jeuFromFile("taquin/taq1.taq");
+		Jeu t = jeuFromFile("taquin/taq5.taq");
 		//On initialise un algo
-		Algo b=new Algo(t,  new Tas(new Manhattan()), new EnsembleIncomplet(20000623));
+		Algo b=new Algo(t,  new Tas(new Manhattan()), new EnsembleComplet());
 		//On lance l'algorithme	
 		System.out.println("Le jeu est solvable : "+t.estSoluble());
 		b.run(0);
 		//On interprete le resultat de l'algo
 		System.out.println(b.description());
 		
-		try {
+		/*try {
 			anim(t,b.getSolution());
 		} catch (InterruptedException e) {
 			System.out.println("L'animation n'a pas pu reprendre après le sleep");

@@ -150,7 +150,7 @@ public class Taquin implements Jeu{
 			damier[pos0[0]+posX[0]][pos0[1]+posX[1]]=0;
 			
 			
-			ameliorant=ancienMan-distanceManhattan(temp);
+			ameliorant=ancienMan-ancienMan-distanceManhattan(temp);
 			nbCoupsfinale=nbPermutFin();
 		}else throw new MauvaiseTouche();
 	}
@@ -190,15 +190,22 @@ public class Taquin implements Jeu{
 	 * 
 	 */
 	public ArrayList<Jeu> succ(){
+		//System.out.println("Succ traite le Taquin : \n"+this);
 		ArrayList<Jeu> res=new ArrayList<Jeu>();
-		int[][] first=this.copieTableau();
 		for(Action p : commande.getListeDesClefs()){
 			try{
+				//System.out.println("On y vas");
 				this.deplacement(p);
+				//System.out.println(this);
+				
 				res.add(new Taquin(p,this));
-				this.setDamier(first);
+				
+				//System.out.println("On revient");
+				this.deplacement(p.getInverse());
+				//System.out.println(this);
 			}catch (IndexOutOfBoundsException | MauvaiseTouche e) {}
 		}
+		//System.out.println("On renvoie "+ res.size()+" succeseurs");
 		return res;
 	}
 

@@ -49,7 +49,7 @@ public class Algo extends Thread{
 			while(aTraiter.nonVide() && !fin){
 				Jeu pos = aTraiter.prend();
 				succ = pos.succ();
-				ArrayList<Jeu>succR = reduireSucc(succ);
+				ArrayList<Jeu> succR = reduireSucc(succ);
 				for(Jeu p: succR){
 					nbIterations++;
 					if(!marque.appartient(p)){
@@ -59,8 +59,8 @@ public class Algo extends Thread{
 							Toolkit.getDefaultToolkit().beep();
 							System.out.println("Solution :\n"+p);
 						}
-							marque.ajout(p);
-							aTraiter.ajout(p);
+						marque.ajout(p);
+						aTraiter.ajout(p);
 					}
 				}
 			}

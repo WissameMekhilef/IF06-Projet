@@ -11,23 +11,33 @@ public class Commande {
 	private HashMap<String, Action> tabCorrespondance;
 
 	public Commande(){
+		Action n=new Action("N");
+		Action s =new Action("S");
+		Action e = new Action("E");
+		Action o = new Action("O");
+		n.setInverse(s);
+		s.setInverse(n);
+		e.setInverse(o);
+		o.setInverse(e);
+		
+		
 		deplacement=new HashMap<Action, int[]>();
 		int[] t1=new int[2];
 		t1[0]=-1;t1[1]=0;
-		deplacement.put(new Action("N", new Action("S")), t1);
+		deplacement.put(n, t1);
 		
 		int[] t2=new int[2];
 		t2[0]=1;t2[1]=0;
-		deplacement.put(new Action("S", new Action("N")), t2);
+		deplacement.put(s, t2);
 		
 		int[] t3=new int[2];
 		t3[0]=0;t3[1]=1;
-		deplacement.put(new Action("E", new Action("O")), t3);
+		deplacement.put(e, t3);
 		
 		int[] t4=new int[2];
-		t4[0]=0;t4[1]=1;
-		deplacement.put(new Action("0", new Action("E")), t4);
-		
+		t4[0]=0;t4[1]=-1;
+		deplacement.put(o, t4);
+
 		listeDesClefs=deplacement.keySet();
 		tabClef = new Action[listeDesClefs.size()];
 		Iterator<Action> it=listeDesClefs.iterator();

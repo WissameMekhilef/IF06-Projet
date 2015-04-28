@@ -20,8 +20,12 @@ public class Action {
 
 	public Action getInverse() {
 		return inverse;
-	}	
+	}
 	
+	public void setInverse(Action inverse) {
+		this.inverse = inverse;
+	}
+
 	public int hashCode(){
 		return action.hashCode();
 	}
