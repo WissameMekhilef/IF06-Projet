@@ -36,8 +36,13 @@ public class Commande {
 		
 		int[] t4=new int[2];
 		t4[0]=0;t4[1]=-1;
+<<<<<<< HEAD
 		deplacement.put(o, t4);
 
+=======
+		deplacement.put(new Action("O", new Action("E")), t4);
+		
+>>>>>>> f2bce18a8f474456ea9025f0d9f48dd58b2a1fbc
 		listeDesClefs=deplacement.keySet();
 		tabClef = new Action[listeDesClefs.size()];
 		Iterator<Action> it=listeDesClefs.iterator();
