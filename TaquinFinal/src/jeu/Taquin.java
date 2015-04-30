@@ -18,6 +18,7 @@ public class Taquin implements Jeu{
 	private int profondeur;
 	private int nbCoupsfinale;
 	private int ameliorant;
+	private int[] indexZero= new int [2];
 	
 	public Taquin(String destfic, Commande pCommande) throws NombreDouble, NumberFormatException, FileNotFoundException, IOException{
 		BufferedReader fic = new BufferedReader( new FileReader (destfic));
@@ -39,6 +40,8 @@ public class Taquin implements Jeu{
 		this.pere=null;
 		this.profondeur=0;
 		action=null;
+		
+		indexZero=indexOf(0);
 		
 		Taquin t = new Taquin(damier.length, damier[0].length, commande);
 		situationFinale=t.situationFinale;
@@ -75,7 +78,7 @@ public class Taquin implements Jeu{
 		
 		//On initialise les deplacements
 		commande = pCommande;
-		
+		this.indexZero=indexOf(0);
 		//On melange le jeu
 		do{
 			for(int i=0; i<90; i++)
@@ -90,6 +93,8 @@ public class Taquin implements Jeu{
 		this.profondeur=0;
 		//Init nombre coups finaux
 		this.nbCoupsfinale=this.nbPermutFin();
+		
+		
 	}
 	
 	public Taquin(Action action, Taquin p){
@@ -105,6 +110,7 @@ public class Taquin implements Jeu{
 			}
 		}
 		nbCoupsfinale=pere.nbCoupsfinale+pere.ameliorant;
+		indexZero=p.indexZero;
 	}
 	/**
 	 * Melange la grille de jeu
@@ -140,7 +146,7 @@ public class Taquin implements Jeu{
 	 */
 	public void deplacement(Action direction) throws MauvaiseTouche, ArrayIndexOutOfBoundsException {
 		//System.out.println("\t\t\tAppel a indexOf de 0");
-		int[] pos0=this.indexOf(0);
+		int[] pos0=indexOf(0);
 		if(commande.getDeplacement().containsKey(direction)){
 			int temp=damier[pos0[0]][pos0[1]];
 			int ancienMan=distanceManhattan(temp);
@@ -148,6 +154,8 @@ public class Taquin implements Jeu{
 			int[] posX=commande.getDeplacement().get(direction);
 			damier[pos0[0]][pos0[1]]=damier[pos0[0]+posX[0]][pos0[1]+posX[1]];
 			damier[pos0[0]+posX[0]][pos0[1]+posX[1]]=0;
+			indexZero[0]=pos0[0]+posX[0];
+			indexZero[1]=pos0[1]+posX[1];
 			
 			
 			ameliorant=ancienMan-ancienMan-distanceManhattan(temp);
@@ -330,6 +338,7 @@ public class Taquin implements Jeu{
 	
 	public Jeu clone(){
 		Taquin res = new Taquin(damier.length, damier[0].length, commande);
+		//res.setDamier(getDamier());
 		return res;
 	}
 	

@@ -14,7 +14,7 @@ import jeu.Commande;
 import jeu.Jeu;
 import jeu.Taquin;
 import algo.Algo;
-import algo.EnsembleIncomplet;
+import algo.EnsembleComplet;
 import algo.PileAction;
 import exceptions.MauvaiseTouche;
 import exceptions.NombreDouble;
@@ -162,12 +162,13 @@ public class Main {
 				
 		//On cree un jeu
 		//Jeu t = new Taquin(Integer.parseInt(args[0]), Integer.parseInt(args[1]), commande);
-		Jeu t = jeuFromFile("taquin/taq5.taq");
+		Jeu t = jeuFromFile("taquin/taq1.taq");
 		//On initialise un algo
-		Algo b=new Algo(t,  new PileAction(), new EnsembleIncomplet(200003));
+		Algo b=new Algo(t,  new PileAction(), new EnsembleComplet());
 		//On lance l'algorithme	
-		System.out.println("Le jeu est solvable : "+t.estSoluble());
+		System.out.println("Le jeu est solvable : "+t.estSoluble()+" en au moins "+t.getNbCoupsfinale());
 		b.run(0);
+		//b.runProgressif();
 		//On interprete le resultat de l'algo
 		System.out.println(b.description());
 		

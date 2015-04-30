@@ -31,7 +31,15 @@ public class Algo extends Thread{
 		nbIterations = 0;
 	}
 	
-	public void run(int temps){
+	public void runProgressif(){
+		aTraiter=new PileAction(initial.getNbCoupsfinale());
+		while(!run(0)){
+			System.out.println("On relance un parcours");
+			aTraiter=new PileAction(initial.getNbCoupsfinale()+1);
+		}
+	}
+	
+	public boolean run(int temps){
 		if(temps != 0) {
 			Timer t = new Timer();
 			t.schedule(new Arret(), temps);
@@ -66,6 +74,7 @@ public class Algo extends Thread{
 		}
 		long timeFin = System.currentTimeMillis();
 		tempExec=timeFin-timeDeb;
+		return fin;
 	}
 	
 	public String description() {
