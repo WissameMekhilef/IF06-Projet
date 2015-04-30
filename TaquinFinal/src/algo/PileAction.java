@@ -1,14 +1,14 @@
 package algo;
 
-import java.util.ArrayList;
+import java.util.Stack;
 
-import exceptions.MauvaiseTouche;
 import jeu.Action;
 import jeu.Jeu;
+import exceptions.MauvaiseTouche;
 
 public class PileAction implements EnsembleATraiter{
 	private Jeu initial=null;
-	private ArrayList<Action> ensemble = new ArrayList<Action>();
+	private Stack<Stack <Action>> ensemble= new Stack<>();
 	private int PosTraite=0;
 	
 	public PileAction(){
@@ -16,6 +16,7 @@ public class PileAction implements EnsembleATraiter{
 	}
 	
 	public boolean premierAjout(Jeu initial){
+		//System.out.println("Premier ajout");
 		this.initial=initial;
 		return true;
 	}
@@ -25,21 +26,31 @@ public class PileAction implements EnsembleATraiter{
 	}
 
 	public Jeu prend() {
-		Jeu res = initial;
-		for(Action act : ensemble){
+		//System.out.println("Prend");
+		Jeu res=initial.clone();
+		Stack<Action> aAppliquer=ensemble.pop();
+		while(!aAppliquer.isEmpty()){
 			try {
-				res.deplacement(act);
+				res.deplacement(aAppliquer.pop());
 			} catch (IndexOutOfBoundsException | MauvaiseTouche e) {}
 		}
+		aAppliquer=null;
+		PosTraite++;
 		return res;
 	}
 
 	public boolean ajout(Jeu p) {
-		return ensemble.add(p.getAction());
+		//System.out.println("Ajout");
+		Stack<Action> temp = new Stack<Action>();
+		while(p.getPere()!=null){
+			temp.add(p.getPere().getAction());
+			p=p.getPere();
+		}
+		return ensemble.add(temp);
 	}
 
 	public int positionTraite() {
-		return 0;
+		return PosTraite;
 	}
 	
 	

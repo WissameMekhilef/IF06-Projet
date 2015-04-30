@@ -328,4 +328,9 @@ public class Taquin implements Jeu{
 				+ ".\nLa somme des distances des autres cases etait de " + n + ".";
 	}
 	
+	public Jeu clone(){
+		Taquin res = new Taquin(damier.length, damier[0].length, commande);
+		return res;
+	}
+	
 }

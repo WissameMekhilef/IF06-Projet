@@ -47,4 +47,6 @@ public interface Jeu {
 	
 	public String description();
 	
+	public Jeu clone();
+	
 }
