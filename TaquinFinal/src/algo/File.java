@@ -24,10 +24,6 @@ public class File implements EnsembleATraiter{
 		return file.remove(0);
 	}
 
-	public boolean appartient(Jeu p) {
-		return file.contains(p);
-	}
-
 	public boolean ajout(Jeu p) {
 		return file.add(p);
 	}
@@ -35,6 +31,11 @@ public class File implements EnsembleATraiter{
 
 	public int positionTraite() {
 		return nombrePositionTraite;
+	}
+
+	@Override
+	public boolean premierAjout(Jeu initial) {
+		return ajout(initial);
 	}
 
 }

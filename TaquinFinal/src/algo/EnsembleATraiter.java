@@ -5,7 +5,7 @@ import jeu.*;
 public interface EnsembleATraiter {
 	public boolean nonVide();
 	public Jeu prend();
-	public boolean appartient(Jeu p);
+	public boolean premierAjout(Jeu initial);
 	public boolean ajout(Jeu p);
 	public int positionTraite();
 }

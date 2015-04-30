@@ -1,6 +1,7 @@
 package algo;
 
 import jeu.*;
+
 import java.util.*;
 
 public class Pile implements EnsembleATraiter{
@@ -25,14 +26,7 @@ public class Pile implements EnsembleATraiter{
 	public Jeu prend() {
 		return pile.pop();
 	}
-
-	/**
-	 * Teste l'appartenance de p �� la pile, renvoie un boolean
-	 */
-	public boolean appartient(Jeu p) {
-		return pile.contains(p);
-	}
-
+	
 	/**
 	 * Ajoute un Taquin �� la pile
 	 */
@@ -42,6 +36,10 @@ public class Pile implements EnsembleATraiter{
 
 	public int positionTraite() {
 		return nombrePositionTraite;
+	}
+
+	public boolean premierAjout(Jeu initial) {
+		return ajout(initial);
 	}
 
 }

@@ -24,16 +24,16 @@ public class Tas implements EnsembleATraiter {
 		return file.poll();
 	}
 
-	public boolean appartient(Jeu p) {
-		return file.contains(p);
-	}
-
 	public boolean ajout(Jeu p) {
 		return file.add(p);
 	}
 
 	public int positionTraite() {
 		return nombrePositionTraite;
+	}
+
+	public boolean premierAjout(Jeu initial) {
+		return ajout(initial);
 	}
 
 }

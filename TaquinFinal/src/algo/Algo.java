@@ -38,11 +38,9 @@ public class Algo extends Thread{
 		}
 		long timeDeb=System.currentTimeMillis();
 		System.out.println("Taquin depart :\n"+initial);
-		if(initial.estResolu())
-			System.out.println("Le jeu est déjà résolu");
-		else{
 			boolean fin=false;
 			marque.ajout(this.initial);
+			aTraiter.premierAjout(initial);
 			ArrayList<Jeu> succ=initial.succ();
 			for(Jeu p : succ)
 				aTraiter.ajout(p);
@@ -63,7 +61,6 @@ public class Algo extends Thread{
 						aTraiter.ajout(p);
 					}
 				}
-			}
 			setSolution();
 		}
 		long timeFin = System.currentTimeMillis();
