@@ -47,8 +47,8 @@ public class Algo extends Thread{
 			while(aTraiter.nonVide() && !fin){
 				Jeu pos = aTraiter.prend();
 				succ = pos.succ();
-				ArrayList<Jeu> succR = reduireSucc(succ);
-				for(Jeu p: succR){
+				//ArrayList<Jeu> succR = reduireSucc(succ);
+				for(Jeu p: succ){
 					nbIterations++;
 					if(!marque.appartient(p)){
 						if(p.estResolu()){

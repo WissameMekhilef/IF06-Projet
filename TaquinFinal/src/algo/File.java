@@ -33,7 +33,6 @@ public class File implements EnsembleATraiter{
 		return nombrePositionTraite;
 	}
 
-	@Override
 	public boolean premierAjout(Jeu initial) {
 		return ajout(initial);
 	}
