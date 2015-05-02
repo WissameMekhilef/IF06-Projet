@@ -162,7 +162,7 @@ public class Main {
 				
 		//On cree un jeu
 		//Jeu t = new Taquin(Integer.parseInt(args[0]), Integer.parseInt(args[1]), commande);
-		Jeu t = jeuFromFile("taquin/taq1.taq");
+		Jeu t = jeuFromFile("taquin/taq5.taq");
 		//On initialise un algo
 		Algo b=new Algo(t,  new PileAction(), new EnsembleComplet());
 		//On lance l'algorithme	
@@ -171,6 +171,7 @@ public class Main {
 		//b.runProgressif();
 		//On interprete le resultat de l'algo
 		System.out.println(b.description());
+		System.out.println(b.getFinale());
 		
 		/*try {
 			anim(t,b.getSolution());

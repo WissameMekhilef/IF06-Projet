@@ -45,19 +45,19 @@ public class PileAction implements EnsembleATraiter{
 	}
 
 	public boolean ajout(Jeu p) {
-		System.out.println("Le jeu a "+p.getProfondeur()+" pere(s)");
+		//System.out.println("Le jeu a "+p.getProfondeur()+" pere(s)");
 		//System.out.println("Ajout");
 		Stack<Action> temp = new Stack<Action>();
 		while(p.getPere()!=null){
 			temp.add(p.getPere().getAction());
 			p=p.getPere();
 		}
-		System.out.println(this);
+		//System.out.println(this);
 		if(temp.size()<TAILLE_LIMITE){
-			System.out.println("Je suis long de "+temp.size());
+			//System.out.println("Je suis long de "+temp.size());
 			return ensemble.add(temp);
 		}
-		System.out.println("TRop grand tu rentre pas");
+		//System.out.println("TRop grand tu rentre pas");
 		
 		return false;
 	}
