@@ -11,7 +11,7 @@ public interface Jeu {
 	 * @throws ImpossibleMoveException
 	 * Une exception est leve si le deplacement est impossible
 	 */
-	public void deplacement(Action direction) throws IndexOutOfBoundsException, MauvaiseTouche;
+	public Jeu deplacement(Action direction) throws IndexOutOfBoundsException, MauvaiseTouche;
 	/**
 	 * Affiche le jeu
 	 * @return

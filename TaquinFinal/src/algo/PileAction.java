@@ -36,7 +36,7 @@ public class PileAction implements EnsembleATraiter{
 		Stack<Action> aAppliquer=ensemble.pop();
 		while(!aAppliquer.isEmpty()){
 			try {
-				res.deplacement(aAppliquer.pop());
+				res=res.deplacement(aAppliquer.pop());
 			} catch (IndexOutOfBoundsException | MauvaiseTouche e) {}
 		}
 		aAppliquer=null;

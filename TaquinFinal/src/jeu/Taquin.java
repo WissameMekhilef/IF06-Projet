@@ -144,9 +144,9 @@ public class Taquin implements Jeu{
 	 * Permet de deplacer la case vide 
 	 * @throws MauvaiseTouche 
 	 */
-	public void deplacement(Action direction) throws MauvaiseTouche, ArrayIndexOutOfBoundsException {
+	public Jeu deplacement(Action direction) throws MauvaiseTouche, ArrayIndexOutOfBoundsException {
 		//System.out.println("\t\t\tAppel a indexOf de 0");
-		int[] pos0=indexOf(0);
+		int[] pos0=indexZero;
 		if(commande.getDeplacement().containsKey(direction)){
 			int temp=damier[pos0[0]][pos0[1]];
 			int ancienMan=distanceManhattan(temp);
@@ -161,6 +161,7 @@ public class Taquin implements Jeu{
 			ameliorant=ancienMan-ancienMan-distanceManhattan(temp);
 			nbCoupsfinale=nbPermutFin();
 		}else throw new MauvaiseTouche();
+		return new Taquin(direction,this);
 	}
 	/**
 	 * Methode qui determine la distance entre la position initiale
@@ -203,10 +204,10 @@ public class Taquin implements Jeu{
 		for(Action p : commande.getListeDesClefs()){
 			try{
 				//System.out.println("On y vas");
-				this.deplacement(p);
+				res.add(this.deplacement(p));
 				//System.out.println(this);
 				
-				res.add(new Taquin(p,this));
+				//res.add(new Taquin(p,this));
 				
 				//System.out.println("On revient");
 				this.deplacement(p.getInverse());
