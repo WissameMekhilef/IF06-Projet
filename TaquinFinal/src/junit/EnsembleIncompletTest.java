@@ -57,7 +57,7 @@ public class EnsembleIncompletTest{
 	}
 	
 	private void runAlgo(Jeu jeu, EnsembleMarque em) {
-		Algo alg= new Algo(jeu, eat, em);
+		Algo alg= new Algo(jeu, eat, em, false);
 		alg.run();
 		assert(alg.getFinale().estResolu());
 	}

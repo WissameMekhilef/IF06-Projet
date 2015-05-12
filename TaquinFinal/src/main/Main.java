@@ -9,20 +9,30 @@ import java.util.HashMap;
 import java.util.Scanner;
 import java.util.Stack;
 
+import comparateurs.Manhattan;
+
 import jeu.Action;
 import jeu.Commande;
 import jeu.Jeu;
 import jeu.Taquin;
 import algo.Algo;
 import algo.EnsembleComplet;
-import algo.PileAction;
+import algo.File;
+import algo.Tas;
 import exceptions.MauvaiseTouche;
 import exceptions.NombreDouble;
 
 public class Main {
 	private static Commande commande=new Commande();
 	private static HashMap <String,Action> tableCorrespondance = new HashMap<String,Action>();
-
+	
+	/**
+	 * Jeu à partir d'un fichier
+	 * @param destJeu
+	 * Source du fichier
+	 * @return
+	 * Un jeu initiali
+	 */
 	private static Jeu jeuFromFile(String destJeu){
 		try {
 			return new Taquin(destJeu, commande);
@@ -38,10 +48,23 @@ public class Main {
 		return null;
 	}
 	
+	/**
+	 * Jouer à partir d'un fichier
+	 * @param destJeu
+	 * La destination du fichier source
+	 */
 	private static void joue(String destJeu){
 		jouer(jeuFromFile(destJeu),new Scanner(System.in),System.out);
 	}
 	
+	
+	/**
+	 * Lecture des touches
+	 * @param pScan
+	 * Le scanner à partir duqel il faut les actions
+	 * @return
+	 * Une action correspondant à l'action lue
+	 */
 	private static Action lireAction(Scanner pScan){
 		return commande.getTabCorrespondance().get(pScan.nextLine());
 	}
@@ -91,12 +114,22 @@ public class Main {
 				//pSortie.println("Voici la liste des mouvements effectues : " + deplacements);
 	}
 	
+	/**
+	 * Animation
+	 * <p>
+	 * Permet l'animation d'une suite d'action sur un jeu quelconque
+	 * </p>
+	 * @param jeu
+	 * Le jeu à animer
+	 * @param action
+	 * La liste d'action à réaliser
+	 * @throws InterruptedException
+	 * Une exception est lévé dans le cas on le sleep ne reprend pas
+	 */
 	private static void anim(Jeu jeu, ArrayList<Action> action) throws InterruptedException{
 		System.out.println(jeu);
 		int nbAction = action.size();
-		System.out.println("On a "+nbAction+" action à réaliser");
 		for(Action act : action){
-			//System.out.print(act.getAction());
 			try {
 				jeu.deplacement(act);
 			} catch (IndexOutOfBoundsException e) {
@@ -109,7 +142,12 @@ public class Main {
 		}
 		
 	}
-	
+
+	/**
+	 * Test solvable
+	 * @param jeuaTester
+	 * Retourne vrai si le jeu est solvable, faux sinon
+	 */
 	private static void testSolvable(String jeuaTester){
 		String res = "Le jeu a tester est ";
 		if(jeuFromFile(jeuaTester).estSoluble()) res+="";
@@ -118,10 +156,17 @@ public class Main {
 		System.out.println(res);
 	}
 	
+	
+	/**
+	 * Fonction d'affichage des noms des personnes de l'équipe
+	 */
 	private static void printName(){
 		System.out.println("Ce programme a� �t� d�velopp� par : ARNOULT Simon, MEKHILEF Wissame, OUSSAD Jihad et RETY Martin");
 	}
 	
+	/**
+	 * Imprime la liste des options disponibles
+	 */
 	private static void printOptionList(){
 		String gras = (char) Event.ESCAPE+"[1m";
 		String defaut = (char) Event.ESCAPE+"[0m";
@@ -137,8 +182,21 @@ public class Main {
 		System.out.print("\t"+gras+"-alea"+defaut+"\t: java -jar taquin.jar -aleatoire [n] [largeur] [hauteur] [delai] fichier.taq\n\t\tApplique tous les algorithmes n fois a des taquin de largeur et hauteur.\n\t\tOn recoit des informations détaillées sur le déroulement.\n");
 	}
 	
+	
+	/**
+	 * Lecture de l'algorithme
+	 * @return
+	 * Retourne un algorithme correspondant à l'algorithme préciser dans les paramètre du lancement
+	 */
+	private Algo lectureAlgo(){
+		switch(args[1]){
+		
+		}
+		return null;
+	}
+	
 	public static void main(String[] args) {
-/*		//Lecture des paramètres
+		//Lecture des paramètres
 		switch(args[0]){
 		case "-name":
 			printName();
@@ -147,8 +205,13 @@ public class Main {
 			printOptionList();
 			break;
 		case "-sol":
+			testSolvable(args[1]);
+			break;
 		case "-joue":
+			joue(args[1]);
+			break;
 		case "-cal":
+			Algo alg=lectureAlgo();
 		case "-anime":
 		case "-stat":
 		case "-aleatoire":
@@ -158,31 +221,19 @@ public class Main {
 			printOptionList();
 			System.exit(1);
 		}
-		System.exit(0);*/
+		System.exit(0);
 				
-		//On cree un jeu
-		//Jeu t = new Taquin(Integer.parseInt(args[0]), Integer.parseInt(args[1]), commande);
-		Jeu t = jeuFromFile("taquin/taq3.taq");
+/*		//On cree un jeu
+		Jeu t = jeuFromFile("taquin/taq1.taq");
 		//On initialise un algo
-		Algo b=new Algo(t,  new PileAction(), new EnsembleComplet());
+		Algo b=new Algo(t,  new Tas(new Manhattan()), new EnsembleComplet(), true);
 		//On lance l'algorithme	
 		System.out.println("Le jeu est solvable : "+t.estSoluble()+" en au moins "+t.getNbCoupsfinale());
 		b.run(0);
-		//b.runProgressif();
 		//On interprete le resultat de l'algo
 		System.out.println(b.description());
-		System.out.println(b.getFinale());
-		
-		/*try {
-			anim(t,b.getSolution());
-		} catch (InterruptedException e) {
-			System.out.println("L'animation n'a pas pu reprendre après le sleep");
-		}
+		System.out.println(b.getFinale());*/
 
-		/*Scanner s = new Scanner(System.in);
-		PrintStream p=System.out;
-		jouer(t,s,p);*/
-		
 		//On quite le programme avec comme sortie 0 car il n'y a pas eu d'erreur
 		System.exit(0);
 		

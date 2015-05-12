@@ -37,4 +37,8 @@ public class File implements EnsembleATraiter{
 		return ajout(initial);
 	}
 
+	public boolean appartient(Jeu p) {
+		return file.contains(p);
+	}
+
 }

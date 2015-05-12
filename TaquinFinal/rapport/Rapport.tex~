@@ -1,0 +1,194 @@
+\documentclass[a4paper,twoside,12pt]{report}
+\usepackage[utf8x]{inputenc}
+\usepackage{color}
+\usepackage{fancyvrb} % pour mettre les verbatim dans des boites
+%\usepackage[dvipdf]{graphics}
+\usepackage[pdftex]{graphicx}
+\usepackage{fancyhdr}
+\usepackage{listings}
+\usepackage{float}
+\usepackage{listingsutf8}
+\usepackage[T1]{fontenc}
+\usepackage[french]{babel}
+\usepackage{textcomp}
+\usepackage[toc,page]{appendix}
+%\usepackage{hyperref}
+% Quelques rÃÂÃÂÃÂÃÂ©glages particuliers
+\oddsidemargin=-0.1in %xx
+\evensidemargin=-0.1in
+\textwidth=6.1in
+\topmargin=-0.5in
+\textheight=8.7in
+\parskip 0.25in
+\lstset{
+language=Java,
+basicstyle=\normalsize,
+upquote=true,
+aboveskip={1.5\baselineskip},
+columns=fullflexible,
+showstringspaces=false,
+extendedchars=true,
+breaklines=true,
+showtabs=false,
+showspaces=false,
+showstringspaces=false,
+identifierstyle=\ttfamily,
+keywordstyle=\color[rgb]{1,0,1},
+commentstyle=\color[rgb]{0.133,0.545,0.133},
+stringstyle=\color[rgb]{0.627,0.126,0.941},
+}
+\fancyhead[RO,RE]{\includegraphics[width=0.5in]{Logo-univ-orleans.png}}
+\fancyhead[CO,CE]{Rapport de projet}
+\fancyhead[LO,LE]{Jeu de Taquin}
+\fancyfoot[C]{2014}
+\fancyfoot[RO, LE] {\thepage}
+%\fancyfoot[LO, RE] { ARNOULT S., MEKHILEF W., OUSSAD J., RETY M.}
+%
+%Quelques macros
+\newcommand{\moncode}[1]{\begin{center}
+                        \lstinputlisting[inputencoding=utf8/latin1]{#1}
+                        \end{center}}
+
+\newcommand{\monimage}[3]{
+\par\noindent
+\begin{figure}[H] %on ouvre l'environnement figure
+\begin{center}
+\includegraphics[width=0.7\textwidth]{#1} %ou image.png, .jpeg etc.
+\caption{#2} %la lÃÂÃÂÃÂÃÂ©gende
+\label{#3} %l'ÃÂÃÂÃÂÃÂ©tiquette pour faire rÃÂÃÂÃÂÃÂ©fÃÂÃÂÃÂÃÂ©rence ÃÂÃÂÃÂÃÂ  cette image
+\end{center}
+\end{figure} %on ferme l'environnement figure
+}
+
+\newcommand{\ml}[0]{\par\noindent}
+
+%\hyphenation{supplÃÂÃÂÃÂÃÂ©mentaires}{sup-pl\'e-men-tai-res}
+%opening
+\title{\textcolor{blue}{\Large Rapport du projet IF06}\\\textcolor{blue}{\Large Jeu de Taquin}}
+\vskip 1cm
+\author{ARNOULT Simon, MEKHILEF Wissame, OUSSAD Jihad, RETY Martin \date{\today}}
+
+
+\begin{document}
+
+\thispagestyle{empty}
+%
+\begin{figure}[H]
+\includegraphics[width=0.2\linewidth]{Logo-univ-orleans.png}
+% \hfill
+
+\end{figure}
+\vspace{2cm}
+%
+\begin{center}
+{\Huge Licence 2 Informatique\\\ \\Rapport du projet IF04}
+\par\vspace{1.4cm}
+
+{\Huge\bf \textcolor{red}{\bf Jeu de Taquin}}
+\par\vspace{1.6cm}
+
+{\Large       Réalisé par:}
+\par\vspace{1.3cm}
+{\large\bf \textcolor{blue}{ARNOULT Simon, MEKHILEF Wissame, OUSSAD Jihad, RETY Martin}}
+\vfill
+\today
+\end{center}
+\newpage
+\pagestyle{fancy}
+
+\begin{abstract}
+%
+Nous avons le plaisir de vous présenter notre travail sur ce projet. Durant la deuxième année de la l2 Informatique
+à l'Université d'Orléans nous avons travaillé en groupe de quatre sur un projet de résolution de Taquin.
+\end{abstract}
+ 
+\newpage
+\tableofcontents
+\listoffigures
+\newpage
+
+\chapter{Introduction}
+Ce rapport s'articulera autour de quatre chapitre, nous allons détailler notre travail dans l'ordre chronologique. En commençant par l'étude
+du projet, puis nous allons détailler notre organisation pour le travail de groupe, nous continuerons ensuite sur le développement et nous
+finirons ce rapport par une analyse des algorithmes.
+%
+\section{Cahier des charges}
+
+%
+\chapter{Etude}
+L'étude du projet fut une première étape importante pour correctement se mettre dans une bonne dynamique de groupe. Dés la première semaine
+nous avons réaliser une version jouable du Taquin, nous avons travaillé sur cette version durant toute la première phase d'essaie.
+Rapidement il a fallu faire des essaies sur ce jeu pour qu'il puisse se résoudre algorithmiquement. Nous avons chacun travailler de notre
+coté sur nos idées pour pouvoir en tester un plus grand nombre, mais tout en restant en contact réguliérement pour avancer un ensemble.
+Cette manière de répartir les tâches nous à permi de se rendre compte des difficulté qu'on allé rencontrer plus rapidement que si on avais
+tout fais ensemble.
+%
+\section{Analyse de faisabilité}
+L'analyse de faisabilité fut un moment qui à durer du début du projet jusqu'au vacances de février, durant cette phase chacun travaillant
+sur des fonctionnalité différents, on pu voir ou était les problèmes dans notre architecture de départ. Ces tests on été trés diverses. On
+a travailler sur les fonctionnalitées VT100 du terminal et la récupération des touches tappé par l'utilisateur. Mais on a aussi crée des
+algorithmes pour essayer de résoudre le Taquin. Tout ces tests on permis au mois de février d'avoir une idée clair de l'architecture du
+projet.
+\section{Conception UML}
+Cette analyse de février a permis d'aboutir au diagramme UML suivant, diagramme qui n'a pas beaucoup changé jusqu'à la version finale.
+%INCLURE LE MODELE UML
+\chapter{La gestion de projet}
+%
+La gestion de projet est à la base de tout projet encore plus quand il se fais avec une équipe de quatre personnes.
+\section{Le travail de groupe}
+%
+La gestion de projet fut au coeur de nos préocupations avant même que le projet ne démarre, on a cherché à créer une équipe dynamique. On
+c'est donc vu réguliérement dans les salles de l'Université. Mais
+malgré celà il a fallut mettre en place des moyens dédiée pour faciliter le travail et éviter une dégradation de l'entente. Dès la
+première semaine, on mis en place un dépôt git sur le site de l'hébergeur GitHub, ce dépôt et le faite de l'avoir dés la premiere heure
+nous à permi d'avoir le réflexe de l'utiliser même si on rencontrer quelque problèmes, il a permis a chacun de voir l'avancement du projet.
+Cependant un tel dépôt ne répond pas à la question de la communication au seins de l'équipe, chacun habitant une ville différente et Skype
+nous à aidé dans cette tâche.
+\section{Le diagramme de Gantt}
+%
+Nous avons utilisé la technique du diagramme de GANTT pour vérifier en interne que le projet avancé convenablement. Ci-dessous vous pouvez voir ce
+diagramme.
+\monimage{DiagrammeDeGantt.pdf}{Diagramme de GANTT}{DG}
+\chapter{Phase de développement}
+%
+\section{L'architecture}
+On explique les choix qu'on a fais
+\section{Le codage}
+%
+\section{Junit et Benchmark}
+%
+\subsection{Utilisation des benchmarks}
+On a utilisé les benchmark pour améliorer l'efficacité de l'algorithme de solution, en effet on a remarquer entre autre que la taille de l'ensemble
+incomplet avais une importance dans le temps de résolution. On a donc créer un test avec plusieurs taille d'ensemble pour voir laquelle 
+permetté une resolution rapide.
+\monimage{ensembleincomplettest2.pdf}{Exemple}{EX}
+\chapter{Analyse et Conclusion}
+%
+\section{Analyse des Benchmark}
+%
+\subsection{Jeu simple}
+%
+\subsection{Jeu moyen}
+%
+\subsection{Jeu compliqué}
+%
+\section{Conclusion}
+%
+\newpage
+\bibliography{bibliographie}{}
+\bibliographystyle{plain}
+
+\chapter{Resources utilisées}
+\begin{itemize}
+ \item JUNIT
+ \item JAVA
+ \item Dia
+ \item Eclipse
+ \item Argouml
+ \item \LaTeX (sous kile)
+ \item Google Drive
+ \item Kate
+ \item Git, GitHub
+\end{itemize}
+
+\end{document}

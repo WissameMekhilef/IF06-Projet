@@ -30,7 +30,6 @@ import comparateurs.Manhattan;
 @AxisRange(min = 0, max = 0.05)
 @BenchmarkMethodChart(filePrefix = "testdesalgo")
 @BenchmarkOptions(callgc = false, benchmarkRounds = 50)
-@RunWith(JUnitParamsRunner.class)l
 
 public class AlgoSpeed extends AbstractBenchmark{
 	static Commande commande=new Commande();
@@ -104,7 +103,7 @@ public class AlgoSpeed extends AbstractBenchmark{
 	 */
 	private void runTest(Jeu jeu, EnsembleMarque em, EnsembleATraiter eat){
 		//System.out.println("Nouveau test en cours");
-		Algo algo = new Algo(jeu, eat, em);
+		Algo algo = new Algo(jeu, eat, em, false);
 		algo.run();
 	}
 	

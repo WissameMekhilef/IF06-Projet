@@ -21,16 +21,38 @@ public class Algo extends Thread{
 	private int nombrePositionsTraite;
 	private int nbIterations;
 	
-	public Algo(Jeu pInit, EnsembleATraiter pTraiter, EnsembleMarque pMarque){
+	/**
+	 * Constructeur d'un Algo
+	 * @param pInit
+	 * Le jeu qu'il faut résoudre à son état initial
+	 * @param pTraiter
+	 * L'ensemble à traiter à utiliser
+	 * @param pMarque
+	 * L'ensemble marqué à utiliser
+	 * @param pAutomate
+	 * Un boolean pour savoir si l'algorithme utilise un automate ou non
+	 */
+	public Algo(Jeu pInit, EnsembleATraiter pTraiter, EnsembleMarque pMarque, boolean pAutomate){
 		this.initial=pInit;
 		aTraiter=pTraiter;
 		marque=pMarque;
 		solution=new ArrayList<Action>();
-		automate = new Noeud(pTraiter,pInit.getCommande());
+		if(pAutomate)
+			//On crée l'automate
+			automate = new Noeud(pTraiter,pInit.getCommande());
+		else
+			//Sinon on passe l'automate à null
+			automate=null;
 		nombrePositionsTraite=0;
 		nbIterations = 0;
 	}
 	
+	/**
+	 * Méthode run progressif
+	 * <p>
+	 * Cette méthode vaut pour la partie E du sujet
+	 * </p>
+	 */
 	public void runProgressif(){
 		aTraiter=new PileAction(initial.getNbCoupsfinale());
 		while(!run(0)){
@@ -39,6 +61,17 @@ public class Algo extends Thread{
 		}
 	}
 	
+	
+	/**
+	 * Fonction run de l'algo
+	 * <p>
+	 * C'est cette fonction qui permet la résolution
+	 * </p>
+	 * @param temps
+	 * C'est le paramétre de temps durant lequel la résolution doit tourner
+	 * @return
+	 * On retourne un boolean true pour savoir si l'algorithme a trouver une solution ou pas
+	 */
 	public boolean run(int temps){
 		if(temps != 0) {
 			Timer t = new Timer();
@@ -55,7 +88,10 @@ public class Algo extends Thread{
 			while(aTraiter.nonVide() && !fin){
 				Jeu pos = aTraiter.prend();
 				succ = pos.succ();
-				//ArrayList<Jeu> succR = reduireSucc(succ);
+				if(automate!=null){
+					ArrayList<Jeu> succR = reduireSucc(succ);
+					succ=succR;
+				}
 				for(Jeu p: succ){
 					nbIterations++;
 					if(!marque.appartient(p)){
@@ -77,6 +113,14 @@ public class Algo extends Thread{
 		return fin;
 	}
 	
+	/**
+	 * Fonction de description
+	 * <p>
+	 * Récapitule le déroulement de d'algorithme
+	 * </p>
+	 * @return
+	 * Un string pour pouvoir afficher la description
+	 */
 	public String description() {
 		if(finale==null)
 			return "L'algorithme n'a pas trouvé de solution";
@@ -90,14 +134,34 @@ public class Algo extends Thread{
 				+ getStringSolution().length() + ".\nChemin : " + getStringSolution();
 	}
 	
+	/**
+	 * Getteur sur l'automate
+	 * @return
+	 * L'automate
+	 */
 	public Automate getAutomate() {
 		return automate;
 	}
-
+	
+	/**
+	 * Setteur de l'automate
+	 * @param automate
+	 * L'automate à utiliser
+	 */
 	public void setAutomate(Automate automate) {
 		this.automate = automate;
 	}
-
+	
+	/**
+	 * Fonction d'élagage
+	 * <p>
+	 * C'est cette méthode qui fais appel à l'automate
+	 * </p>
+	 * @param aReduire
+	 * La liste des positions à traiter
+	 * @return
+	 * La liste avec les positi//TODO
+	 */
 	private ArrayList<Jeu> reduireSucc(ArrayList<Jeu> aReduire){
 		ArrayList<Jeu> res = new ArrayList<Jeu>();
 		for(Jeu j : aReduire){
@@ -108,6 +172,13 @@ public class Algo extends Thread{
 		return res;
 	}
 	
+	/**
+	 * Fonction d'initialisation de la solution
+	 * <p>
+	 * Cette fonction permet de remonter tous les pères à partir de l'état final jusqu'au dernier pour avoir le chemin menant
+	 * à la solution
+	 * </p>
+	 */
 	public void setSolution(){
 		Jeu parcours=finale;
 		Stack<Action> temp = new Stack<Action>();
@@ -121,6 +192,12 @@ public class Algo extends Thread{
 		
 	}
 	
+	
+	/**
+	 * Fonction solution to string
+	 * @return
+	 * Une chaine de caractère représentant la solution
+	 */
 	public String getStringSolution(){
 		String s="";
 		for(Action act : solution){
@@ -130,18 +207,38 @@ public class Algo extends Thread{
 		return s;
 	}
 	
+	/**
+	 * Getteur solution
+	 * @return
+	 * La solution dans une arraylist
+	 */
 	public ArrayList<Action> getSolution(){
 		return solution;
 	}
 	
+	/**
+	 * Getteur nombre positions traité
+	 * @return
+	 * Le nombre de positions traité
+	 */
 	public int getNombrePositionTraite(){
 		return this.aTraiter.positionTraite();
 	}
 
+	/**
+	 * Getteur position finale
+	 * @return
+	 * Retourne la position finale, trouvé par l'algorithme
+	 */
 	public Jeu getFinale() {
 		return finale;
 	}
 
+	/**
+	 * Getteur temps execution
+	 * @return
+	 * Le temps qu'a mis l'algorithme pour terminer
+	 */
 	public long getTempExec() {
 		return tempExec;
 	}

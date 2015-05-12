@@ -7,19 +7,39 @@ import jeu.*;
 public class EnsembleComplet implements EnsembleMarque {
 	
 	private ArrayList<Jeu> ensemble;
-
+	
+	/**
+	 * Constructeur d'un ensemble complet
+	 */
 	public EnsembleComplet(){
 		ensemble=new ArrayList<Jeu>();
 	}
 	
-	public void ajout(Jeu pSommmet) {
-		ensemble.add(pSommmet);
+	/**
+	 * Fonction d'ajout d'un jeu
+	 * @param pSommet
+	 * Le jeu à ajouter
+	 */
+	public void ajout(Jeu pSommet) {
+		ensemble.add(pSommet);
 	}
-
+	
+	/**
+	 * Fonction d'appartenance d'un jeu
+	 * @param pATester
+	 * Le jeu sur lequel tester l'appartenance
+	 * @return
+	 * Un boolean à true l'ensemble contient le jeu, et à false sinon
+	 */
 	public boolean appartient(Jeu pATester) {
 		return ensemble.contains(pATester);
 	}
 
+	/**
+	 * Fonction de taille de l'ensemble
+	 * @return
+	 * Retourne le nombre de positions dans l'ensemble
+	 */
 	public int taille() {
 		return ensemble.size();
 	}

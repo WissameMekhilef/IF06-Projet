@@ -42,4 +42,8 @@ public class Pile implements EnsembleATraiter{
 		return ajout(initial);
 	}
 
+	public boolean appartient(Jeu p) {
+		return pile.contains(p);
+	}
+
 }

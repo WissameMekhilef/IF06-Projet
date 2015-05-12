@@ -8,4 +8,5 @@ public interface EnsembleATraiter {
 	public boolean premierAjout(Jeu initial);
 	public boolean ajout(Jeu p);
 	public int positionTraite();
+	public boolean appartient(Jeu p);
 }

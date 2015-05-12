@@ -17,13 +17,34 @@ public class Taquin implements Jeu{
 	private Taquin pere;
 	private int profondeur;
 	private int nbCoupsfinale;
-	private int ameliorant;
-	private int[] indexZero= new int [2];
 	
+	
+	/**
+	 * Constructeur d'un Taquin avec paramètre 2
+	 * <p>
+	 * Ce constructeur contruit un Taquin à partir d'un fichier source .taq
+	 * </p>
+	 * @param destfic
+	 * La source du jeu
+	 * @param pCommande
+	 * Les commandes du jeu, pour pouvoir jouer en ligne de commande
+	 * @throws NombreDouble
+	 * Une exception si jamais un nombre est en double dans le fichier source
+	 * @throws NumberFormatException
+	 * Une exception si jamais il y'a autre chose qu'un entier 
+	 * @throws FileNotFoundException
+	 * Une exception si jamais le fichier source n'est pas trouvé
+	 * @throws IOException
+	 * Une excpetion pour toute les autres erreurs
+	 */
 	public Taquin(String destfic, Commande pCommande) throws NombreDouble, NumberFormatException, FileNotFoundException, IOException{
+		//On met le fichier source dans un BufferedReader
 		BufferedReader fic = new BufferedReader( new FileReader (destfic));
+		//On se sert de cette arrayList pour savoir si le fichier source contient des nombres en double
 		ArrayList<Integer> nombresPresent = new ArrayList<Integer>();
+		//On lit les dimensions du Taquin
 		this.damier = new int[Integer.parseInt(fic.readLine())][Integer.parseInt(fic.readLine())];
+		
 		StringTokenizer valeurs = new StringTokenizer(fic.readLine());
 		for(int i=0; i<damier.length;i++){
 			for(int j=0; j<damier[0].length;j++){
@@ -39,12 +60,13 @@ public class Taquin implements Jeu{
 		this.commande=pCommande;
 		this.pere=null;
 		this.profondeur=0;
+		//L'action qui mene au pere est null
 		action=null;
 		
-		indexZero=indexOf(0);
-		
+		//On construit un Taquin en local pour récuperer l'etat final
 		Taquin t = new Taquin(damier.length, damier[0].length, commande);
 		situationFinale=t.situationFinale;
+		
 		nbCoupsfinale=nbPermutFin();
 		
 		fic.close();
@@ -52,12 +74,13 @@ public class Taquin implements Jeu{
 	}
 	
 	/**
-	 * Constructeur d'un Taquin
-	 * 
-	 * @param le nombre de lignes et de colonnes
-	 * <p>
-	 * Taille de la matrice
-	 * </p>
+	 * Constructeur sans paramètre
+	 * @param nbL
+	 * Le nombre de ligne
+	 * @param nbC
+	 * Le nombre de colonne
+	 * @param pCommande
+	 * Les commandes
 	 */
 	public Taquin(int nbL, int nbC, Commande pCommande) {
 		//Initialisation d'un damier initial
@@ -78,7 +101,6 @@ public class Taquin implements Jeu{
 		
 		//On initialise les deplacements
 		commande = pCommande;
-		this.indexZero=indexOf(0);
 		//On melange le jeu
 		do{
 			for(int i=0; i<90; i++)
@@ -97,6 +119,13 @@ public class Taquin implements Jeu{
 		
 	}
 	
+	/**
+	 * Constructeur d'un fils
+	 * @param action
+	 * L'action qui mène au fils
+	 * @param p
+	 * Le Taquin père
+	 */
 	public Taquin(Action action, Taquin p){
 		this.situationFinale=p.getSituationFinale();
 		this.commande=p.commande;
@@ -109,8 +138,7 @@ public class Taquin implements Jeu{
 				damier[i][j]=p.damier[i][j];
 			}
 		}
-		nbCoupsfinale=pere.nbCoupsfinale+pere.ameliorant;
-		indexZero=p.indexZero;
+		nbCoupsfinale=p.nbCoupsfinale;
 	}
 	/**
 	 * Melange la grille de jeu
@@ -124,6 +152,8 @@ public class Taquin implements Jeu{
 
 	/**
 	 * Permet de retrouver les coordonnees d'une case en particulier
+	 * @param nb
+	 * L'entier à retrouver dans le tableau
 	 * @return
 	 * Un tableau d'entier avec numero  de la ligne et celle de la colonne
 	 */
@@ -141,33 +171,35 @@ public class Taquin implements Jeu{
 		return null;
 	}
 	/**
-	 * Permet de deplacer la case vide 
+	 * Permet de deplacer la case vide
+	 * @param direction
+	 * L'action à réaliser
 	 * @throws MauvaiseTouche 
+	 * On leve une exception si l'utilisateur rentre une mauvaise touche
+	 * @throws ArrayIndexOutOfBoundsException
+	 * Exception si on est en dehors du tableau
 	 */
-	public Jeu deplacement(Action direction) throws MauvaiseTouche, ArrayIndexOutOfBoundsException {
-		//System.out.println("\t\t\tAppel a indexOf de 0");
-		int[] pos0=indexZero;
+	public void deplacement(Action direction) throws MauvaiseTouche, ArrayIndexOutOfBoundsException {
+		int[] pos0=indexOf(0);
 		if(commande.getDeplacement().containsKey(direction)){
 			int temp=damier[pos0[0]][pos0[1]];
-			int ancienMan=distanceManhattan(temp);
-			//System.out.println("La distance de manhattan de l'ancienne position eé : "+ancienMan);
 			int[] posX=commande.getDeplacement().get(direction);
 			damier[pos0[0]][pos0[1]]=damier[pos0[0]+posX[0]][pos0[1]+posX[1]];
 			damier[pos0[0]+posX[0]][pos0[1]+posX[1]]=0;
-			indexZero[0]=pos0[0]+posX[0];
-			indexZero[1]=pos0[1]+posX[1];
+	//		indexZero[0]=pos0[0]+posX[0];
+		//	indexZero[1]=pos0[1]+posX[1];
 			
-			
-			ameliorant=ancienMan-ancienMan-distanceManhattan(temp);
+			//ameliorant=ancienMan-distanceManhattan(temp);
 			nbCoupsfinale=nbPermutFin();
 		}else throw new MauvaiseTouche();
-		return new Taquin(direction,this);
 	}
 	/**
 	 * Methode qui determine la distance entre la position initiale
 	 * de la case vide que l'on nommera ini et sa position finale
 	 * pour que le taquin puisse pretendre etre resolu dont on 
 	 * nommera fin : Dman=|Xfin-Xini|+|Yfin-Yini|
+	 * @param i
+	 * L'entier sur lequel on veut calculer la distance de Manhattan
 	 * @return un entier qui sera la distance dite de Mannathan
 	 */
 	public int distanceManhattan(int i) {
@@ -184,8 +216,12 @@ public class Taquin implements Jeu{
 		return situationFinale.equals(damier);
 	}
 	/**
-	 * 
+	 * Fonction d'estimations
+	 * <p>
+	 * Permet de savoir le nombre de coups minimal à réaliser pour que le jeu soit fini
+	 * </p>
 	 * @return
+	 * Le nombre de permution pour amener toutes les cases à leurs positions finales
 	 */
 	public int nbPermutFin(){
 		int res=0;
@@ -196,7 +232,12 @@ public class Taquin implements Jeu{
 		return res;
 	}
 	/**
-	 * 
+	 * Donne les voisins d'un jeu
+	 * <p>
+	 * Permet de sous forme de liste tout les voisins de la positions courantes
+	 * </p>
+	 * @return
+	 * Une ArrayList contenant tout les jeux voisins
 	 */
 	public ArrayList<Jeu> succ(){
 		//System.out.println("Succ traite le Taquin : \n"+this);
@@ -204,11 +245,8 @@ public class Taquin implements Jeu{
 		for(Action p : commande.getListeDesClefs()){
 			try{
 				//System.out.println("On y vas");
-				res.add(this.deplacement(p));
-				//System.out.println(this);
-				
-				//res.add(new Taquin(p,this));
-				
+				this.deplacement(p);
+				res.add(new Taquin(p,this));
 				//System.out.println("On revient");
 				this.deplacement(p.getInverse());
 				//System.out.println(this);
@@ -217,7 +255,16 @@ public class Taquin implements Jeu{
 		//System.out.println("On renvoie "+ res.size()+" succeseurs");
 		return res;
 	}
-
+	/**
+	 * Fonction d'indentification
+	 * <p>
+	 * Cette fonction retourne un entier qui permet de savoir si deux jeu sont identique, ce nombre est calculer de tel maniere
+	 * que deux jeux différents peuvent avoir le identifiant. On calcule le HashCode uniquement sur la grille de jeu sans prendre
+	 * en compte la profondeur, le père, ou l'action précédente.
+	 * </p>
+	 * @return
+	 * L'entier identifiant du jeu courant
+	 */
 	public int hashCode(){
 		int hash=1;
 		for(int i=0;i<this.damier.length;i++){
@@ -241,7 +288,17 @@ public class Taquin implements Jeu{
 		}
 		return s;
 	}
-
+	
+	/**
+	 * Fonction d'égualité
+	 * <p>
+	 * On se sert du HashCode pour savoir si deux taquins sont identiques
+	 * </p>
+	 * @param o
+	 * L'objet à comparer
+	 * @return
+	 * Un boolean vrai si les taquin sont identiques et faus sinon
+	 */
 	public boolean equals(Object o){
 		if(o instanceof Taquin){
 			Taquin t =(Taquin)o;
@@ -260,75 +317,85 @@ public class Taquin implements Jeu{
 	public boolean estSoluble(){
 		return this.distanceManhattan(0)%2==this.nbPermutFin()%2;
 	}
+
 	/**
-	 * @return un copieTableau du tableau nommer damier
+	 * Setteur de la situation finale
+	 * @param situationFinale
+	 * La situation final correspondant au jeu courant
 	 */
-	public int[][] copieTableau(){
-		int[][]t=new int[damier.length][damier[0].length];
-		for(int i=0;i<this.damier.length;i++){
-			for(int j=0;j<this.damier[0].length;j++){
-				t[i][j]=damier[i][j];
-			}
-		}
-		return t;
-	}
-	/**
-	 * 
-	 * @param d
-	 */
-	
-	public void setDamier(int[][] d){
-		for(int i=0;i<d.length;i++){
-			for(int j=0;j<d[0].length;j++){
-				this.damier[i][j]=d[i][j];
-			}
-		}
-		nbCoupsfinale=nbPermutFin();
-	}
 	public void setSituationFinale(PositionFinale situationFinale) {
 		this.situationFinale = situationFinale;
 	}
 
 	/**
-	 * 
+	 * Getteur du père
 	 * @return
+	 * Le taquin pere du taquin courant
 	 */
 	public Taquin getPere() {
 		return pere;
 	}
 
 	/**
-	 * 
+	 * Getteur de l'action
 	 * @return
+	 * L'action qui à mené au jeu courant
 	 */
 	public Action getAction() {
 		return action;
 	}
-
-	public int[][] getDamier() {
-		return damier;
-	}
-
+	
+	/**
+	 * Getteur des commandes
+	 * @return
+	 * L'objet commande associé au jeu
+	 */
 	public Commande getCommande() {
 		return commande;
 	}
-
+	
+	/**
+	 * Getteur de la profondeur
+	 * @return
+	 * La profondeur du Taquin courant, son nombre de pere
+	 */
 	public int getProfondeur() {
 		return profondeur;
 	}
-
+	
+	/**
+	 * Getteur de la situation finale
+	 * @return
+	 * La situation finale correspondant au Taquin courant
+	 */
 	public PositionFinale getSituationFinale() {
 		return situationFinale;
 	}
 
+	/**
+	 * Getteur du nombre de coups minimale pour arriver à une solution
+	 * @return
+	 * Le nombre en question
+	 */
 	public int getNbCoupsfinale() {
 		return nbCoupsfinale;
 	}
 
+	/**
+	 * Setteur du nombre de coups minimal
+	 * @param nbCoupsfinale
+	 * Le nombre de coups minimal pour arriver à une solution
+	 */
 	public void setNbCoupsfinale(int nbCoupsfinale) {
 		this.nbCoupsfinale = nbCoupsfinale;
 	}
 	
+	
+	/**
+	 * Decrit le jeu
+	 * @return
+	 * Retourne une description du jeu
+	 */
 	public String description() {
 		int n = 0;
 		for(int i = 1; i < damier.length * damier[0].length; i++) n += distanceManhattan(i);
@@ -337,9 +404,10 @@ public class Taquin implements Jeu{
 				+ ".\nLa somme des distances des autres cases etait de " + n + ".";
 	}
 	
+	
 	public Jeu clone(){
 		Taquin res = new Taquin(damier.length, damier[0].length, commande);
-		//res.setDamier(getDamier());
+		//TODO
 		return res;
 	}
 	

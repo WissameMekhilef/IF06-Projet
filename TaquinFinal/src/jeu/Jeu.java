@@ -7,11 +7,12 @@ public interface Jeu {
 	 * Effectuer un deplacement
 	 * @param direction
 	 * L'entier correspondant au deplacement
-	 * @throws MauvaiseTouche 
-	 * @throws ImpossibleMoveException
+	 * @throws MauvaiseTouche
+	 * On leve une exception dans le cas où l'utilisateur tappe une mauvaise touche
+	 * @throws IndexOutOfBoundsException
 	 * Une exception est leve si le deplacement est impossible
 	 */
-	public Jeu deplacement(Action direction) throws IndexOutOfBoundsException, MauvaiseTouche;
+	public void deplacement(Action direction) throws IndexOutOfBoundsException, MauvaiseTouche;
 	/**
 	 * Affiche le jeu
 	 * @return
