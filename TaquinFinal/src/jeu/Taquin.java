@@ -17,6 +17,7 @@ public class Taquin implements Jeu{
 	private Taquin pere;
 	private int profondeur;
 	private int nbCoupsfinale;
+	private int[] posZero=new int[2];
 	
 	
 	/**
@@ -69,6 +70,7 @@ public class Taquin implements Jeu{
 		
 		nbCoupsfinale=nbPermutFin();
 		
+		posZero=indexOf(0);
 		fic.close();
 	
 	}
@@ -116,6 +118,7 @@ public class Taquin implements Jeu{
 		//Init nombre coups finaux
 		this.nbCoupsfinale=this.nbPermutFin();
 		
+		posZero=indexOf(0);
 		
 	}
 	
@@ -139,6 +142,8 @@ public class Taquin implements Jeu{
 			}
 		}
 		nbCoupsfinale=p.nbCoupsfinale;
+		posZero[0]=p.posZero[0];
+		posZero[1]=p.posZero[1];
 	}
 	/**
 	 * Melange la grille de jeu
@@ -186,8 +191,8 @@ public class Taquin implements Jeu{
 			int[] posX=commande.getDeplacement().get(direction);
 			damier[pos0[0]][pos0[1]]=damier[pos0[0]+posX[0]][pos0[1]+posX[1]];
 			damier[pos0[0]+posX[0]][pos0[1]+posX[1]]=0;
-	//		indexZero[0]=pos0[0]+posX[0];
-		//	indexZero[1]=pos0[1]+posX[1];
+			posZero[0]=pos0[0]+posX[0];
+			posZero[1]=pos0[1]+posX[1];
 			
 			//ameliorant=ancienMan-distanceManhattan(temp);
 			nbCoupsfinale=nbPermutFin();
@@ -269,7 +274,7 @@ public class Taquin implements Jeu{
 		int hash=1;
 		for(int i=0;i<this.damier.length;i++){
 			for(int j=0;j<this.damier[0].length;j++){
-				hash=hash*107+damier[i][j];
+				hash=hash*31+damier[i][j];
 			}
 		}
 		return hash;

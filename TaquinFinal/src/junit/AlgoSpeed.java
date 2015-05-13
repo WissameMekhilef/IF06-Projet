@@ -1,14 +1,10 @@
 package junit;
 import jeu.Commande;
 import jeu.Jeu;
-import jeu.Taquin;
 
-import org.junit.Before;
 import org.junit.Rule;
 import org.junit.Test;
 import org.junit.rules.TestRule;
-import org.junit.runner.RunWith;
-import org.junit.runners.Parameterized.Parameters;
 
 import algo.Algo;
 import algo.EnsembleATraiter;
@@ -19,11 +15,6 @@ import algo.File;
 import algo.Pile;
 import algo.Tas;
 
-import com.carrotsearch.junitbenchmarks.AbstractBenchmark;
-import com.carrotsearch.junitbenchmarks.BenchmarkOptions;
-import com.carrotsearch.junitbenchmarks.BenchmarkRule;
-import com.carrotsearch.junitbenchmarks.annotation.AxisRange;
-import com.carrotsearch.junitbenchmarks.annotation.BenchmarkMethodChart;
 import comparateurs.DepthManhattan;
 import comparateurs.Manhattan;
 
@@ -40,7 +31,7 @@ public class AlgoSpeed extends AbstractBenchmark{
 	public TestRule benchmarkRun = new BenchmarkRule();
 			
 	@Test
-	public void FileIncomplet(final Jeu taq){
+	public void FileIncomplet(){
 		runTest(jeu, new EnsembleIncomplet(tailleEnsembleIncomplet), new File());
 	}
 	

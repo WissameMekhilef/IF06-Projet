@@ -134,6 +134,7 @@ public class Main {
 	 * Une exception est lévé dans le cas on le sleep ne reprend pas
 	 */
 	private static void anim(Jeu jeu, ArrayList<Action> action) throws InterruptedException{
+		
 		System.out.println(jeu);
 		int nbAction = action.size();
 		for(Action act : action){
@@ -216,6 +217,7 @@ public class Main {
 		case "pile":
 			return new Algo(jeuFromFile(param[param.length-1]),new Pile(), new EnsembleComplet(), false);
 		case "file":
+			System.out.println("On veut une fil");
 			return new Algo(jeuFromFile(param[param.length-1]),new File(), new EnsembleComplet(), false);
 		case "manhattan":
 			return new Algo(jeuFromFile(param[param.length-1]),new Tas(new Manhattan()), new EnsembleComplet(), false);
@@ -254,7 +256,7 @@ public class Main {
 	}
 	
 	public static void main(String[] args) {
-/*		Algo alg;
+		Algo alg;
 		//Lecture des paramètres
 		System.out.println(args[0]);
 		switch(args[0]){
@@ -292,9 +294,9 @@ public class Main {
 			printOptionList();
 			System.exit(1);
 		}
-		System.exit(0);*/
+		System.exit(0);
 				
-		//On cree un jeu
+	/*	//On cree un jeu
 	//	Jeu t = jeuFromFile("taquin/taq1.taq");
 		//On initialise un algo
 	//	Algo b=new Algo(t,  new PileAction(), new EnsembleComplet(), true);
@@ -309,7 +311,7 @@ public class Main {
 		//AlgoSpeed test = new AlgoSpeed(jeuFromFile("taquin/taq1.taq"));
 		runner.run(AlgoSpeed.class);
 		//On quite le programme avec comme sortie 0 car il n'y a pas eu d'erreur
-		System.exit(0);
+		System.exit(0);*/
 		
 	}
 

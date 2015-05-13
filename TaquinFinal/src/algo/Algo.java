@@ -130,11 +130,11 @@ public class Algo extends Thread{
 		return initial.description() + "\n\nL'algorithme a dure " + nbIterations
 				+ " iterations, au cours desquelles il a traite " + aTraiter.positionTraite()
 				+ " positions du jeu.\nSon execution a pris " + tempExec
-				+ " ms.\n\nAu cours de son execution, l'algorithme est parti "
+				+ " ms.\n\n"+((automate!=null)?"Au cours de son execution, l'algorithme est parti "
 				+ (automate.getFail().size() - 4)
 				+ " fois dans une mauvaise direction.\n\nAu final, il aura supprime " + automate.getFail().size()
 				+ " combinaisons de coups redondants afin de donner une solution optimale de longueur "
-				+ getStringSolution().length() + ".\nChemin : " + getStringSolution();
+				+ getStringSolution().length():"") + ".\nChemin : " + getStringSolution();
 	}
 	
 	/**
