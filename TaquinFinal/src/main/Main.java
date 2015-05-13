@@ -9,13 +9,23 @@ import java.util.HashMap;
 import java.util.Scanner;
 import java.util.Stack;
 
+import org.junit.internal.TextListener;
+import org.junit.runner.JUnitCore;
+
+import comparateurs.DepthManhattan;
+import comparateurs.Manhattan;
 import jeu.Action;
 import jeu.Commande;
 import jeu.Jeu;
 import jeu.Taquin;
+import junit.AlgoSpeed;
 import algo.Algo;
 import algo.EnsembleComplet;
+import algo.EnsembleIncomplet;
+import algo.File;
+import algo.Pile;
 import algo.PileAction;
+import algo.Tas;
 import exceptions.MauvaiseTouche;
 import exceptions.NombreDouble;
 
@@ -185,15 +195,68 @@ public class Main {
 	 * @return
 	 * Retourne un algorithme correspondant à l'algorithme préciser dans les paramètre du lancement
 	 */
-	private Algo lectureAlgo(){
-		switch(args[1]){
-		
+	
+	private static void afficheSol(Jeu jeu, ArrayList<Action> action){
+		System.out.println(jeu);
+		int nbAction = action.size();
+		for(Action act : action){
+			try {
+				jeu.deplacement(act);
+			} catch (IndexOutOfBoundsException e) {
+				//On ne rentre jamais dans ce cas car les actions a réaliser sont possible
+			} catch (MauvaiseTouche e) {
+				System.out.println("Mauvaise touche ");
+			}
+			System.out.println(jeu);
 		}
-		return null;
+	}
+	
+	private static Algo lectureAlgo(String [] param){
+		switch(param[3]){
+		case "pile":
+			return new Algo(jeuFromFile(param[param.length-1]),new Pile(), new EnsembleComplet(), false);
+		case "file":
+			return new Algo(jeuFromFile(param[param.length-1]),new File(), new EnsembleComplet(), false);
+		case "manhattan":
+			return new Algo(jeuFromFile(param[param.length-1]),new Tas(new Manhattan()), new EnsembleComplet(), false);
+		case "pmanhattan":
+			return new Algo(jeuFromFile(param[param.length-1]),new Tas(new DepthManhattan()), new EnsembleComplet(), false);
+		case "bit":
+			switch(param[4]){
+			case "pile":
+				return new Algo(jeuFromFile(param[param.length-1]),new Pile(), new EnsembleIncomplet(Integer.parseInt(param[5])), false);
+			case "file":
+				return new Algo(jeuFromFile(param[param.length-1]),new File(), new EnsembleIncomplet(Integer.parseInt(param[5])), false);
+			case "manhattan":
+				return new Algo(jeuFromFile(param[param.length-1]),new Tas(new Manhattan()), new EnsembleIncomplet(Integer.parseInt(param[5])), false);
+			case "pmanhattan":
+				return new Algo(jeuFromFile(param[param.length-1]),new Tas(new DepthManhattan()), new EnsembleIncomplet(Integer.parseInt(param[5])), false);
+			case "prof":
+				return new Algo(jeuFromFile(param[param.length-1]),new PileAction(),  new EnsembleIncomplet(Integer.parseInt(param[5])), false);
+			}
+		case "prof":
+			return new Algo(jeuFromFile(param[param.length-1]),new PileAction(), new EnsembleComplet(), false);
+		case "redondant":
+			Algo alg;
+			switch(param[5]){
+			case "manhattan":
+				alg=new Algo(jeuFromFile(param[param.length-1]),new Tas(new Manhattan()), new EnsembleComplet(), true);
+				alg.setProfondeurAutomate(Integer.parseInt(param[4]));
+				return alg;
+			default:
+				alg=new Algo(jeuFromFile(param[param.length-1]),new File(), new EnsembleComplet(), true);
+				alg.setProfondeurAutomate(Integer.parseInt(param[4]));
+				return alg;
+			}
+		default:
+			return null;
+		}
 	}
 	
 	public static void main(String[] args) {
-		/*//Lecture des paramètres
+/*		Algo alg;
+		//Lecture des paramètres
+		System.out.println(args[0]);
 		switch(args[0]){
 		case "-name":
 			printName();
@@ -208,9 +271,20 @@ public class Main {
 			joue(args[1]);
 			break;
 		case "-cal":
-			Algo alg=lectureAlgo();
+			alg=lectureAlgo(args);
+			alg.run(Integer.parseInt(args[1]));
+			afficheSol(alg.getFinale(),alg.getSolution());
+			break;
 		case "-anime":
+			alg=lectureAlgo(args);
+			alg.run(Integer.parseInt(args[1]));
+			try {
+				anim(alg.getFinale(),alg.getSolution());
+			} catch (InterruptedException e) {}			
 		case "-stat":
+			alg=lectureAlgo(args);
+			alg.run(Integer.parseInt(args[1]));
+			System.out.println(alg.description());
 		case "-aleatoire":
 			break;
 		default:
@@ -221,16 +295,19 @@ public class Main {
 		System.exit(0);*/
 				
 		//On cree un jeu
-		Jeu t = jeuFromFile("taquin/taq1.taq");
+	//	Jeu t = jeuFromFile("taquin/taq1.taq");
 		//On initialise un algo
-		Algo b=new Algo(t,  new PileAction(), new EnsembleComplet(), true);
+	//	Algo b=new Algo(t,  new PileAction(), new EnsembleComplet(), true);
 		//On lance l'algorithme	
-		System.out.println("Le jeu est solvable : "+t.estSoluble()+" en au moins "+t.getNbCoupsfinale());
-		b.run(0);
+	//	System.out.println("Le jeu est solvable : "+t.estSoluble()+" en au moins "+t.getNbCoupsfinale());
+	//	b.run(0);
 		//On interprete le resultat de l'algo
-		System.out.println(b.description());
-		System.out.println(b.getFinale());
-
+	//	System.out.println(b.description());
+	//	System.out.println(b.getFinale());
+		JUnitCore runner = new JUnitCore();
+		runner.addListener(new TextListener(System.out));
+		//AlgoSpeed test = new AlgoSpeed(jeuFromFile("taquin/taq1.taq"));
+		runner.run(AlgoSpeed.class);
 		//On quite le programme avec comme sortie 0 car il n'y a pas eu d'erreur
 		System.exit(0);
 		

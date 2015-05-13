@@ -33,63 +33,54 @@ import comparateurs.Manhattan;
 
 public class AlgoSpeed extends AbstractBenchmark{
 	static Commande commande=new Commande();
-	Taquin taq1;
+	Jeu jeu;
 	int tailleEnsembleIncomplet=200383;
-	
-	private Taquin[] parametersForTest(){
-		return new Taquin[]{
-				new Taquin(3,3, commande),
-				new Taquin(4,4, commande)
-		};
-	}
-	
+		
 	@Rule
 	public TestRule benchmarkRun = new BenchmarkRule();
-		
-	@Before
-	public void setUp(){
-		taq1=new Taquin(4,7,commande);
-	}
-	
+			
 	@Test
-	@Parameters
 	public void FileIncomplet(final Jeu taq){
-		runTest(taq, new EnsembleIncomplet(tailleEnsembleIncomplet), new File());
+		runTest(jeu, new EnsembleIncomplet(tailleEnsembleIncomplet), new File());
 	}
 	
 	@Test
 	public void FileComplet(){
-		runTest(taq1, new EnsembleComplet(), new File());
+		runTest(jeu, new EnsembleComplet(), new File());
 	}
 	
 	@Test
 	public void PileIncomplet(){
-		runTest(taq1, new EnsembleIncomplet(tailleEnsembleIncomplet), new Pile());
+		runTest(jeu, new EnsembleIncomplet(tailleEnsembleIncomplet), new Pile());
 	}
 
-/*	@Test
+	@Test
 	public void PileComplet(){
-		runTest(taq1, new EnsembleComplet(), new Pile());
-	}*/
+		runTest(jeu, new EnsembleComplet(), new Pile());
+	}
 	
 	@Test
 	public void ManhattanIncomplet(){
-		runTest(taq1, new EnsembleIncomplet(tailleEnsembleIncomplet), new Tas(new Manhattan()));
+		runTest(jeu, new EnsembleIncomplet(tailleEnsembleIncomplet), new Tas(new Manhattan()));
 	}
 	
 	@Test
 	public void ManhattanComplet(){
-		runTest(taq1, new EnsembleComplet(), new Tas(new Manhattan()));
+		runTest(jeu, new EnsembleComplet(), new Tas(new Manhattan()));
 	}
 	
 	@Test
 	public void PManhattanIncomplet(){
-		runTest(taq1, new EnsembleIncomplet(tailleEnsembleIncomplet), new Tas(new DepthManhattan()));
+		runTest(jeu, new EnsembleIncomplet(tailleEnsembleIncomplet), new Tas(new DepthManhattan()));
 	}
 	
 	@Test
 	public void PManhattanComplet(){
-		runTest(taq1, new EnsembleComplet(), new Tas(new DepthManhattan()));
+		runTest(jeu, new EnsembleComplet(), new Tas(new DepthManhattan()));
+	}
+	
+	public AlgoSpeed(Jeu aTester){
+		jeu=aTester;
 	}
 	
 	/**
@@ -105,6 +96,10 @@ public class AlgoSpeed extends AbstractBenchmark{
 		//System.out.println("Nouveau test en cours");
 		Algo algo = new Algo(jeu, eat, em, false);
 		algo.run();
+	}
+	
+	public static void main(String [] args){
+		
 	}
 	
 
