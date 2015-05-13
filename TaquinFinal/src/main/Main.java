@@ -9,16 +9,13 @@ import java.util.HashMap;
 import java.util.Scanner;
 import java.util.Stack;
 
-import comparateurs.Manhattan;
-
 import jeu.Action;
 import jeu.Commande;
 import jeu.Jeu;
 import jeu.Taquin;
 import algo.Algo;
 import algo.EnsembleComplet;
-import algo.File;
-import algo.Tas;
+import algo.PileAction;
 import exceptions.MauvaiseTouche;
 import exceptions.NombreDouble;
 
@@ -196,7 +193,7 @@ public class Main {
 	}
 	
 	public static void main(String[] args) {
-		//Lecture des paramètres
+		/*//Lecture des paramètres
 		switch(args[0]){
 		case "-name":
 			printName();
@@ -221,18 +218,18 @@ public class Main {
 			printOptionList();
 			System.exit(1);
 		}
-		System.exit(0);
+		System.exit(0);*/
 				
-/*		//On cree un jeu
+		//On cree un jeu
 		Jeu t = jeuFromFile("taquin/taq1.taq");
 		//On initialise un algo
-		Algo b=new Algo(t,  new Tas(new Manhattan()), new EnsembleComplet(), true);
+		Algo b=new Algo(t,  new PileAction(), new EnsembleComplet(), true);
 		//On lance l'algorithme	
 		System.out.println("Le jeu est solvable : "+t.estSoluble()+" en au moins "+t.getNbCoupsfinale());
 		b.run(0);
 		//On interprete le resultat de l'algo
 		System.out.println(b.description());
-		System.out.println(b.getFinale());*/
+		System.out.println(b.getFinale());
 
 		//On quite le programme avec comme sortie 0 car il n'y a pas eu d'erreur
 		System.exit(0);

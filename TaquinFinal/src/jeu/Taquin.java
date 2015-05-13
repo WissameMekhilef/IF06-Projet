@@ -404,10 +404,22 @@ public class Taquin implements Jeu{
 				+ ".\nLa somme des distances des autres cases etait de " + n + ".";
 	}
 	
-	
+	/**
+	* @return
+	* un copieTableau du tableau nommer damier
+	*/
+	public int[][] copieTableau(){
+		int[][]t=new int[damier.length][damier[0].length];
+		for(int i=0;i<this.damier.length;i++){
+			for(int j=0;j<this.damier[0].length;j++){
+				t[i][j]=damier[i][j];
+			}
+		}
+		return t;
+	}
 	public Jeu clone(){
 		Taquin res = new Taquin(damier.length, damier[0].length, commande);
-		//TODO
+		res.damier=this.copieTableau();
 		return res;
 	}
 	

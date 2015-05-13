@@ -4,6 +4,7 @@ import java.util.Stack;
 
 import jeu.Action;
 import jeu.Jeu;
+import jeu.Taquin;
 import exceptions.MauvaiseTouche;
 
 public class PileAction implements EnsembleATraiter{
@@ -40,6 +41,7 @@ public class PileAction implements EnsembleATraiter{
 	 */
 	public boolean premierAjout(Jeu initial){
 		this.initial=initial;
+		
 		return true;
 	}
 	
@@ -63,13 +65,15 @@ public class PileAction implements EnsembleATraiter{
 	public Jeu prend() {
 		//On part de l'état initial
 		Jeu res=initial.clone();
+		Action temp=null;
 		//On dépile la pile d'action à effectuer pour renvoyer le bon jeu
 		Stack<Action> aAppliquer=ensemble.pop();
 		//On effectue tout les déplacements
 		while(!aAppliquer.isEmpty()){
 			try {
-				//TODO
-				res=res.deplacement(aAppliquer.pop());
+				temp=aAppliquer.pop();
+				res.deplacement(temp);
+				res=new Taquin(temp,(Taquin)res);
 			} catch (IndexOutOfBoundsException | MauvaiseTouche e) {}
 		}
 		aAppliquer=null;
