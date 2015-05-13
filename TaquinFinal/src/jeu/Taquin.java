@@ -185,7 +185,7 @@ public class Taquin implements Jeu{
 	 * Exception si on est en dehors du tableau
 	 */
 	public void deplacement(Action direction) throws MauvaiseTouche, ArrayIndexOutOfBoundsException {
-		int[] pos0=indexOf(0);
+		int[] pos0=posZero;
 		if(commande.getDeplacement().containsKey(direction)){
 			int temp=damier[pos0[0]][pos0[1]];
 			int[] posX=commande.getDeplacement().get(direction);

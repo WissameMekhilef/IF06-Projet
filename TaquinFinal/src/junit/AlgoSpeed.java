@@ -15,6 +15,11 @@ import algo.File;
 import algo.Pile;
 import algo.Tas;
 
+import com.carrotsearch.junitbenchmarks.AbstractBenchmark;
+import com.carrotsearch.junitbenchmarks.BenchmarkOptions;
+import com.carrotsearch.junitbenchmarks.BenchmarkRule;
+import com.carrotsearch.junitbenchmarks.annotation.AxisRange;
+import com.carrotsearch.junitbenchmarks.annotation.BenchmarkMethodChart;
 import comparateurs.DepthManhattan;
 import comparateurs.Manhattan;
 

@@ -20,7 +20,7 @@ public class Algo extends Thread{
 	private Automate automate;
 	private int nombrePositionsTraite;
 	private int nbIterations;
-	private int PROFAUTOMATE = Integer.MAX_VALUE;
+	private int PROF_AUTOMATE = Integer.MAX_VALUE;
 	
 	/**
 	 * Constructeur d'un Algo
@@ -90,7 +90,7 @@ public class Algo extends Thread{
 			while(aTraiter.nonVide() && !fin){
 				Jeu pos = aTraiter.prend();
 				succ = pos.succ();
-				if(automate!=null && nbUtilAutomate<=PROFAUTOMATE){
+				if(automate!=null && nbUtilAutomate<=PROF_AUTOMATE){
 					ArrayList<Jeu> succR = reduireSucc(succ);
 					succ=succR;
 					nbUtilAutomate++;
@@ -247,6 +247,6 @@ public class Algo extends Thread{
 	}
 	
 	public void setProfondeurAutomate(int pProf){
-		PROFAUTOMATE=pProf;
+		PROF_AUTOMATE=pProf;
 	}
 }
