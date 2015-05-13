@@ -9,16 +9,10 @@ import java.util.HashMap;
 import java.util.Scanner;
 import java.util.Stack;
 
-import org.junit.internal.TextListener;
-import org.junit.runner.JUnitCore;
-
-import comparateurs.DepthManhattan;
-import comparateurs.Manhattan;
 import jeu.Action;
 import jeu.Commande;
 import jeu.Jeu;
 import jeu.Taquin;
-import junit.AlgoSpeed;
 import algo.Algo;
 import algo.EnsembleComplet;
 import algo.EnsembleIncomplet;
@@ -26,6 +20,10 @@ import algo.File;
 import algo.Pile;
 import algo.PileAction;
 import algo.Tas;
+
+import comparateurs.DepthManhattan;
+import comparateurs.Manhattan;
+
 import exceptions.MauvaiseTouche;
 import exceptions.NombreDouble;
 
@@ -134,7 +132,7 @@ public class Main {
 	 * Une exception est lévé dans le cas on le sleep ne reprend pas
 	 */
 	private static void anim(Jeu jeu, ArrayList<Action> action) throws InterruptedException{
-		
+		System.out.println((char) Event.ESCAPE+ "7");
 		System.out.println(jeu);
 		int nbAction = action.size();
 		for(Action act : action){
@@ -145,8 +143,9 @@ public class Main {
 			} catch (MauvaiseTouche e) {
 				System.out.println("Mauvaise touche ");
 			}
+			System.out.println((char) Event.ESCAPE+ "8");
 			System.out.println(jeu);
-			Thread.sleep(10);
+			Thread.sleep(500);
 		}
 		
 	}
