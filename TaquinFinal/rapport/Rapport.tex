@@ -189,26 +189,28 @@ remédier à ce problème.
 
 \chapter{Phase de développement}
 %
+\par
 Pour la phase de développement nous avons chacun de notre côté développé une 
-partie de l'application. Nous nous sommes partagé les différents 
-algorithmes mais aussi les autres fontionnalités comme les tests Junit.
+partie de l'application. Nous nous sommes partagés les différents 
+algorithmes, mais aussi les autres fontionnalités comme les tests Junit.
 \section{L'architecture}
-Nous avons fais le choix de répartir dans différents packages les classes et 
-interfaces. Nous avons eu des choix à faire à plusieurs niveaux, par
-exemple un choix simple pour la grille de jeu nous avons choisis une matrice 
-d'entier en remplacement d'une ArrayList d'entier et des choix plus
-compliqué comme la représentation d'un sommet qui dans notre cas et la classe 
+\par
+Nous avons fait le choix de répartir dans différents packages les classes et 
+interfaces. Nous avons eu des choix à faire à plusieurs niveaux. Par
+exemple un choix simple pour la grille de jeu, nous avons choisis une matrice 
+d'entier en remplacement d'une ArrayList d'entier. Mais aussi des choix plus
+compliqué, comme la représentation d'un sommet qui dans notre cas est la classe 
 Taquin.
 \par\noindent
-L'architecture se compose donc de 7 packages : 
+L'architecture se décompose en 7 packages : 
 \begin{description}
  \item [algo] Contient les interfaces EnsembleATraiter et EnsembleMarque, toutes 
-les classes implémentant ces interfaces et une classe Algo.
+les classes implémentants ces interfaces et une classe Algo.
  \item [jeu] Contient une interface Jeu, la classe Taquin. Mais aussi les 
 commandes, les actions, et les positions finale.
  \item [comparateur] Contient deux comparateurs Manhattan et DepthManhattan.
- \item [exceptions] Contient toutes les exceptions que l'ont à du crée.
- \item [automate] Contient les classes relative à l'automate.
+ \item [exceptions] Contient toutes les exceptions que nous avons du créer.
+ \item [automate] Contient les classes relatives à l'automate.
  \item [junit] Contient les différents test JUnit.
  \item [main] Contient une seule classe, Main. Elle gére la lecture des 
 paramètres et l'éxecution des méthodes dans les autres classes, c'est
@@ -216,21 +218,22 @@ paramètres et l'éxecution des méthodes dans les autres classes, c'est
 \end{description}
 
 \section{Les fichiers test}
-Rapidement pour vérifier le fonctionnement du programme nous avons du créer des fichiers test de taquin témoins. Ces fichiers se trouve dans le dossier taquin
-à la racine du projet. Nous en avons utilisé un petit nombre mais avec des tailles différentes et ``bien mélangé''.
+\par
+Rapidement pour vérifier le fonctionnement du programme nous avons du créer des fichiers test de taquin témoins. Ces fichiers se trouvent dans le dossier taquin
+à la racine du projet. Nous en avons utilisé un petit nombre, avec des tailles différentes et ``bien mélangé''.
 %
 \chapter{Analyse et Conclusion}
 %
 \section{Analyse des Benchmark}
 %
-Les benchmarks fournis par le module h2, nous a permis d'améliorer l'efficacité de l'application, mais aussi de montrer le bon fonctionnement des méthodes
-nous avons donc pour Algo et pour Taquin crée deux classes, une prouvant que le programme tourne correctement et l'autre pour montrer la rapidité d'execution
+\par
+Les benchmarks fournis par le module h2, nous ont permis d'améliorer l'efficacité de l'application, mais aussi de montrer le bon fonctionnement des méthodes.
+Nous avons donc pour Algo et pour Taquin crée deux classes, une prouvant que le programme tourne correctement et l'autre pour montrer la rapidité d'éxécution
 avec un problème de plus en plus grand. Nous avons aussi écrit un test pour l'ensemble incomplet pour observer la résolution et le temps nécessaire à celle-ci, en
 fonction de la taille de l'ensemble utilisé.
 %
 \subsection{Efficacité des fonctions du Taquin}
 %
-Ci-dessous vous pouvez voir une recapitalatif des fonctions couteuse de la classe Taquin.
 \monimage{taquinSpeed.png}{Efficacité des fonctions du Taquin}{Eff}{0.6}
 \subsection{Preuve des fonctions des algorithmes}
 %
