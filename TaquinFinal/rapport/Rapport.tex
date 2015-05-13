@@ -12,8 +12,8 @@
 \usepackage[french]{babel}
 \usepackage{textcomp}
 \usepackage[toc,page]{appendix}
-%\usepackage{hyperref}
-% Quelques rÃÂÃÂÃÂÃÂ©glages particuliers
+\usepackage{hyperref}
+% Quelques réglages particuliers
 \oddsidemargin=-0.1in %xx
 \evensidemargin=-0.1in
 \textwidth=6.1in
@@ -40,7 +40,7 @@ stringstyle=\color[rgb]{0.627,0.126,0.941},
 \fancyhead[RO,RE]{\includegraphics[width=0.5in]{Logo-univ-orleans.png}}
 \fancyhead[CO,CE]{Rapport de projet}
 \fancyhead[LO,LE]{Jeu de Taquin}
-\fancyfoot[C]{2014}
+\fancyfoot[C]{2015}
 \fancyfoot[RO, LE] {\thepage}
 %\fancyfoot[LO, RE] { ARNOULT S., MEKHILEF W., OUSSAD J., RETY M.}
 %
@@ -49,24 +49,26 @@ stringstyle=\color[rgb]{0.627,0.126,0.941},
                         \lstinputlisting[inputencoding=utf8/latin1]{#1}
                         \end{center}}
 
-\newcommand{\monimage}[3]{
+\newcommand{\monimage}[4]{
 \par\noindent
 \begin{figure}[H] %on ouvre l'environnement figure
 \begin{center}
-\includegraphics[width=0.7\textwidth]{#1} %ou image.png, .jpeg etc.
-\caption{#2} %la lÃÂÃÂÃÂÃÂ©gende
-\label{#3} %l'ÃÂÃÂÃÂÃÂ©tiquette pour faire rÃÂÃÂÃÂÃÂ©fÃÂÃÂÃÂÃÂ©rence ÃÂÃÂÃÂÃÂ  cette image
+\includegraphics[width=#4\textwidth]{#1} %ou image.png, .jpeg etc.
+\caption{#2} %la légende
+\label{#3} %l'étiquette pour faire référence à cette image
 \end{center}
 \end{figure} %on ferme l'environnement figure
 }
 
 \newcommand{\ml}[0]{\par\noindent}
 
-%\hyphenation{supplÃÂÃÂÃÂÃÂ©mentaires}{sup-pl\'e-men-tai-res}
+%\hyphenation{suppléentaires}{sup-pl\'e-men-tai-res}
 %opening
-\title{\textcolor{blue}{\Large Rapport du projet IF06}\\\textcolor{blue}{\Large Jeu de Taquin}}
+\title{\textcolor{blue}{\Large Rapport du projet IF06}\\\textcolor{blue}{\Large 
+Jeu de Taquin}}
 \vskip 1cm
-\author{ARNOULT Simon, MEKHILEF Wissame, OUSSAD Jihad, RETY Martin \date{\today}}
+\author{ARNOULT Simon, MEKHILEF Wissame, OUSSAD Jihad, RETY Martin 
+\date{\today}}
 
 
 \begin{document}
@@ -89,17 +91,20 @@ stringstyle=\color[rgb]{0.627,0.126,0.941},
 
 {\Large       Réalisé par:}
 \par\vspace{1.3cm}
-{\large\bf \textcolor{blue}{ARNOULT Simon, MEKHILEF Wissame, OUSSAD Jihad, RETY Martin}}
+{\large\bf \textcolor{blue}{ARNOULT Simon, MEKHILEF Wissame, OUSSAD Jihad, RETY 
+Martin}}
 \vfill
 \today
 \end{center}
-\newpage
+%\newpage
 \pagestyle{fancy}
 
 \begin{abstract}
 %
-Nous avons le plaisir de vous présenter notre travail sur ce projet. Durant la deuxième année de la l2 Informatique
-à l'Université d'Orléans, nous avons travaillé en groupe de quatre sur un projet de résolution de Taquin.
+Nous avons le plaisir de vous présenter notre travail sur ce projet. Durant la 
+deuxième année de la l2 Informatique
+à l'Université d'Orléans, nous avons travaillé en groupe de quatre sur un projet 
+de résolution de Taquin.
 \end{abstract}
  
 \newpage
@@ -116,75 +121,130 @@ Nous allons ensemble, aborder quatres points principaux dans ce rapport:
 \item L'analyse des algorithmes.
 \end{itemize}
 %
-\section{Cahier des charges}
-
-%
 \chapter{Etude}
 \par
-L'étude du projet fut une première étape importante pour se mettre dans une bonne dynamique de groupe. Dès la première semaine nous avons réalisé une version jouable du Taquin, puis nous avons travaillé sur cette version durant toute la première phase d'essaie.
+L'étude du projet fut une première étape importante pour se mettre dans une 
+bonne dynamique de groupe. Dès la première semaine nous avons réalisé une 
+version jouable du Taquin, puis nous avons travaillé sur cette version durant 
+toute la première phase d'essaie.
 \par\noindent
-Rapidement il nous a fallu faire des essaies sur ce jeu pour qu'il puisse se résoudre algorithmiquement. Nous avons chacun travaillé de notre coté sur nos idées pour pouvoir en tester un plus grand nombre, mais tout en restant en contact réguliérement pour avancer ensemble.
+Rapidement il nous a fallu faire des essaies sur ce jeu pour qu'il puisse se 
+résoudre algorithmiquement. Nous avons chacun travaillé de notre coté sur nos 
+idées pour pouvoir en tester un plus grand nombre, mais tout en restant en 
+contact réguliérement pour avancer ensemble.
 \par\noindent
-Cette manière de répartir les tâches nous a permis de se rendre compte des difficultés que l'on allait rencontrer plus rapidement.
+Cette manière de répartir les tâches nous a permis de se rendre compte des 
+difficultés que l'on allait rencontrer plus rapidement.
 %
 \section{Analyse de faisabilité}
 \par
-L'analyse de faisabilité fut un moment qui a duré du début du projet jusqu'aux vacances de février, durant cette phase chacun travaillant sur des fonctionnalités différentes, nous avons pu voir ou étaient les problèmes dans notre architecture de départ.
+L'analyse de faisabilité fut un moment qui a duré du début du projet jusqu'aux 
+vacances de février, durant cette phase chacun travaillant sur des 
+fonctionnalités différentes, nous avons pu voir ou étaient les problèmes dans 
+notre architecture de départ.
 \par\noindent
-Ces tests ont été trés divers. Nous avons travaillé sur les fonctionnalités VT100 du terminal et la récupération des touches tappées par l'utilisateur. Mais nous avons aussi créé des algorithmes pour essayer de résoudre le Taquin.
+Ces tests ont été trés divers. Nous avons travaillé sur les fonctionnalités 
+VT100 du terminal et la récupération des touches tappées par l'utilisateur. Mais 
+nous avons aussi créé des algorithmes pour essayer de résoudre le Taquin.
 \par\noindent
-Tous ces tests nous ont permis au mois de février d'avoir une idée claire de l'architecture du projet.
+Tous ces tests nous ont permis au mois de février d'avoir une idée claire de 
+l'architecture du projet.
 \section{Conception UML}
 \par
-Cette analyse de février a permis d'aboutir au diagramme UML suivant, diagramme qui n'a pas beaucoup évolué jusqu'à la version finale.
-%INCLURE LE MODELE UML
+Cette analyse fin février a permis d'aboutir au diagramme UML suivant, diagramme 
+qui n'a pas beaucoup évolué jusqu'à la version finale. Pour
+faciliter la lecture nous avons diviser l'architecture en package, seulement 3 
+des paskages sont présenté.
+\ml
+\monimage{../dev/jeuPackage.png}{JeuP}{Représentation UML du package jeu}{0.9}
+\ml
+\monimage{../dev/algoPackage.png}{AlgoP}{Représentation UML du package 
+algo}{0.9}
+\ml
+\monimage{../dev/automatePackage.png}{AutomateP}{Représentation UML du package 
+automate}{0.3}
 \chapter{La gestion de projet}
 %
 \par
-La gestion de projet est à la base de tout projet, et encore plus quand il se fait avec une équipe de quatre personnes.
+La gestion de projet est à la base de tout projet, et encore plus quand il se 
+fait avec une équipe de quatre personnes.
 \section{Le travail de groupe}
 %
 \par
-La gestion de projet fut au coeur de nos préocupations avant même que le projet ne démarre,nous avons cherché à créer une équipe dynamique. Nous nous sommes donc vus régulièrement dans les salles de l'Université. Malgré celà il nous a fallu mettre en place des moyens dédiés pour faciliter le travail et éviter une dégradation de l'entente.
+La gestion de projet fut au coeur de nos préocupations avant même que le projet 
+ne démarre,nous avons cherché à créer une équipe dynamique. Nous nous sommes 
+donc vus régulièrement dans les salles de l'Université. Malgré celà il nous a 
+fallu mettre en place des moyens dédiés pour faciliter le travail et éviter une 
+dégradation de l'entente.
 \par\noindent
- Dès la première semaine, nous avons mis en place un dépôt git sur le site de l'hébergeur GitHub, ce dépôt nous a permis d'avoir le réflexe de l'utiliser même  si nous avons rencontré quelques problèmes, il nous a permis a chacun de voir l'avancement du projet.
+ Dès la première semaine, nous avons mis en place un dépôt git sur le site de 
+l'hébergeur GitHub, ce dépôt nous a permis d'avoir le réflexe de l'utiliser même 
+ si nous avons rencontré quelques problèmes, il nous a permis a chacun de voir 
+l'avancement du projet. Le dépôt est disponible à cette adresse : https://github.com/wissame95/IF06-Projet.git.
+\monimage{DepotGit.png}{Dépôt sur GitHub}{depot}{0.8}
 \par\noindent
- Cependant un tel dépôt ne répond pas à la question de la communication, chacun habitant une ville différente, nous avons donc communiquer via Skype pour remédier à ce problème.
-\section{Le diagramme de Gantt}
-%
-\par
-Nous avons utilisé la technique du diagramme de GANTT pour vérifier en interne que le projet avançait convenablement. Ci-dessous vous pouvez voir ce
-diagramme.
-\monimage{DiagrammeDeGantt.pdf}{Diagramme de GANTT}{DG}
+ Cependant un tel dépôt ne répond pas à la question de la communication, chacun 
+habitant une ville différente, nous avons donc communiquer via Skype pour 
+remédier à ce problème.
+
 \chapter{Phase de développement}
 %
-La phase de développement...
+Pour la phase de développement nous avons chacun de notre côté développé une 
+partie de l'application. Nous nous sommes partagé les différents 
+algorithmes mais aussi les autres fontionnalités comme les tests Junit.
 \section{L'architecture}
-On explique les choix qu'on a fais
-\section{Le codage}
+Nous avons fais le choix de répartir dans différents packages les classes et 
+interfaces. Nous avons eu des choix à faire à plusieurs niveaux, par
+exemple un choix simple pour la grille de jeu nous avons choisis une matrice 
+d'entier en remplacement d'une ArrayList d'entier et des choix plus
+compliqué comme la représentation d'un sommet qui dans notre cas et la classe 
+Taquin.
+\par\noindent
+L'architecture se compose donc de 7 packages : 
+\begin{description}
+ \item [algo] Contient les interfaces EnsembleATraiter et EnsembleMarque, toutes 
+les classes implémentant ces interfaces et une classe Algo.
+ \item [jeu] Contient une interface Jeu, la classe Taquin. Mais aussi les 
+commandes, les actions, et les positions finale.
+ \item [comparateur] Contient deux comparateurs Manhattan et DepthManhattan.
+ \item [exceptions] Contient toutes les exceptions que l'ont à du crée.
+ \item [automate] Contient les classes relative à l'automate.
+ \item [junit] Contient les différents test JUnit.
+ \item [main] Contient une seule classe, Main. Elle gére la lecture des 
+paramètres et l'éxecution des méthodes dans les autres classes, c'est
+ le lien entre l'utilisateur et l'application.
+\end{description}
+
+\section{Les fichiers test}
+Rapidement pour vérifier le fonctionnement du programme nous avons du créer des fichiers test de taquin témoins. Ces fichiers se trouve dans le dossier taquin
+à la racine du projet. Nous en avons utilisé un petit nombre mais avec des tailles différentes et ``bien mélangé''.
 %
-\section{Junit et Benchmark}
-%
-\subsection{Utilisation des benchmarks}
-\par
-Nous avons utilisé les benchmarks pour améliorer l'efficacité de l'algorithme de solution. En effet, nous avons remarqué entre autres que la taille de l'ensemble incomplet avait une importance dans le temps de résolution. Nous avons donc créé un test avec plusieurs tailles d'ensemble pour voir laquelle permettait une resolution rapide.
-\monimage{ensembleincomplettest2.pdf}{Exemple}{EX}
 \chapter{Analyse et Conclusion}
 %
 \section{Analyse des Benchmark}
 %
-\subsection{Jeu simple}
+Les benchmarks fournis par le module h2, nous a permis d'améliorer l'efficacité de l'application, mais aussi de montrer le bon fonctionnement des méthodes
+nous avons donc pour Algo et pour Taquin crée deux classes, une prouvant que le programme tourne correctement et l'autre pour montrer la rapidité d'execution
+avec un problème de plus en plus grand. Nous avons aussi écrit un test pour l'ensemble incomplet pour observer la résolution et le temps nécessaire à celle-ci, en
+fonction de la taille de l'ensemble utilisé.
 %
-\subsection{Jeu moyen}
+\subsection{Efficacité des fonctions du Taquin}
 %
-\subsection{Jeu compliqué}
+Ci-dessous vous pouvez voir une recapitalatif des fonctions couteuse de la classe Taquin.
+\monimage{taquinSpeed.png}{Efficacité des fonctions du Taquin}{Eff}{0.6}
+\subsection{Preuve des fonctions des algorithmes}
 %
+\subsection{Efficacité des algorithmes}
+Les tests suivants ont été réalisé à l'aide de taq1.taq qui est un taquin de taille 3x3.
+\monimage{algoSpeed.png}{Diagramme des temps d'execution}{tempsExec}{0.6}
+
+\subsection{Etude sur l'ensemble incomplet}
+Ci-dessous vous pouvez voir un diagramme montrant le temps nécessaire à la résolution d'un taquin avec un ensemble incomplet sur 5 taille différentes.
+\monimage{ensembleincomplettest2.pdf}{Exemple}{EX}{0.6}
+
 \section{Conclusion}
 %
-\newpage
-\bibliography{bibliographie}{}
-\bibliographystyle{plain}
-
+En conclusion de ce rapport, 
 \chapter{Resources utilisées}
 \begin{itemize}
  \item JUNIT

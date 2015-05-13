@@ -38,7 +38,7 @@ public class Main {
 	 * @return
 	 * Un jeu initiali
 	 */
-	private static Jeu jeuFromFile(String destJeu){
+	public static Jeu jeuFromFile(String destJeu){
 		try {
 			return new Taquin(destJeu, commande);
 		} catch (NumberFormatException e) {
