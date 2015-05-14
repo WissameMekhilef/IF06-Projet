@@ -281,6 +281,7 @@ public class Main {
 		case "-anime":
 			alg=lectureAlgo(args);
 			alg.run(Integer.parseInt(args[1]));
+			System.out.println(alg.getStringSolution());
 			try {
 				anim(alg.getInitial(),alg.getSolution());
 			} catch (InterruptedException e) {}			

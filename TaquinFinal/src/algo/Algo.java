@@ -75,8 +75,8 @@ public class Algo extends Thread{
 	 */
 	public boolean run(int temps){
 		int nbUtilAutomate=0;
+		Timer t = new Timer();
 		if(temps != 0) {
-			Timer t = new Timer();
 			t.schedule(new Arret(), temps);
 		}
 		long timeDeb=System.currentTimeMillis();
@@ -114,6 +114,7 @@ public class Algo extends Thread{
 		}
 		long timeFin = System.currentTimeMillis();
 		tempExec=timeFin-timeDeb;
+		t.cancel();
 		return fin;
 	}
 	
