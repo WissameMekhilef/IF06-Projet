@@ -5,7 +5,6 @@ import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
 import java.util.*;
-import java.util.Map.Entry;
 
 import exceptions.*;
 
@@ -38,6 +37,7 @@ public class Taquin implements Jeu{
 	 * @throws IOException
 	 * Une exception pour toutes les autres erreurs
 	 */
+	@SuppressWarnings("resource")
 	public Taquin(String destfic, Commande pCommande) throws NombreDouble, NumberFormatException, FileNotFoundException, IOException{
 		//On met le fichier source dans un BufferedReader
 		BufferedReader fic = new BufferedReader( new FileReader (destfic));
@@ -187,7 +187,6 @@ public class Taquin implements Jeu{
 	public void deplacement(Action direction) throws MauvaiseTouche, ArrayIndexOutOfBoundsException {
 		int[] pos0=indexOf(0);
 		if(commande.getDeplacement().containsKey(direction)){
-			int temp=damier[pos0[0]][pos0[1]];
 			int[] posX=commande.getDeplacement().get(direction);
 			damier[pos0[0]][pos0[1]]=damier[pos0[0]+posX[0]][pos0[1]+posX[1]];
 			damier[pos0[0]+posX[0]][pos0[1]+posX[1]]=0;

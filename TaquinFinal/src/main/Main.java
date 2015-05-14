@@ -5,7 +5,6 @@ import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.PrintStream;
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.Scanner;
 import java.util.Stack;
 
@@ -29,7 +28,6 @@ import exceptions.NombreDouble;
 
 public class Main {
 	private static Commande commande=new Commande();
-	private static HashMap <String,Action> tableCorrespondance = new HashMap<String,Action>();
 	
 	/**
 	 * Initialise un jeu a partir d'un fichier
@@ -136,7 +134,6 @@ public class Main {
 	private static void anim(Jeu jeu, ArrayList<Action> action) throws InterruptedException{
 		System.out.println((char) Event.ESCAPE+ "7");
 		System.out.println(jeu);
-		int nbAction = action.size();
 		for(Action act : action){
 			try {
 				jeu.deplacement(act);
@@ -157,8 +154,7 @@ public class Main {
 	 */
 	private static void testSolvable(String jeuaTester){
 		String res = "Le jeu a tester est ";
-		if(jeuFromFile(jeuaTester).estSoluble()) res+="";
-		else res+="non";
+		if(!jeuFromFile(jeuaTester).estSoluble()) res+="non";
 		res+="resolvable";
 		System.out.println(res);
 	}
@@ -198,7 +194,6 @@ public class Main {
 	
 	private static void afficheSol(Jeu jeu, ArrayList<Action> action){
 		System.out.println(jeu);
-		int nbAction = action.size();
 		for(Action act : action){
 			try {
 				jeu.deplacement(act);

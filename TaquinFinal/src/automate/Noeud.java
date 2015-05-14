@@ -38,9 +38,13 @@ public class Noeud implements Automate {
 	}
 
 	/**
-	 * 
+	 * Cette methode permet de savoir si l'action que l'on fait n'est pas un coup
+	 * redondant en regardant si le chemin plus la nouvelle action n'est pas dans 
+	 * notre fail ou n'a pas deja ete traite, auquel cas il rajoute ce nouveau
+	 * chemin dans notre fail.
 	 * @param pJeu
 	 * @param action
+	 * @return boolean
 	 */
 	public boolean suivant(Jeu pJeu, Action action) {
 		if (!fail.contains(chemin+action.getAction())){
