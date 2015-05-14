@@ -290,11 +290,13 @@ public class Main {
 			alg.run(Integer.parseInt(args[1]));
 			try {
 				anim(alg.getInitial(),alg.getSolution());
-			} catch (InterruptedException e) {}			
+			} catch (InterruptedException e) {}
+			break;
 		case "-stat":
 			alg=lectureAlgo(args);
 			alg.run(Integer.parseInt(args[1]));
 			System.out.println(alg.description());
+			break;
 		case "-aleatoire":
 			break;
 		default:
