@@ -83,7 +83,7 @@ Jeu de Taquin}}
 \vspace{2cm}
 %
 \begin{center}
-{\Huge Licence 2 Informatique\\\ \\Rapport du projet IF04}
+{\Huge Licence 2 Informatique\\\ \\Rapport du projet IF06}
 \par\vspace{1.4cm}
 
 {\Huge\bf \textcolor{red}{\bf Jeu de Taquin}}
@@ -222,6 +222,9 @@ paramètres et l'execution des méthodes dans les autres classes, c'est
 Rapidement pour vérifier le fonctionnement du programme nous avons dû créer des fichiers tests de taquins témoins. Ces fichiers se trouvent dans le dossier taquin
 à la racine du projet. Nous en avons utilisés un petit nombre, avec des tailles différentes et ``bien mélangés''.
 %
+\section{Fonction non implémenté}
+Nous avons rencontrer des soucis sur l'implémentation de la pile d'action, le problème intervient au moment de rémonter les parents d'un Taquin, le problème vient
+certainement d'un null.
 \chapter{Analyse et Conclusion}
 %
 \section{Analyse des Benchmark}
@@ -236,10 +239,15 @@ fonction de la taille de l'ensemble utilisé.
 %
 Ci-dessous vous pouvez voir un récapitulatif des fonctions coûteuses de la classe Taquin.
 \monimage{taquinSpeed.png}{Efficacité des fonctions du Taquin}{Eff}{0.6}
-\subsection{Preuve des fonctions des algorithmes}
 %
 \subsection{Efficacité des algorithmes}
-Les tests suivants ont été réalisés à l'aide de taq1.taq qui est un taquin de taille 3x3.
+Les tests suivants ont été réalisés à l'aide de taq1.taq qui est un taquin de taille 3x3. On peut les différentes vitesse de résolution pour le même Taquin en fonction de
+l'algorithme.
+\ml
+Les algorithmes utilisant un ensemble complet sont plus lent que les algortihmes utilisant un ensemble incomplet. De meme on observe que les tas sont plus rapide que les
+files et que les piles, qui demande le plus de temps de calcule.
+\ml
+Les algorithmes basé sur un automate sont les plus efficace, mais l'efficacité dépend de la profondeur de l'apprentissage de l'automate.
 \monimage{algoSpeed.png}{Diagramme des temps d'execution}{tempsExec}{0.6}
 
 \subsection{Etude sur l'ensemble incomplet}
