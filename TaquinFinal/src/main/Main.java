@@ -50,6 +50,7 @@ public class Main {
 		} catch (IOException e) {
 			System.out.println("Erreur lors de la lecture du fichier,  il manque des arguments");
 		}
+		System.exit(1);
 		return null;
 	}
 	
@@ -138,16 +139,18 @@ public class Main {
 		System.out.println(jeu);
 		int nbAction = action.size();
 		for(Action act : action){
+			if(action!=null){
 			try {
 				jeu.deplacement(act);
 			} catch (IndexOutOfBoundsException e) {
 				//On ne rentre jamais dans ce cas car les actions a réaliser sont possible
 			} catch (MauvaiseTouche e) {
-				System.out.println("Mauvaise touche ");
+				System.out.println("Mauvaise touche");
 			}
 			System.out.println((char) Event.ESCAPE+ "8");
 			System.out.println(jeu);
 			Thread.sleep(500);
+			}
 		}
 		
 	}
@@ -236,6 +239,9 @@ public class Main {
 				return new Algo(jeuFromFile(param[param.length-1]),new Tas(new DepthManhattan()), new EnsembleIncomplet(Integer.parseInt(param[5])), false);
 			case "prof":
 				return new Algo(jeuFromFile(param[param.length-1]),new PileAction(),  new EnsembleIncomplet(Integer.parseInt(param[5])), false);
+			default:
+				System.out.println("Option invalide");
+				System.exit(1);	
 			}
 		case "prof":
 			return new Algo(jeuFromFile(param[param.length-1]),new PileAction(), new EnsembleComplet(), false);
@@ -252,14 +258,15 @@ public class Main {
 				return alg;
 			}
 		default:
-			return null;
+			System.out.println("Option invalide");
+			System.exit(1);
 		}
+		return null;
 	}
 	
 	public static void main(String[] args) {
 		Algo alg;
 		//Lecture des parametres
-		System.out.println(args[0]);
 		switch(args[0]){
 		case "-name":
 			printName();
@@ -276,12 +283,11 @@ public class Main {
 		case "-cal":
 			alg=lectureAlgo(args);
 			alg.run(Integer.parseInt(args[1]));
-			afficheSol(alg.getFinale(),alg.getSolution());
+			afficheSol(alg.getInitial(),alg.getSolution());
 			break;
 		case "-anime":
 			alg=lectureAlgo(args);
 			alg.run(Integer.parseInt(args[1]));
-			System.out.println(alg.getStringSolution());
 			try {
 				anim(alg.getInitial(),alg.getSolution());
 			} catch (InterruptedException e) {}			
@@ -297,24 +303,7 @@ public class Main {
 			System.exit(1);
 		}
 		System.exit(0);
-				
-	/*	//On cree un jeu
-	//	Jeu t = jeuFromFile("taquin/taq1.taq");
-		//On initialise un algo
-	//	Algo b=new Algo(t,  new PileAction(), new EnsembleComplet(), true);
-		//On lance l'algorithme	
-	//	System.out.println("Le jeu est solvable : "+t.estSoluble()+" en au moins "+t.getNbCoupsfinale());
-	//	b.run(0);
-		//On interprete le resultat de l'algo
-	//	System.out.println(b.description());
-	//	System.out.println(b.getFinale());
-		JUnitCore runner = new JUnitCore();
-		runner.addListener(new TextListener(System.out));
-		//AlgoSpeed test = new AlgoSpeed(jeuFromFile("taquin/taq1.taq"));
-		runner.run(AlgoSpeed.class);
-		//On quite le programme avec comme sortie 0 car il n'y a pas eu d'erreur
-		System.exit(0);*/
-		
+					
 	}
 
 }
