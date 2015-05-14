@@ -42,14 +42,13 @@
 	\item -algo pile
 	\item -algo file
 	\item -algo pmanhattan
-	\item -algo bit pile
-	\item -algo bit file
-	\item -algo bit manhattan
-	\item -algo bit pmanhattan
-	\item -algo bit prof
 	\item -algo prof
-	\item -algo redondant
-	\item -algo redondant manhattan
+	\item bit pile
+	\item bit file
+	\item bit manhattan
+	\item bit pmanhattan
+	\item bit prof
+	\item redondant 
 	\end{itemize}
   \end{frame}
   \begin{frame}
@@ -60,9 +59,9 @@
 	\item -h : java -jar taquin.jar -h
 	\item -sol fichier.taq -j : java -jar taquin.jar -sol taquin/taq1.taq -j
 	\item -joue fichier.taq : java -jar taquin.jar -joue taquin/taq1.taq
-	\item -cal delai algo fichier.taq : java -jar taquin.jar -cal 1000 -algo manhattan taquin/taq1.taq
+	\item -cal delai algo fichier.taq : java -jar taquin.jar -cal 1000 -algo manhattan taquin/taq1.taq , java -jar taquin.jar -cal 1000 redondant manhattan taquin/taq1.taq 
 	\item -anime delai algo ficher.taq : java-jar taquin.jar 1000 -algo manhattan taquin/taq1.taq
-	\item -stat delai algo ficher.taq : java -jar taquin.jar -stat 1000 -algo manhattan taquin/taq1.taq
+	\item -stat delai algo ficher.taq : java -jar taquin.jar -stat 1000 -algo manhattan taquin/taq1.taq , java -jar taquin.jar -stat 1000 bit manhattan taquin/taq1.taq
 	\item -stat delai fichier.taq : java -jar taquin.jar -stat 1000 taquin/taq1.taq
 	\item -alea n largeur hauteur delai fichier.taq : java -jar taquin.jar -alea 3 4 4 taquin/taq1.taq
 	\end{itemize}
