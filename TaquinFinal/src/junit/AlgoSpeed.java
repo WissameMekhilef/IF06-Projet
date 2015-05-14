@@ -1,6 +1,6 @@
 package junit;
+
 import static org.junit.Assert.assertNotNull;
-import jeu.Commande;
 import jeu.Jeu;
 import main.Main;
 
@@ -31,91 +31,78 @@ import comparateurs.Manhattan;
 @BenchmarkMethodChart(filePrefix = "testdesalgo")
 @BenchmarkOptions(callgc = false, benchmarkRounds = 1)
 
-public class AlgoSpeed extends AbstractBenchmark{
-	static Commande commande=new Commande();
-	Jeu jeu;
-	int tailleEnsembleIncomplet=200383;
+public class AlgoSpeed extends AbstractBenchmark {
+	
 	int PROF_AUTOMATE=3;
+	int tailleEnsembleIncomplet=200383;
+	Jeu jeu;
 		
 	@Rule
 	public TestRule benchmarkRun = new BenchmarkRule();
 
 	@Before
-	public void setUp(){
+	public void setUp() {
 		jeu = Main.jeuFromFile("taquin/taq1.taq");
 	}
 	
 	@Test
-	public void RedondantManhattan(){
-		Jeu j = runTest(jeu, new EnsembleComplet(), new Tas(new Manhattan()),true);
-		assertNotNull("Doit etre non null",j);
+	public void RedondantManhattan() {
+		Jeu j = runTest(jeu, new EnsembleComplet(), new Tas(new Manhattan()), true);
+		assertNotNull("Doit etre non null", j);
 	}
 	
 	@Test
-	public void RedondantProfManhattan(){
-		Jeu j = runTest(jeu, new EnsembleComplet(), new Tas(new DepthManhattan()),true);
-		assertNotNull("Doit etre non null",j);
-	}
-
-	@Test
-	public void PileActionIncomplet(){
-		Jeu j = runTest(jeu, new EnsembleIncomplet(tailleEnsembleIncomplet), new PileAction(),false);
-		assertNotNull("Doit etre non null",j);
-	}
-	
-	@Test
-	public void PileActionComplet(){
-		Jeu j = runTest(jeu, new EnsembleComplet(), new PileAction(),false);
-		assertNotNull("Doit etre non null",j);
+	public void RedondantProfManhattan() {
+		Jeu j = runTest(jeu, new EnsembleComplet(), new Tas(new DepthManhattan()), true);
+		assertNotNull("Doit etre non null", j);
 	}
 
-	
 	@Test
-	public void FileIncomplet(){
-		Jeu j = runTest(jeu, new EnsembleIncomplet(tailleEnsembleIncomplet), new File(),false);
-		assertNotNull("Doit etre non null",j);
+	public void PileActionIncomplet() {
+		Jeu j = runTest(jeu, new EnsembleIncomplet(tailleEnsembleIncomplet), new PileAction(), false);
+		assertNotNull("Doit etre non null", j);
 	}
 	
-/*	@Test
-	public void FileComplet(){
-		Jeu j = runTest(jeu, new EnsembleComplet(), new File());
-		assertNotNull("Doit etre non null",j);
-	}*/
+	@Test
+	public void PileActionComplet() {
+		Jeu j = runTest(jeu, new EnsembleComplet(), new PileAction(), false);
+		assertNotNull("Doit etre non null", j);
+	}
 	
 	@Test
-	public void PileIncomplet(){
+	public void FileIncomplet() {
+		Jeu j = runTest(jeu, new EnsembleIncomplet(tailleEnsembleIncomplet), new File(), false);
+		assertNotNull("Doit etre non null", j);
+	}
+	
+	@Test
+	public void PileIncomplet() {
 		Jeu j = runTest(jeu, new EnsembleIncomplet(tailleEnsembleIncomplet), new Pile(),false);
-		assertNotNull("Doit etre non null",j);
+		assertNotNull("Doit etre non null", j);
 	}
 
-/*	@Test
-	public void PileComplet(){
-		Jeu j = runTest(jeu, new EnsembleComplet(), new Pile());
-		assertNotNull("Doit etre non null",j);
-	}*/
+	@Test
+	public void ManhattanIncomplet() {
+		Jeu j = runTest(jeu, new EnsembleIncomplet(tailleEnsembleIncomplet), new Tas(new Manhattan()), false);
+		assertNotNull("Doit etre non null", j);
+	}
 	
 	@Test
-	public void ManhattanIncomplet(){
-		Jeu j = runTest(jeu, new EnsembleIncomplet(tailleEnsembleIncomplet), new Tas(new Manhattan()),false);
+	public void ManhattanComplet() {
+		Jeu j = runTest(jeu, new EnsembleComplet(), new Tas(new Manhattan()), false);
 		assertNotNull("Doit etre non null",j);
 	}
 	
 	@Test
-	public void ManhattanComplet(){
-		Jeu j = runTest(jeu, new EnsembleComplet(), new Tas(new Manhattan()),false);
-		assertNotNull("Doit etre non null",j);
+	public void PManhattanIncomplet() {
+		Jeu j = runTest(jeu, new EnsembleIncomplet(tailleEnsembleIncomplet), new Tas(new DepthManhattan()), false);
+		assertNotNull("Doit etre non null", j);
 	}
 	
 	@Test
-	public void PManhattanIncomplet(){
-		Jeu j = runTest(jeu, new EnsembleIncomplet(tailleEnsembleIncomplet), new Tas(new DepthManhattan()),false);
-		assertNotNull("Doit etre non null",j);
-	}
-	
-	@Test
-	public void PManhattanComplet(){
-		Jeu j = runTest(jeu, new EnsembleComplet(), new Tas(new DepthManhattan()),false);
-		assertNotNull("Doit etre non null",j);
+	public void PManhattanComplet() {
+		Jeu j = runTest(jeu, new EnsembleComplet(), new Tas(new DepthManhattan()), false);
+		assertNotNull("Doit etre non null", j);
 	}
 		
 	/**
@@ -127,10 +114,10 @@ public class AlgoSpeed extends AbstractBenchmark{
 	 * @param eat
 	 * L'ensemble a traiter
 	 */
-	private Jeu runTest(Jeu jeu, EnsembleMarque em, EnsembleATraiter eat, Boolean avecAutomate){
-		//System.out.println("Nouveau test en cours");
+	private Jeu runTest(Jeu jeu, EnsembleMarque em, EnsembleATraiter eat, Boolean avecAutomate) {
 		Algo algo = new Algo(jeu, eat, em, avecAutomate);
-		if(avecAutomate) algo.setProfondeurAutomate(PROF_AUTOMATE);
+		if(avecAutomate)
+			algo.setProfondeurAutomate(PROF_AUTOMATE);
 		algo.run(0);
 		return algo.getFinale();
 	}

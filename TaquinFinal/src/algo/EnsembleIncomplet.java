@@ -13,9 +13,9 @@ public class EnsembleIncomplet implements EnsembleMarque {
 	 * @param pTaille
 	 * La taille souhaite pour l'ensemble
 	 */
-	public EnsembleIncomplet (int pTaille){
-		taille=pTaille;
-		ensemble=new int[taille];
+	public EnsembleIncomplet (int pTaille) {
+		taille = pTaille;
+		ensemble = new int[taille];
 	}
 
 	/**
@@ -24,8 +24,8 @@ public class EnsembleIncomplet implements EnsembleMarque {
 	 * Le jeu a ajouter
 	 */
 	public void ajout(Jeu pSommet) {
-		int indice=Math.abs(pSommet.hashCode()%taille);
-		if(ensemble[indice]==0)
+		int indice = Math.abs(pSommet.hashCode() % taille);
+		if(ensemble[indice] == 0)
 			ensemble[indice]=1;
 	}
 
@@ -37,16 +37,8 @@ public class EnsembleIncomplet implements EnsembleMarque {
 	 * Un boolean true si l'ensemble contient le jeu, et false sinon
 	 */
 	public boolean appartient(Jeu pATester) {
-		int indice=Math.abs(pATester.hashCode()%taille);
-		return ensemble[indice]==1;
+		int indice = Math.abs(pATester.hashCode() % taille);
+		return ensemble[indice] == 1;
 	}
 	
-	/**
-	 * Fonction de taille de l'ensemble
-	 * @return
-	 * Retourne le nombre de positions dans l'ensemble
-	 */
-	public int taille() {
-		return taille;
-	}
 }

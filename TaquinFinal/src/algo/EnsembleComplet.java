@@ -11,8 +11,8 @@ public class EnsembleComplet implements EnsembleMarque {
 	/**
 	 * Constructeur d'un ensemble complet
 	 */
-	public EnsembleComplet(){
-		ensemble=new ArrayList<Jeu>();
+	public EnsembleComplet() {
+		ensemble = new ArrayList<Jeu>();
 	}
 	
 	/**
@@ -34,13 +34,5 @@ public class EnsembleComplet implements EnsembleMarque {
 	public boolean appartient(Jeu pATester) {
 		return ensemble.contains(pATester);
 	}
-
-	/**
-	 * Fonction de taille de l'ensemble
-	 * @return
-	 * Retourne le nombre de positions dans l'ensemble
-	 */
-	public int taille() {
-		return ensemble.size();
-	}
+	
 }
