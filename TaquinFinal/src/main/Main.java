@@ -282,7 +282,7 @@ public class Main {
 			alg=lectureAlgo(args);
 			alg.run(Integer.parseInt(args[1]));
 			try {
-				anim(alg.getFinale(),alg.getSolution());
+				anim(alg.getInitial(),alg.getSolution());
 			} catch (InterruptedException e) {}			
 		case "-stat":
 			alg=lectureAlgo(args);

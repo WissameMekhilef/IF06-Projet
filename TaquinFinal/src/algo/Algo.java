@@ -211,6 +211,10 @@ public class Algo extends Thread{
 		return s;
 	}
 	
+	public Jeu getInitial() {
+		return initial;
+	}
+
 	/**
 	 * Getteur solution
 	 * @return
