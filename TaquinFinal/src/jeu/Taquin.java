@@ -270,7 +270,7 @@ public class Taquin implements Jeu{
 		int hash=1;
 		for(int i=0;i<this.damier.length;i++){
 			for(int j=0;j<this.damier[0].length;j++){
-				hash=hash*31+damier[i][j];
+				hash=hash*7+damier[i][j];
 			}
 		}
 		return hash;
@@ -291,14 +291,14 @@ public class Taquin implements Jeu{
 	}
 	
 	/**
-	 * Fonction d'égualité
+	 * Fonction d'égalité
 	 * <p>
 	 * On se sert du HashCode pour savoir si deux taquins sont identiques
 	 * </p>
 	 * @param o
 	 * L'objet à comparer
 	 * @return
-	 * Un boolean vrai si les taquin sont identiques et faus sinon
+	 * Un boolean vrai si les taquins sont identiques et faus sinon
 	 */
 	public boolean equals(Object o){
 		if(o instanceof Taquin){

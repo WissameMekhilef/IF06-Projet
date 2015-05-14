@@ -99,6 +99,7 @@ public class Algo extends Thread{
 					nbIterations++;
 					if(!marque.appartient(p)){
 						if(p.estResolu()){
+							System.out.println("On a une sol");
 							fin=true;
 							finale=p;
 							Toolkit.getDefaultToolkit().beep();
