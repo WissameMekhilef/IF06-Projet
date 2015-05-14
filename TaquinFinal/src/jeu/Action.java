@@ -18,7 +18,7 @@ public class Action {
 	/**
 	 * Constructeur d'une action avec son inverse
 	 * @param pAction
-	 * Le nom de l'action a  construire
+	 * Le nom de l'action a construire
 	 * @param pInverse
 	 * Un pointeur vers l'action inverse
 	 */
@@ -64,7 +64,7 @@ public class Action {
 	/**
 	 * Fonction d'egalite
 	 * @param o
-	 * L'objet a  comparer
+	 * L'objet a comparer
 	 * @return
 	 * true si o = this, false sinon
 	 */

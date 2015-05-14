@@ -27,9 +27,9 @@ public class Algo extends Thread{
 	 * @param pInit
 	 * Le jeu qu'il faut resoudre dans son etat initial
 	 * @param pTraiter
-	 * L'ensemble a  traiter a  utiliser
+	 * L'ensemble aï¿½ traiter a utiliser
 	 * @param pMarque
-	 * L'ensemble marque a  utiliser
+	 * L'ensemble marque a utiliser
 	 * @param pAutomate
 	 * Un booleen pour savoir si l'algorithme utilise un automate ou non
 	 */
@@ -151,7 +151,7 @@ public class Algo extends Thread{
 	/**
 	 * Setter de l'automate
 	 * @param automate
-	 * L'automate a  utiliser
+	 * L'automate a utiliser
 	 */
 	public void setAutomate(Automate automate) {
 		this.automate = automate;
@@ -160,10 +160,10 @@ public class Algo extends Thread{
 	/**
 	 * Fonction d'elagage
 	 * <p>
-	 * C'est cette methode qui fait appel a  l'automate
+	 * C'est cette methode qui fait appel a l'automate
 	 * </p>
 	 * @param aReduire
-	 * La liste des positions a  traiter
+	 * La liste des positions a traiter
 	 * @return
 	 * La liste avec les positions
 	 */
@@ -180,7 +180,7 @@ public class Algo extends Thread{
 	/**
 	 * Fonction d'initialisation de la solution
 	 * <p>
-	 * Cette fonction permet de remonter tous les peres a partir de l'etat final jusqu'au dernier pour avoir le chemin menant a  la solution
+	 * Cette fonction permet de remonter tous les peres a partir de l'etat final jusqu'au dernier pour avoir le chemin menant a la solution
 	 * </p>
 	 */
 	public void setSolution(){
