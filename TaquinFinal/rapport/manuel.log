@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.15 (TeX Live 2014/Debian) (preloaded format=pdflatex 2015.4.15)  14 MAY 2015 15:43
+This is pdfTeX, Version 3.14159265-2.6-1.40.15 (TeX Live 2014/Debian) (preloaded format=pdflatex 2015.4.15)  14 MAY 2015 16:37
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -1201,10 +1201,6 @@ Overfull \hbox (34.10373pt too wide) has occurred while \output is active
 [3
 
 ]
-Overfull \vbox (0.39519pt too high) detected at line 68
- []
-
-
 Overfull \hbox (34.10373pt too wide) has occurred while \output is active
  [][]  
  []
@@ -1228,11 +1224,11 @@ Overfull \hbox (34.10373pt too wide) has occurred while \output is active
 \tf@snm=\write8
 \openout8 = `manuel.snm'.
 
-Package atveryend Info: Empty hook `BeforeClearDocument' on input line 79.
-Package atveryend Info: Empty hook `AfterLastShipout' on input line 79.
+Package atveryend Info: Empty hook `BeforeClearDocument' on input line 76.
+Package atveryend Info: Empty hook `AfterLastShipout' on input line 76.
  (./manuel.aux)
-Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 79.
-Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 79.
+Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 76.
+Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 76.
 Package rerunfilecheck Info: File `manuel.out' has not changed.
 (rerunfilecheck)             Checksum: D41D8CD98F00B204E9800998ECF8427E;0.
 
@@ -1240,7 +1236,7 @@ Package rerunfilecheck Info: File `manuel.out' has not changed.
 LaTeX Font Warning: Size substitutions with differences
 (Font)              up to 1.0pt have occurred.
 
-Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 79.
+Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 76.
  ) 
 Here is how much of TeX's memory you used:
  17853 strings out of 493104
@@ -1253,7 +1249,7 @@ Here is how much of TeX's memory you used:
 </usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmss10.pfb></us
 r/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmss12.pfb></usr/shar
 e/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmss8.pfb>
-Output written on manuel.pdf (5 pages, 49137 bytes).
+Output written on manuel.pdf (5 pages, 49387 bytes).
 PDF statistics:
  176 PDF objects out of 1000 (max. 8388607)
  151 compressed objects within 2 object streams

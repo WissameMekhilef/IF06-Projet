@@ -42,13 +42,9 @@
 	\item -algo pile
 	\item -algo file
 	\item -algo pmanhattan
-	\item -algo prof
-	\item bit pile
-	\item bit file
-	\item bit manhattan
-	\item bit pmanhattan
-	\item bit prof
-	\item redondant 
+	\item -algo prof 
+	\item -algo bit <taille> [pile,file,manhattan,pmanhattan]
+	\item redondant n [manhattan/pile/file/pmanhattan/prof]
 	\end{itemize}
   \end{frame}
   \begin{frame}
@@ -59,21 +55,22 @@
 	\item -h : java -jar taquin.jar -h
 	\item -sol fichier.taq -j : java -jar taquin.jar -sol taquin/taq1.taq -j
 	\item -joue fichier.taq : java -jar taquin.jar -joue taquin/taq1.taq
-	\item -cal delai algo fichier.taq : java -jar taquin.jar -cal 1000 -algo manhattan taquin/taq1.taq , java -jar taquin.jar -cal 1000 redondant manhattan taquin/taq1.taq 
+	\item -cal delai algo fichier.taq : java -jar taquin.jar -cal 1000 -algo manhattan taquin/taq1.taq 
 	\item -anime delai algo ficher.taq : java-jar taquin.jar 1000 -algo manhattan taquin/taq1.taq
-	\item -stat delai algo ficher.taq : java -jar taquin.jar -stat 1000 -algo manhattan taquin/taq1.taq , java -jar taquin.jar -stat 1000 bit manhattan taquin/taq1.taq
+	\item -stat delai algo ficher.taq : java -jar taquin.jar -stat 1000 -algo manhattan taquin/taq1.taq 
 	\item -stat delai fichier.taq : java -jar taquin.jar -stat 1000 taquin/taq1.taq
 	\item -alea n largeur hauteur delai fichier.taq : java -jar taquin.jar -alea 3 4 4 taquin/taq1.taq
 	\end{itemize}
   \end{frame}
   \begin{frame}
    \frametitle{Jouer à une partie}
-	Lors d'un jeu, à partir de l'option -joue, les différentes touches sont:
+	Lors d'une partie jouer, à partir de l'option -joue, les différentes touches sont:
 	\begin{itemize}
 	\item z: déplacement de la case 0 vers le haut
 	\item q: déplacement de la case 0 vers la gauche
 	\item s: déplacement de la case 0 vers le bas
 	\item d: déplacement de la case 0 vers la droite
 	\end{itemize}
+	Pour que les déplacements soient vus de façon dynamique, il est nécessaire de clear le terminal ou d'avoir un espace suffisant pour l'afficher.
 	\end{frame}
 \end{document}
