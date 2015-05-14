@@ -14,10 +14,9 @@ public class Commande {
 	private HashMap<String, Action> tabCorrespondance;
 
 	/**
-	 * Contructeur de Commande
+	 * Contructeur de commande
 	 * <p>
-	 * Construit l'ensemble des commandes disponibles pour le jeu ainsi
-	 * que leurs relations (coups inverse)
+	 * Construit l'ensemble des commandes disponibles pour le jeu ainsi que leurs relations (coups inverses)
 	 * </p>
 	 */
 	public Commande(){

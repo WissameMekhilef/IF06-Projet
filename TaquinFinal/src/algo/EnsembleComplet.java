@@ -18,18 +18,18 @@ public class EnsembleComplet implements EnsembleMarque {
 	/**
 	 * Fonction d'ajout d'un jeu
 	 * @param pSommet
-	 * Le jeu à ajouter
+	 * Le jeu a ajouter
 	 */
 	public void ajout(Jeu pSommet) {
 		ensemble.add(pSommet);
 	}
 	
 	/**
-	 * Fonction d'appartenance d'un jeu
+	 * Test d'appartenance d'un jeu a l'ensemble
 	 * @param pATester
 	 * Le jeu sur lequel tester l'appartenance
 	 * @return
-	 * Un boolean à true l'ensemble contient le jeu, et à false sinon
+	 * Un boolean true si l'ensemble contient le jeu, et false sinon
 	 */
 	public boolean appartient(Jeu pATester) {
 		return ensemble.contains(pATester);

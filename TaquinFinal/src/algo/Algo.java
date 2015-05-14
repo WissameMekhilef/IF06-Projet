@@ -25,13 +25,13 @@ public class Algo extends Thread{
 	/**
 	 * Constructeur d'un Algo
 	 * @param pInit
-	 * Le jeu qu'il faut résoudre à son état initial
+	 * Le jeu qu'il faut resoudre dans son etat initial
 	 * @param pTraiter
-	 * L'ensemble à traiter à utiliser
+	 * L'ensemble a� traiter a� utiliser
 	 * @param pMarque
-	 * L'ensemble marqué à utiliser
+	 * L'ensemble marque a� utiliser
 	 * @param pAutomate
-	 * Un boolean pour savoir si l'algorithme utilise un automate ou non
+	 * Un booleen pour savoir si l'algorithme utilise un automate ou non
 	 */
 	public Algo(Jeu pInit, EnsembleATraiter pTraiter, EnsembleMarque pMarque, boolean pAutomate){
 		this.initial=pInit;
@@ -49,9 +49,9 @@ public class Algo extends Thread{
 	}
 	
 	/**
-	 * Méthode run progressif
+	 * Methode run progressif
 	 * <p>
-	 * Cette méthode vaut pour la partie E du sujet
+	 * Cette methode vaut pour la partie E du sujet
 	 * </p>
 	 */
 	public void runProgressif(){
@@ -66,12 +66,12 @@ public class Algo extends Thread{
 	/**
 	 * Fonction run de l'algo
 	 * <p>
-	 * C'est cette fonction qui permet la résolution
+	 * C'est cette fonction qui permet la resolution du jeu
 	 * </p>
 	 * @param temps
-	 * C'est le paramétre de temps durant lequel la résolution doit tourner
+	 * C'est le temps imparti pour que l'algo trouve une solution, ou 0 s'il n'y a pas de limite
 	 * @return
-	 * On retourne un boolean true pour savoir si l'algorithme a trouver une solution ou pas
+	 * On retourne un booleen pour savoir si l'algorithme a trouve une solution ou pas
 	 */
 	public boolean run(int temps){
 		int nbUtilAutomate=0;
@@ -121,7 +121,7 @@ public class Algo extends Thread{
 	/**
 	 * Fonction de description
 	 * <p>
-	 * Récapitule le déroulement de d'algorithme
+	 * Recapitule le deroulement de d'algorithme
 	 * </p>
 	 * @return
 	 * Un string pour pouvoir afficher la description
@@ -140,7 +140,7 @@ public class Algo extends Thread{
 	}
 	
 	/**
-	 * Getteur sur l'automate
+	 * Getter sur l'automate
 	 * @return
 	 * L'automate
 	 */
@@ -149,23 +149,23 @@ public class Algo extends Thread{
 	}
 	
 	/**
-	 * Setteur de l'automate
+	 * Setter de l'automate
 	 * @param automate
-	 * L'automate à utiliser
+	 * L'automate a� utiliser
 	 */
 	public void setAutomate(Automate automate) {
 		this.automate = automate;
 	}
 	
 	/**
-	 * Fonction d'élagage
+	 * Fonction d'elagage
 	 * <p>
-	 * C'est cette méthode qui fais appel à l'automate
+	 * C'est cette methode qui fait appel a� l'automate
 	 * </p>
 	 * @param aReduire
-	 * La liste des positions à traiter
+	 * La liste des positions a� traiter
 	 * @return
-	 * La liste avec les positi//TODO
+	 * La liste avec les positions
 	 */
 	private ArrayList<Jeu> reduireSucc(ArrayList<Jeu> aReduire){
 		ArrayList<Jeu> res = new ArrayList<Jeu>();
@@ -180,8 +180,7 @@ public class Algo extends Thread{
 	/**
 	 * Fonction d'initialisation de la solution
 	 * <p>
-	 * Cette fonction permet de remonter tous les pères à partir de l'état final jusqu'au dernier pour avoir le chemin menant
-	 * à la solution
+	 * Cette fonction permet de remonter tous les peres a partir de l'etat final jusqu'au dernier pour avoir le chemin menant a� la solution
 	 * </p>
 	 */
 	public void setSolution(){
@@ -199,9 +198,9 @@ public class Algo extends Thread{
 	
 	
 	/**
-	 * Fonction solution to string
+	 * Fonction toString de la solution
 	 * @return
-	 * Une chaine de caractère représentant la solution
+	 * Une chaine de caractere representant la solution
 	 */
 	public String getStringSolution(){
 		String s="";
@@ -217,36 +216,36 @@ public class Algo extends Thread{
 	}
 
 	/**
-	 * Getteur solution
+	 * Getter solution
 	 * @return
-	 * La solution dans une arraylist
+	 * La solution sous forme d'une ArrayList
 	 */
 	public ArrayList<Action> getSolution(){
 		return solution;
 	}
 	
 	/**
-	 * Getteur nombre positions traité
+	 * Getter nombre de positions traitees
 	 * @return
-	 * Le nombre de positions traité
+	 * Le nombre de positions traitees
 	 */
 	public int getNombrePositionTraite(){
 		return this.aTraiter.positionTraite();
 	}
 
 	/**
-	 * Getteur position finale
+	 * Getter position finale
 	 * @return
-	 * Retourne la position finale, trouvé par l'algorithme
+	 * Retourne la position finale trouvee par l'algorithme
 	 */
 	public Jeu getFinale() {
 		return finale;
 	}
 
 	/**
-	 * Getteur temps execution
+	 * Getter temps d'execution
 	 * @return
-	 * Le temps qu'a mis l'algorithme pour terminer
+	 * Le temps qu'a mis l'algorithme pour trouver la solution
 	 */
 	public long getTempExec() {
 		return tempExec;

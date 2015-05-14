@@ -14,11 +14,11 @@ public class Noeud implements Automate {
 	private ArrayList<String> fail;
 	
 	/**
-	 * Constructeur d'un Noeud avec paramètre
+	 * Constructeur d'un noeud avec parametre
 	 * @param pTraite
-	 * L''ensemble sur lequel travail l'automate
+	 * L'ensemble sur lequel travaille l'automate
 	 * @param c
-	 * Une pointeur vers les commandes du jeu
+	 * Un pointeur vers les commandes du jeu
 	 */
 	public Noeud(EnsembleATraiter pTraite, Commande c){
 		fail = new ArrayList<String>();

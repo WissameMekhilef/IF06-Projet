@@ -13,7 +13,7 @@ public class Tas implements EnsembleATraiter {
 	/**
 	 * Constructeur principal
 	 * @param c
-	 * Le coparateur à utiliser pour le tas à priorité
+	 * Le comparateur a utiliser
 	 */
 	public Tas(Comparator<Jeu> c){
 		file=new PriorityQueue<Jeu>(11,c);
@@ -32,7 +32,7 @@ public class Tas implements EnsembleATraiter {
 	/**
 	 * Fonction de retrait d'un jeu
 	 * @return
-	 * On retourne le jeu retourner par le tas à priorité, il prend en compte le comparateur
+	 * On retourne le jeu retourne par le tas selon le comparateur choisi
 	 */
 	public Jeu prend() {
 		nombrePositionTraite++;
@@ -42,18 +42,18 @@ public class Tas implements EnsembleATraiter {
 	/**
 	 * Fonction d'ajout d'un jeu
 	 * @param p
-	 * Le jeu à ajouter
+	 * Le jeu a ajouter
 	 * @return
-	 * On retourne un boolean attestant l'ajout du jeu
+	 * Un booleen attestant de l'ajout du jeu
 	 */
 	public boolean ajout(Jeu p) {
 		return file.add(p);
 	}
 
 	/**
-	 * Getteur nombre de positions traité
+	 * Getter nombre de positions traitees
 	 * @return
-	 * Le nombre de poisitions traité sous la forme d'un entier
+	 * Le nombre de poisitions traitees
 	 */
 	public int positionTraite() {
 		return nombrePositionTraite;
@@ -62,7 +62,7 @@ public class Tas implements EnsembleATraiter {
 	/**
 	 * Fonction de premier ajout
 	 * <p>
-	 * Fais appel à ajout(Jeu p)
+	 * Fais appel a ajout(Jeu p)
 	 * </p>
 	 */
 	public boolean premierAjout(Jeu initial) {
@@ -70,11 +70,11 @@ public class Tas implements EnsembleATraiter {
 	}
 
 	/**
-	 * Fonction d'appartenance
+	 * Fonction d'appartenance d'un jeu a l'ensemble
 	 * @param p
 	 * Le jeu sur lequel il faut tester l'appartenance
 	 * @return
-	 * True si le jeu est dans le tas, false sinon
+	 * true si le jeu est dans le tas, false sinon
 	 */
 	public boolean appartient(Jeu p) {
 		return file.contains(p);

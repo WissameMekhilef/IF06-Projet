@@ -8,21 +8,21 @@ public interface Jeu {
 	 * @param direction
 	 * L'entier correspondant au deplacement
 	 * @throws MauvaiseTouche
-	 * On leve une exception dans le cas où l'utilisateur tappe une mauvaise touche
+	 * On leve une exception dans le cas ou l'utilisateur tape une mauvaise touche
 	 * @throws IndexOutOfBoundsException
-	 * Une exception est leve si le deplacement est impossible
+	 * Une exception est levee si le deplacement est impossible
 	 */
 	public void deplacement(Action direction) throws IndexOutOfBoundsException, MauvaiseTouche;
 	/**
 	 * Affiche le jeu
 	 * @return
-	 * Un string
+	 * Une chaine de caractere representant le jeu
 	 */
 	public String toString();
 	/**
 	 * Permet de savoir si un jeu est resolu
 	 * @return
-	 * Un boolean true si le jeu est resolue et false sinon
+	 * Un boolean true si le jeu est resolu, false sinon
 	 */
 	public boolean estResolu();
 	

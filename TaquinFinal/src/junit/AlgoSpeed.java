@@ -122,11 +122,11 @@ public class AlgoSpeed extends AbstractBenchmark{
 	/**
 	 * Execute un algo
 	 * @param jeu
-	 * Le jeu à résoudre
+	 * Le jeu a resoudre
 	 * @param em
-	 * L'ensemble marqué
+	 * L'ensemble marque
 	 * @param eat
-	 * L'ensemble à traiter
+	 * L'ensemble a traiter
 	 */
 	private Jeu runTest(Jeu jeu, EnsembleMarque em, EnsembleATraiter eat, Boolean avecAutomate){
 		//System.out.println("Nouveau test en cours");

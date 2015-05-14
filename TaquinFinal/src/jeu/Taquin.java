@@ -21,22 +21,22 @@ public class Taquin implements Jeu{
 	
 	
 	/**
-	 * Constructeur d'un Taquin avec paramètre 2
+	 * Constructeur d'un taquin avec parametre
 	 * <p>
-	 * Ce constructeur contruit un Taquin à partir d'un fichier source .taq
+	 * Ce constructeur contruit un Taquin a partir d'un fichier source .taq
 	 * </p>
 	 * @param destfic
 	 * La source du jeu
 	 * @param pCommande
 	 * Les commandes du jeu, pour pouvoir jouer en ligne de commande
 	 * @throws NombreDouble
-	 * Une exception si jamais un nombre est en double dans le fichier source
+	 * Une exception si un nombre est en double dans le fichier source
 	 * @throws NumberFormatException
-	 * Une exception si jamais il y'a autre chose qu'un entier 
+	 * Une exception si il y a autre chose qu'un entier
 	 * @throws FileNotFoundException
-	 * Une exception si jamais le fichier source n'est pas trouvé
+	 * Une exception si le fichier source est introuvable
 	 * @throws IOException
-	 * Une excpetion pour toute les autres erreurs
+	 * Une exception pour toutes les autres erreurs
 	 */
 	public Taquin(String destfic, Commande pCommande) throws NombreDouble, NumberFormatException, FileNotFoundException, IOException{
 		//On met le fichier source dans un BufferedReader
@@ -76,11 +76,11 @@ public class Taquin implements Jeu{
 	}
 	
 	/**
-	 * Constructeur sans paramètre
+	 * Constructeur sans parametre
 	 * @param nbL
-	 * Le nombre de ligne
+	 * Le nombre de lignes
 	 * @param nbC
-	 * Le nombre de colonne
+	 * Le nombre de colonnes
 	 * @param pCommande
 	 * Les commandes
 	 */
@@ -125,9 +125,9 @@ public class Taquin implements Jeu{
 	/**
 	 * Constructeur d'un fils
 	 * @param action
-	 * L'action qui mène au fils
+	 * L'action qui mene au fils
 	 * @param p
-	 * Le Taquin père
+	 * Le taquin pere
 	 */
 	public Taquin(Action action, Taquin p){
 		this.situationFinale=p.getSituationFinale();
@@ -158,9 +158,9 @@ public class Taquin implements Jeu{
 	/**
 	 * Permet de retrouver les coordonnees d'une case en particulier
 	 * @param nb
-	 * L'entier à retrouver dans le tableau
+	 * L'entier a retrouver dans le tableau
 	 * @return
-	 * Un tableau d'entier avec numero  de la ligne et celle de la colonne
+	 * Un tableau d'entier avec les numeros de ligne et de colonne
 	 */
 	public int[] indexOf(int nb){
 		//System.out.println("\t\tAppel a indexOf");
@@ -178,11 +178,11 @@ public class Taquin implements Jeu{
 	/**
 	 * Permet de deplacer la case vide
 	 * @param direction
-	 * L'action à réaliser
+	 * L'action a realiser
 	 * @throws MauvaiseTouche 
-	 * On leve une exception si l'utilisateur rentre une mauvaise touche
+	 * On leve une exception si l'utilisateur tape une mauvaise touche
 	 * @throws ArrayIndexOutOfBoundsException
-	 * Exception si on est en dehors du tableau
+	 * Exception si on est hors du tableau
 	 */
 	public void deplacement(Action direction) throws MauvaiseTouche, ArrayIndexOutOfBoundsException {
 		int[] pos0=indexOf(0);
@@ -196,12 +196,11 @@ public class Taquin implements Jeu{
 	}
 	/**
 	 * Methode qui determine la distance entre la position initiale
-	 * de la case vide que l'on nommera ini et sa position finale
-	 * pour que le taquin puisse pretendre etre resolu dont on 
-	 * nommera fin : Dman=|Xfin-Xini|+|Yfin-Yini|
+	 * de la case vide ini et sa position finale fin : 
+	 * Dman=|Xfin-Xini|+|Yfin-Yini|
 	 * @param i
 	 * L'entier sur lequel on veut calculer la distance de Manhattan
-	 * @return un entier qui sera la distance dite de Mannathan
+	 * @return Un entier qui sera la distance dite de Mannathan
 	 */
 	public int distanceManhattan(int i) {
 		int[] pos=this.indexOf(i);
@@ -209,20 +208,20 @@ public class Taquin implements Jeu{
 		return (int)(Math.abs(posFin[1]-pos[1])+Math.abs(posFin[0]-pos[0]));
 	}
 	/**
-	 * Methode pour savoir si le jeu est resolu
+	 * Permet de savoir si le jeu est resolu
 	 * 
-	 * @return Un boolean true si le jeu est resolue, false sinon
+	 * @return Un booleean true si le jeu est resolu, false sinon
 	 */
 	public boolean estResolu() {
 		return situationFinale.equals(damier);
 	}
 	/**
-	 * Fonction d'estimations
+	 * Fonction d'estimation
 	 * <p>
-	 * Permet de savoir le nombre de coups minimal à réaliser pour que le jeu soit fini
+	 * Permet de connaitre le nombre de coups minimal a realiser pour resolu le jeu de taquin
 	 * </p>
 	 * @return
-	 * Le nombre de permution pour amener toutes les cases à leurs positions finales
+	 * Le nombre de permutions pour ramener toutes les cases a leur position ideale
 	 */
 	public int nbPermutFin(){
 		int res=0;
@@ -235,10 +234,10 @@ public class Taquin implements Jeu{
 	/**
 	 * Donne les voisins d'un jeu
 	 * <p>
-	 * Permet de sous forme de liste tout les voisins de la positions courantes
+	 * Permet d'obtenir sous forme de liste tous les voisins de la position courante
 	 * </p>
 	 * @return
-	 * Une ArrayList contenant tout les jeux voisins
+	 * Une ArrayList contenant tous les jeux voisins
 	 */
 	public ArrayList<Jeu> succ(){
 		//System.out.println("Succ traite le Taquin : \n"+this);
@@ -259,9 +258,9 @@ public class Taquin implements Jeu{
 	/**
 	 * Fonction d'indentification
 	 * <p>
-	 * Cette fonction retourne un entier qui permet de savoir si deux jeu sont identique, ce nombre est calculer de tel maniere
-	 * que deux jeux différents peuvent avoir le identifiant. On calcule le HashCode uniquement sur la grille de jeu sans prendre
-	 * en compte la profondeur, le père, ou l'action précédente.
+	 * Cette fonction retourne un entier qui permet de savoir si deux jeux sont identiques, ce nombre est calcule de tel maniere
+	 * que deux jeux differents ne puissent avoir le meme identifiant. On calcule le hashcode uniquement sur la grille de jeu sans prendre
+	 * en compte la profondeur, le pere, ou l'action precedente du taquin.
 	 * </p>
 	 * @return
 	 * L'entier identifiant du jeu courant
@@ -291,14 +290,14 @@ public class Taquin implements Jeu{
 	}
 	
 	/**
-	 * Fonction d'égalité
+	 * Fonction d'egalite
 	 * <p>
-	 * On se sert du HashCode pour savoir si deux taquins sont identiques
+	 * On se sert du hashcode pour savoir si deux taquins sont identiques
 	 * </p>
 	 * @param o
-	 * L'objet à comparer
+	 * L'objet a comparer au taquin courant
 	 * @return
-	 * Un boolean vrai si les taquins sont identiques et faus sinon
+	 * Un booleen true si les taquins sont identiques, false sinon
 	 */
 	public boolean equals(Object o){
 		if(o instanceof Taquin){
@@ -309,83 +308,82 @@ public class Taquin implements Jeu{
 	}
 
 	/**
-	 * Methode qui permet de determiner si ce taquin
-	 * est resolvable ou non en regardant si le nombre de 
-	 * permutation permettant d avoir un taquin resolu est identique
-	 * a la distance de Mannathan de 0
-	 *  @return vrai si le taquin est resolvable, faux sinon
+	 * Methode qui permet de determiner si le taquin
+	 * est soluble ou non en comparant la parite du nombre de 
+	 * permutations et de la distance de Mannathan
+	 *  @return true si le taquin est soluble, false sinon
 	 */
 	public boolean estSoluble(){
 		return this.distanceManhattan(0)%2==this.nbPermutFin()%2;
 	}
 
 	/**
-	 * Setteur de la situation finale
+	 * Setter de la situation finale
 	 * @param situationFinale
-	 * La situation final correspondant au jeu courant
+	 * La situation finale correspondant au jeu courant
 	 */
 	public void setSituationFinale(PositionFinale situationFinale) {
 		this.situationFinale = situationFinale;
 	}
 
 	/**
-	 * Getteur du père
+	 * Getter du pere
 	 * @return
-	 * Le taquin pere du taquin courant
+	 * Le pere du taquin courant
 	 */
 	public Taquin getPere() {
 		return pere;
 	}
 
 	/**
-	 * Getteur de l'action
+	 * Getter de l'action
 	 * @return
-	 * L'action qui à mené au jeu courant
+	 * L'action qui a mene au jeu courant
 	 */
 	public Action getAction() {
 		return action;
 	}
 	
 	/**
-	 * Getteur des commandes
+	 * Getter des commandes
 	 * @return
-	 * L'objet commande associé au jeu
+	 * L'objet commande associe au jeu
 	 */
 	public Commande getCommande() {
 		return commande;
 	}
 	
 	/**
-	 * Getteur de la profondeur
+	 * Getter de la profondeur
 	 * @return
-	 * La profondeur du Taquin courant, son nombre de pere
+	 * La profondeur du taquin courant, c'est-a-dire son nombre de pere
 	 */
 	public int getProfondeur() {
 		return profondeur;
 	}
 	
 	/**
-	 * Getteur de la situation finale
+	 * Getter de la situation finale
 	 * @return
-	 * La situation finale correspondant au Taquin courant
+	 * La situation finale correspondant au taquin courant
 	 */
 	public PositionFinale getSituationFinale() {
 		return situationFinale;
 	}
 
 	/**
-	 * Getteur du nombre de coups minimale pour arriver à une solution
+	 * Getter du nombre de coups minimal pour arriver a une solution
 	 * @return
-	 * Le nombre en question
+	 * Le nombre de coups minimal pour arriver a une solution
 	 */
 	public int getNbCoupsfinale() {
 		return nbCoupsfinale;
 	}
 
 	/**
-	 * Setteur du nombre de coups minimal
+	 * Setter du nombre de coups minimal
 	 * @param nbCoupsfinale
-	 * Le nombre de coups minimal pour arriver à une solution
+	 * Le nombre de coups minimal pour arriver a une solution
 	 */
 	public void setNbCoupsfinale(int nbCoupsfinale) {
 		this.nbCoupsfinale = nbCoupsfinale;
@@ -407,7 +405,7 @@ public class Taquin implements Jeu{
 	
 	/**
 	* @return
-	* un copieTableau du tableau nommer damier
+	* Une copie du damier du taquin
 	*/
 	public int[][] copieTableau(){
 		int[][]t=new int[damier.length][damier[0].length];

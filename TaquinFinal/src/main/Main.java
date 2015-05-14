@@ -32,11 +32,11 @@ public class Main {
 	private static HashMap <String,Action> tableCorrespondance = new HashMap<String,Action>();
 	
 	/**
-	 * Jeu à partir d'un fichier
+	 * Initialise un jeu a partir d'un fichier
 	 * @param destJeu
 	 * Source du fichier
 	 * @return
-	 * Un jeu initiali
+	 * Un jeu initialise
 	 */
 	public static Jeu jeuFromFile(String destJeu){
 		try {
@@ -55,7 +55,7 @@ public class Main {
 	}
 	
 	/**
-	 * Jouer à partir d'un fichier
+	 * Permet de jouer partir d'un fichier
 	 * @param destJeu
 	 * La destination du fichier source
 	 */
@@ -67,24 +67,23 @@ public class Main {
 	/**
 	 * Lecture des touches
 	 * @param pScan
-	 * Le scanner à partir duqel il faut les actions
+	 * Le scanner a partir duquel les actions sont lus
 	 * @return
-	 * Une action correspondant à l'action lue
+	 * Une action correspondant a l'action lue
 	 */
 	private static Action lireAction(Scanner pScan){
 		return commande.getTabCorrespondance().get(pScan.nextLine());
 	}
 	
 	/**
-	 * Permet de jouer a un jeu quelconque sur un flux d'entree et de sortie
-	 * parametrable
+	 * Permet de jouer a un jeu quelconque sur un flux d'entree et de sortie parametrable
 	 * 
 	 * @param pJeu
-	 *            Le jeu a jouer
+	 * Le jeu a jouer
 	 * @param pScan
-	 *            Le flux d'entree
+	 * Le flux d'entree
 	 * @param pSortie
-	 *            Le flux de sortie
+	 * Le flux de sortie
 	 */
 	public static void jouer(Jeu pJeu, Scanner pScan, PrintStream pSortie) {
 		Action actionARealiser;
@@ -128,11 +127,11 @@ public class Main {
 	 * Permet l'animation d'une suite d'action sur un jeu quelconque
 	 * </p>
 	 * @param jeu
-	 * Le jeu à animer
+	 * Le jeu a animer
 	 * @param action
-	 * La liste d'action à réaliser
+	 * La liste d'actions a realiser
 	 * @throws InterruptedException
-	 * Une exception est lévé dans le cas on le sleep ne reprend pas
+	 * Une exception levee dans le cas ou le sleep ne reprend pas
 	 */
 	private static void anim(Jeu jeu, ArrayList<Action> action) throws InterruptedException{
 		System.out.println((char) Event.ESCAPE+ "7");
@@ -154,7 +153,7 @@ public class Main {
 	/**
 	 * Test solvable
 	 * @param jeuaTester
-	 * Retourne vrai si le jeu est solvable, faux sinon
+	 * Retourne true si le jeu est solvable, false sinon
 	 */
 	private static void testSolvable(String jeuaTester){
 		String res = "Le jeu a tester est ";
@@ -166,7 +165,7 @@ public class Main {
 	
 	
 	/**
-	 * Fonction d'affichage des noms des personnes de l'équipe
+	 * Fonction d'affichage des noms des personnes de l'equipe
 	 */
 	private static void printName(){
 		System.out.println("Ce programme a� �t� d�velopp� par : ARNOULT Simon, MEKHILEF Wissame, OUSSAD Jihad et RETY Martin");
@@ -194,7 +193,7 @@ public class Main {
 	/**
 	 * Lecture de l'algorithme
 	 * @return
-	 * Retourne un algorithme correspondant à l'algorithme préciser dans les paramètre du lancement
+	 * Retourne un algorithme correspondant a l'algorithme precise dans les parametres du lancement
 	 */
 	
 	private static void afficheSol(Jeu jeu, ArrayList<Action> action){

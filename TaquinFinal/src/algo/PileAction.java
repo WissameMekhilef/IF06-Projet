@@ -15,7 +15,7 @@ public class PileAction implements EnsembleATraiter{
 	
 	
 	/**
-	 * Constructeur d'une pile avec taille limité
+	 * Constructeur d'une pile avec une taille limitee
 	 * @param maxSize
 	 * La taille limite voulue
 	 */
@@ -24,7 +24,7 @@ public class PileAction implements EnsembleATraiter{
 	}
 	
 	/**
-	 * Constructeur sans paramètre
+	 * Constructeur sans parametre
 	 */
 	public PileAction(){
 		
@@ -33,11 +33,11 @@ public class PileAction implements EnsembleATraiter{
 	/**
 	 * Premier ajout d'un jeu
 	 * <p>
-	 * Dans le cas d'une pile d'action on stocke l'etat initial pour pouvoir recalculer tout les autres
+	 * Dans le cas d'une pile d'actions, on stocke l'etat initial pour pouvoir recalculer tous les autres
 	 * @param initial
-	 * Le jeu initial à ajouter
+	 * Le jeu initial a ajouter
 	 * @return
-	 * On return un boolean qui permet de savoir que l'ajout c'est correctement passé
+	 * Un boolean qui permet de savoir si le jeu a ete ajoute
 	 */
 	public boolean premierAjout(Jeu initial){
 		this.initial=initial;
@@ -46,9 +46,9 @@ public class PileAction implements EnsembleATraiter{
 	}
 	
 	/**
-	 * nonVide est une fonction qui permet de savoir si la liste n'est pas vide
+	 * Fonction permettant de savoir si la liste est vide
 	 * @return
-	 * On retourne un boolean true si la liste n'est pas vide
+	 * Un boolean true si la liste n'est pas vide, false sinon
 	 */
 	public boolean nonVide() {
 		return !ensemble.isEmpty();
@@ -57,10 +57,10 @@ public class PileAction implements EnsembleATraiter{
 	/**
 	 * Prend
 	 * <p>
-	 * Prend est une fonction qui renvoie un jeu de l'ensemble, le type de l'ensemble différencie le type de parcours de graphe
+	 * Fonction qui renvoie un jeu de l'ensemble, le type de l'ensemble differencie le type de parcours de graphe
 	 * </p>
 	 * @return
-	 * On retourne le jeu concerné
+	 * On retourne le jeu concerne
 	 */
 	public Jeu prend() {
 		//On part de l'état initial
@@ -84,12 +84,12 @@ public class PileAction implements EnsembleATraiter{
 	/**
 	 * ajout
 	 * <p>
-	 * Fonction qui permet d'ajouter un jeu à l'ensemble, dans cet ensemble de pile d'action, on ajoute les actions qui on mené au jeu
+	 * Fonction qui permet d'ajouter un jeu a l'ensemble, dans cet ensemble de pile d'actions, on ajoute les actions qui ont menees au jeu
 	 * </p>
 	 * @param p
-	 * Le jeu à ajouter
+	 * Le jeu a ajouter
 	 * @return
-	 * On retourne un boolean pour attester de l'ajout du jeu à l'ensemble
+	 * On retourne un booleen pour attester de l'ajout du jeu a l'ensemble
 	 */
 	public boolean ajout(Jeu p) {
 		Stack<Action> temp = new Stack<Action>();
@@ -107,7 +107,7 @@ public class PileAction implements EnsembleATraiter{
 	/**
 	 * positionTraite
 	 * <p>
-	 * Permet de savoir le nombre de positions qui sont sorti de l'ensemble
+	 * Permet de savoir le nombre de positions qui sont sorties de l'ensemble
 	 * </p>
 	 * @return
 	 * On retourne cet entier
@@ -119,8 +119,8 @@ public class PileAction implements EnsembleATraiter{
 	/**
 	 * Fonction qui permet de savoir si un jeu est dans la pile
 	 * <p>
-	 * Cette fonction est nécéssaire pour le fonctionnement de l'automate, mais cet ensemble ne tourne jamais avec l'automate
-	 * donc la méthode retourne false pour ne pas perturber l'algorithme en supprimant des positions de jeu
+	 * Cette fonction est necessaire pour le fonctionnement de l'automate, mais cet ensemble ne tourne jamais avec l'automate
+	 * Donc la methode retourne false pour ne pas perturber l'algorithme en supprimant des positions de jeu
 	 * </p>
 	 */
 	public boolean appartient(Jeu p) {

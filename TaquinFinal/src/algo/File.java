@@ -12,7 +12,7 @@ public class File implements EnsembleATraiter{
 	
 	
 	/**
-	 * Constrcuteur sans paramètres
+	 * Constructeur sans parametre
 	 */
 	public File(){
 		file= new ArrayList<Jeu>();
@@ -20,29 +20,29 @@ public class File implements EnsembleATraiter{
 	}
 
 	/**
-	 * Permet de savoir si la pile est vide ou non
+	 * Permet de savoir si la file est vide ou non
 	 * @return
-	 * true si l'ensemble est non vide
+	 * true si l'ensemble est non vide, false sinon
 	 */
 	public boolean nonVide() {
 		return !file.isEmpty();
 	}
 
 	/**
-	 * Renvoie le Taquin de la pile
+	 * Permet de defiler
 	 * @return
-	 * Le Jeu au début de la pile
+	 * La tete de la file
 	 */	
 	public Jeu prend() {
 		nombrePositionTraite++;
 		return file.remove(0);
 	}
 	/**
-	 * Ajoute un Taquin �� la pile
+	 * Ajoute un Taquin a la fin de la file
 	 * @param p
-	 * Le jeu à ajouter
+	 * Le jeu a ajouter
 	 * @return
-	 * true si le jeu est bien ajouté
+	 * true si le jeu a bien ete ajoute, false sinon
 	 */
 
 	public boolean ajout(Jeu p) {
@@ -50,31 +50,31 @@ public class File implements EnsembleATraiter{
 	}
 
 	/**
-	 * Donne le nombre de positions traité
+	 * Donne le nombre de positions traitees
 	 * @return
-	 * Le nombre de positions traité
+	 * Le nombre de positions traitees
 	 */
 	public int positionTraite() {
 		return nombrePositionTraite;
 	}
 
 	/**
-	 * Fonction de premier ajout à l'ensemble
+	 * Fonction de premier ajout a l'ensemble
 	 * @param initial
-	 * Le jeu initial à ajouter
+	 * Le jeu initial a ajouter
 	 * @return
-	 * Un boolean qui atteste l'ajout du Jeu
+	 * true si le jeu a bien ete ajoute, false sinon
 	 */	
 	public boolean premierAjout(Jeu initial) {
 		return ajout(initial);
 	}
 
 	/**
-	 * Fonction test d'appartenance
+	 * Test d'appartenance d'un jeu a la file
 	 * @param p
 	 * Le jeu a tester
 	 * @return
-	 * true si le jeu est dans l'ensemble et false sinon
+	 * true si le jeu est dans l'ensemble, false sinon
 	 */
 	public boolean appartient(Jeu p) {
 		return file.contains(p);

@@ -18,7 +18,7 @@ public class Action {
 	/**
 	 * Constructeur d'une action avec son inverse
 	 * @param pAction
-	 * Le nom de l'action à construire
+	 * Le nom de l'action a� construire
 	 * @param pInverse
 	 * Un pointeur vers l'action inverse
 	 */
@@ -28,7 +28,7 @@ public class Action {
 	}
 
 	/**
-	 * Getteur nom
+	 * Getter nom
 	 * @return
 	 * Le nom de l'action
 	 */
@@ -37,7 +37,7 @@ public class Action {
 	}
 	
 	/**
-	 * Getteur inverse
+	 * Getter inverse
 	 * @return
 	 * Un pointeur vers l'action inverse
 	 */
@@ -46,7 +46,7 @@ public class Action {
 	}
 	
 	/**
-	 * Setteur inverse
+	 * Setter inverse
 	 * @param inverse
 	 * Un pointeur sur l'action inverse de l'action courante
 	 */
@@ -62,9 +62,9 @@ public class Action {
 	}
 	
 	/**
-	 * Fonction d'égalité
+	 * Fonction d'egalite
 	 * @param o
-	 * L'objet à comparer
+	 * L'objet a� comparer
 	 * @return
 	 * true si o = this, false sinon
 	 */
