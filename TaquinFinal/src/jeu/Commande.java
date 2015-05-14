@@ -40,13 +40,11 @@ public class Commande {
 
 		listeDesClefs=deplacement.keySet();
 		tabClef = new Action[listeDesClefs.size()];
-		Iterator<Action> it=listeDesClefs.iterator();
-		int i=0;
-		while(it.hasNext()){
-			tabClef[i]=it.next();
-			i++;
-		}
-
+		tabClef[0]=n;
+		tabClef[1]=s;
+		tabClef[2]=o;
+		tabClef[3]=e;
+		
 		//Initialisation du tableau des correspondance entre les touches tappé et l'action souhaité
 		tabCorrespondance= new HashMap<String,Action>();
 		
