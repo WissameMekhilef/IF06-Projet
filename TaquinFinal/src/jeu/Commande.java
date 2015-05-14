@@ -5,11 +5,21 @@ import java.util.Iterator;
 import java.util.Set;
 
 public class Commande {
+	//Cette map fais le lien entre une action et ces effets
 	private HashMap<Action, int[]> deplacement;
 	private Set<Action> listeDesClefs;
+	//C'est un tableau de pointeurs vers des actions, permet un accés plus facile
 	private Action[] tabClef;
+	//Cette map fais le lien entre les touches et les actions
 	private HashMap<String, Action> tabCorrespondance;
 
+	/**
+	 * Contructeur de Commande
+	 * <p>
+	 * Construit l'ensemble des commandes disponibles pour le jeu ainsi
+	 * que leurs relations (coups inverse)
+	 * </p>
+	 */
 	public Commande(){
 		Action n=new Action("N");
 		Action s =new Action("S");

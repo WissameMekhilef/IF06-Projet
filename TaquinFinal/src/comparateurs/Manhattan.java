@@ -11,8 +11,10 @@ public class Manhattan implements Comparator<Jeu>{
 	 * <p>
 	 * On utilise dans ce comparateur uniquement la distance de manhattan
 	 * </p>
-	 * @param t1, t2
-	 * Les deux jeux à comparer
+	 * @param t
+	 * Le 1er jeu à comparer
+	 * @param t1
+	 * Le 2eme jeu à comparer
 	 * @return
 	 * -1 : t1 plus petit t2
 	 * 0 : t1 = t2

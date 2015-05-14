@@ -10,8 +10,10 @@ public class DepthManhattan implements Comparator<Jeu> {
 	 * <p>
 	 * On utilise dans ce comparateur la distance de manhattan et la profondeur
 	 * </p>
-	 * @param t1, t2
-	 * Les deux jeux à comparer
+	 * @param t1
+	 * Le 1er jeu à comparer
+	 * @param t2
+	 * Le 2eme jeu à comparer
 	 * @return
 	 * -1 : t1 plus petit t2
 	 * 0 : t1 = t2

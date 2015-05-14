@@ -13,6 +13,13 @@ public class Noeud implements Automate {
 	private String chemin;
 	private ArrayList<String> fail;
 	
+	/**
+	 * Constructeur d'un Noeud avec paramètre
+	 * @param pTraite
+	 * L''ensemble sur lequel travail l'automate
+	 * @param c
+	 * Une pointeur vers les commandes du jeu
+	 */
 	public Noeud(EnsembleATraiter pTraite, Commande c){
 		fail = new ArrayList<String>();
 		for(Action a: c.getTabClef()){
@@ -30,9 +37,12 @@ public class Noeud implements Automate {
 		return fail;
 	}
 
+	/**
+	 * 
+	 * @param pJeu
+	 * @param action
+	 */
 	public boolean suivant(Jeu pJeu, Action action) {
-		//System.out.println("chemin : "+chemin);
-		//System.out.println("action : "+action.getAction());
 		if (!fail.contains(chemin+action.getAction())){
 			if(traite.appartient(pJeu)){
 				fail.add(chemin+action.getAction());
