@@ -232,6 +232,15 @@ public class Algo extends Thread{
 	public int getNombrePositionTraite(){
 		return this.aTraiter.positionTraite();
 	}
+	
+	/**
+	 * Getter nombre de positions traitees
+	 * @return
+	 * Le nombre de positions traitees
+	 */
+	public int getNombrePositionsTraite() {
+		return nombrePositionsTraite;
+	}
 
 	/**
 	 * Getter position finale

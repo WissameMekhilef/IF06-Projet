@@ -2,7 +2,6 @@ package junit;
 import static org.junit.Assert.assertNotNull;
 import jeu.Commande;
 import jeu.Jeu;
-import jeu.Taquin;
 import main.Main;
 
 import org.junit.Before;
