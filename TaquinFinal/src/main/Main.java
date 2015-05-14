@@ -110,6 +110,8 @@ public class Main {
 				pSortie.println(pJeu);
 			} catch (MauvaiseTouche err) {
 				
+			} catch (ArrayIndexOutOfBoundsException err){
+				
 			}
 		}
 		// On revient au debut

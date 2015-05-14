@@ -185,16 +185,12 @@ public class Taquin implements Jeu{
 	 * Exception si on est en dehors du tableau
 	 */
 	public void deplacement(Action direction) throws MauvaiseTouche, ArrayIndexOutOfBoundsException {
-		int[] pos0=posZero;
+		int[] pos0=indexOf(0);
 		if(commande.getDeplacement().containsKey(direction)){
 			int temp=damier[pos0[0]][pos0[1]];
 			int[] posX=commande.getDeplacement().get(direction);
 			damier[pos0[0]][pos0[1]]=damier[pos0[0]+posX[0]][pos0[1]+posX[1]];
 			damier[pos0[0]+posX[0]][pos0[1]+posX[1]]=0;
-			posZero[0]=pos0[0]+posX[0];
-			posZero[1]=pos0[1]+posX[1];
-			
-			//ameliorant=ancienMan-distanceManhattan(temp);
 			nbCoupsfinale=nbPermutFin();
 		}else throw new MauvaiseTouche();
 	}
