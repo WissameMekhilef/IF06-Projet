@@ -73,7 +73,7 @@ Jeu de Taquin}}
 
 \begin{document}
 
-
+\thispagestyle{empty}
 %
 \begin{figure}[H]
 \includegraphics[width=0.2\linewidth]{Logo-univ-orleans.png}
