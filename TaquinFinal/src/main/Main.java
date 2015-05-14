@@ -139,18 +139,14 @@ public class Main {
 		System.out.println(jeu);
 		int nbAction = action.size();
 		for(Action act : action){
-			if(action!=null){
 			try {
 				jeu.deplacement(act);
 			} catch (IndexOutOfBoundsException e) {
 				//On ne rentre jamais dans ce cas car les actions a réaliser sont possible
-			} catch (MauvaiseTouche e) {
-				System.out.println("Mauvaise touche");
-			}
+			} catch (MauvaiseTouche e) {}
 			System.out.println((char) Event.ESCAPE+ "8");
 			System.out.println(jeu);
 			Thread.sleep(500);
-			}
 		}
 		
 	}
