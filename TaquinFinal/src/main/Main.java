@@ -258,7 +258,7 @@ public class Main {
 	
 	public static void main(String[] args) {
 		Algo alg;
-		//Lecture des paramÃ¨tres
+		//Lecture des paramètres
 		System.out.println(args[0]);
 		switch(args[0]){
 		case "-name":
