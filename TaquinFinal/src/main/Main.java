@@ -154,17 +154,17 @@ public class Main {
 		case "pmanhattan":
 			return new Algo(jeuFromFile(param[param.length - 1]),new Tas(new DepthManhattan()), new EnsembleComplet(), false);
 		case "bit":
-			switch(param[4]) {
+			switch(param[5]) {
 			case "pile":
-				return new Algo(jeuFromFile(param[param.length - 1]), new Pile(), new EnsembleIncomplet(Integer.parseInt(param[5])), false);
+				return new Algo(jeuFromFile(param[param.length - 1]), new Pile(), new EnsembleIncomplet(Integer.parseInt(param[4])), false);
 			case "file":
-				return new Algo(jeuFromFile(param[param.length - 1]), new File(), new EnsembleIncomplet(Integer.parseInt(param[5])), false);
+				return new Algo(jeuFromFile(param[param.length - 1]), new File(), new EnsembleIncomplet(Integer.parseInt(param[4])), false);
 			case "manhattan":
-				return new Algo(jeuFromFile(param[param.length - 1]), new Tas(new Manhattan()), new EnsembleIncomplet(Integer.parseInt(param[5])), false);
+				return new Algo(jeuFromFile(param[param.length - 1]), new Tas(new Manhattan()), new EnsembleIncomplet(Integer.parseInt(param[4])), false);
 			case "pmanhattan":
-				return new Algo(jeuFromFile(param[param.length - 1]), new Tas(new DepthManhattan()), new EnsembleIncomplet(Integer.parseInt(param[5])), false);
+				return new Algo(jeuFromFile(param[param.length - 1]), new Tas(new DepthManhattan()), new EnsembleIncomplet(Integer.parseInt(param[4])), false);
 			case "prof":
-				return new Algo(jeuFromFile(param[param.length - 1]), new PileAction(), new EnsembleIncomplet(Integer.parseInt(param[5])), false);
+				return new Algo(jeuFromFile(param[param.length - 1]), new PileAction(), new EnsembleIncomplet(Integer.parseInt(param[4])), false);
 			default:
 				System.out.println("Option invalide");
 				System.exit(1);	
