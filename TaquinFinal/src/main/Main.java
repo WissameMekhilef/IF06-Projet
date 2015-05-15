@@ -164,7 +164,7 @@ public class Main {
 	 * Fonction d'affichage des noms des personnes de l'equipe
 	 */
 	private static void printName(){
-		System.out.println("Ce programme a� �t� d�velopp� par : ARNOULT Simon, MEKHILEF Wissame, OUSSAD Jihad et RETY Martin");
+		System.out.println("Ce programme a ete developpe par : ARNOULT Simon, MEKHILEF Wissame, OUSSAD Jihad et RETY Martin");
 	}
 	
 	/**
