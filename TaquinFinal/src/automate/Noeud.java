@@ -43,8 +43,11 @@ public class Noeud implements Automate {
 	 * notre fail ou n'a pas deja ete traite, auquel cas il rajoute ce nouveau
 	 * chemin dans notre fail.
 	 * @param pJeu
+	 * Le jeu a tester
 	 * @param action
-	 * @return boolean
+	 * L'action qui y mène
+	 * @return
+	 * un boolean
 	 */
 	public boolean suivant(Jeu pJeu, Action action) {
 		if (!fail.contains(chemin+action.getAction())){

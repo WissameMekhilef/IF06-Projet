@@ -206,6 +206,13 @@ public class Main {
 		}
 	}
 	
+	/**
+	 * Fonction de lecture de l'algorithme en parallèle
+	 * @param param
+	 * Les paramètres pour l'algo
+	 * @return
+	 * Un objet algo construit
+	 */
 	private static Algo lectureAlgo(String [] param){
 		switch(param[3]){
 		case "pile":
@@ -253,6 +260,7 @@ public class Main {
 		}
 		return null;
 	}
+	
 	
 	public static void main(String[] args) {
 		Algo alg;

@@ -148,7 +148,8 @@ public class Taquin implements Jeu{
 	
 	/**
 	* Modifie le damier par celui en parmetre
-	* @param un damier
+	* @param damier
+	* Le nouveau damier
 	*/
 	public void setDamier(int[][] damier) {
 		this.damier = damier;
@@ -286,7 +287,7 @@ public class Taquin implements Jeu{
 		int hash=1;
 		for(int i=0;i<this.damier.length;i++){
 			for(int j=0;j<this.damier[0].length;j++){
-				hash=hash*7+damier[i][j];
+				hash=hash*107+damier[i][j];
 			}
 		}
 		return hash;
@@ -433,6 +434,7 @@ public class Taquin implements Jeu{
 		}
 		return t;
 	}
+	
 	public Jeu clone(){
 		Taquin res = new Taquin(damier.length, damier[0].length, commande);
 		res.damier=this.copieTableau();
