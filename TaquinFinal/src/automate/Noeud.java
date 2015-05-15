@@ -9,25 +9,30 @@ import jeu.Jeu;
 
 public class Noeud implements Automate {
 	
-	private ArrayList<String> fail;
 	private EnsembleATraiter traite;
 	private String chemin;
+	private ArrayList<String> fail;
 	
 	/**
-	 * Constructeur d'un noeud avec parametre.
+	 * Constructeur d'un noeud avec parametre
 	 * @param pTraite
-	 * L'ensemble sur lequel travaille l'automate.
+	 * L'ensemble sur lequel travaille l'automate
 	 * @param c
-	 * Un pointeur vers les commandes du jeu.
+	 * Un pointeur vers les commandes du jeu
 	 */
-	public Noeud(EnsembleATraiter pTraite, Commande c) {
+	public Noeud(EnsembleATraiter pTraite, Commande c){
 		fail = new ArrayList<String>();
-		for(Action a: c.getTabClef())
-			fail.add(a.getAction() + a.getInverse().getAction());
+		for(Action a: c.getTabClef()){
+			fail.add(a.getAction()+a.getInverse().getAction());
+		}
 		traite = pTraite;
-		chemin = "";
+		chemin="";
 	}
 	
+	public String getChemin() {
+		return chemin;
+	}
+
 	public ArrayList<String> getFail() {
 		return fail;
 	}
@@ -39,19 +44,17 @@ public class Noeud implements Automate {
 	 * chemin dans notre fail.
 	 * @param pJeu
 	 * @param action
-	 * @return boolean pour dire s'il a pu passer a la position suivante par cette action
-	 * ou non.
+	 * @return boolean
 	 */
 	public boolean suivant(Jeu pJeu, Action action) {
-		if (!fail.contains(chemin + action.getAction())) {
-			if(traite.appartient(pJeu)) {
-				fail.add(chemin + action.getAction());
+		if (!fail.contains(chemin+action.getAction())){
+			if(traite.appartient(pJeu)){
+				fail.add(chemin+action.getAction());
 				return false;
 			}
-			chemin += action.getAction();
+			chemin+=action.getAction();
 			return true;
 		}
 		return false;
 	}
-	
 }
