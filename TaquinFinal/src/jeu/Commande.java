@@ -11,9 +11,9 @@ public class Commande {
 	private Set<Action> listeDesClefs;
 
 	/**
-	 * Contructeur de commande
+	 * Contructeur de commande.
 	 * <p>
-	 * Construit l'ensemble des commandes disponibles pour le jeu ainsi que leurs relations (coups inverses)
+	 * Construit l'ensemble des commandes disponibles pour le jeu ainsi que leurs relations (coups inverses).
 	 * </p>
 	 */
 	public Commande() {
@@ -65,19 +65,40 @@ public class Commande {
 		tabCorrespondance.put("d", tabClef[3]);
 		
 	}
-
+	
+	/**
+	 * Getter de la map des deplacements.
+	 * @return
+	 * la map des deplacements.
+	 */
 	public HashMap<Action, int[]> getDeplacement() {
 		return deplacement;
 	}
 	
+	/**
+	 * Getter de la liste des clefs.
+	 * @return
+	 * La list des clefs sous fomre de Set d'action.
+	 */
 	public Set<Action> getListeDesClefs() {
 		return listeDesClefs;
 	}
 	
+	
+	/**
+	 * Getter du tableau de clefs.
+	 * @return
+	 * Le tableau de clefs.
+	 */
 	public Action[] getTabClef() {
 		return tabClef;
 	}
 	
+	/**
+	 * Getter la map des correspondances.
+	 * @return
+	 * Une map des correspondances.
+	 */
 	public HashMap<String, Action> getTabCorrespondance() {
 		return tabCorrespondance;
 	}

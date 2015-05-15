@@ -6,9 +6,9 @@ public class Action {
 	String action;
 	
 	/**
-	 * Constructeur d'une action sans inverse
+	 * Constructeur d'une action sans inverse.
 	 * @param pAction
-	 * Le nom de l'action
+	 * Le nom de l'action.
 	 */
 	public Action(String pAction) {
 		action = pAction;
@@ -16,11 +16,11 @@ public class Action {
 	}
 	
 	/**
-	 * Fonction d'egalite
+	 * Fonction d'egalite.
 	 * @param o
-	 * L'objet a comparer
+	 * L'objet a comparer.
 	 * @return
-	 * true si o = this, false sinon
+	 * true si o = this, false sinon.
 	 */
 	public boolean equals(Object o) {
 		if (o instanceof Action) {
@@ -30,27 +30,27 @@ public class Action {
 	}
 
 	/**
-	 * Getter nom
+	 * Getter nom.
 	 * @return
-	 * Le nom de l'action
+	 * Le nom de l'action.
 	 */
 	public String getAction() {
 		return action;
 	}
 	
 	/**
-	 * Getter inverse
+	 * Getter inverse.
 	 * @return
-	 * Un pointeur vers l'action inverse
+	 * Un pointeur vers l'action inverse.
 	 */
 	public Action getInverse() {
 		return inverse;
 	}
 	
 	/**
-	 * Setter inverse
+	 * Setter inverse.
 	 * @param inverse
-	 * Un pointeur sur l'action inverse de l'action courante
+	 * Un pointeur sur l'action inverse de l'action courante.
 	 */
 	public void setInverse(Action inverse) {
 		this.inverse = inverse;

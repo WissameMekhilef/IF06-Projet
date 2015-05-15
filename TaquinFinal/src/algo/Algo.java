@@ -23,15 +23,15 @@ public class Algo extends Thread {
 	private long tempExec;
 	
 	/**
-	 * Constructeur d'un Algo
+	 * Constructeur d'un Algo.
 	 * @param pInit
-	 * Le jeu qu'il faut resoudre dans son etat initial
+	 * Le jeu qu'il faut resoudre dans son etat initial.
 	 * @param pTraiter
-	 * L'ensemble a� traiter a utiliser
+	 * L'ensemble  traiter a utiliser.
 	 * @param pMarque
-	 * L'ensemble marque a utiliser
+	 * L'ensemble marque a utiliser.
 	 * @param pAutomate
-	 * Un booleen pour savoir si l'algorithme utilise un automate ou non
+	 * Un booleen pour savoir si l'algorithme utilise un automate ou non.
 	 */
 	public Algo(Jeu pInit, EnsembleATraiter pTraiter, EnsembleMarque pMarque, boolean pAutomate) {
 		this.initial = pInit;
@@ -46,16 +46,16 @@ public class Algo extends Thread {
 	}
 	
 	/**
-	 * Fonction de description
+	 * Fonction de description.
 	 * <p>
-	 * Recapitule le deroulement de d'algorithme
+	 * Recapitule le deroulement de d'algorithme.
 	 * </p>
 	 * @return
-	 * Un string pour pouvoir afficher la description
+	 * Un string pour pouvoir afficher la description.
 	 */
 	public String description() {
 		if(finale == null)
-			return "L'algorithme n'a pas trouvé de solution";
+			return "L'algorithme n'a pas trouve de solution";
 		return initial.description() + "\n\nL'algorithme a dure " + nbIterations
 				+ " iterations, au cours desquelles il a traite " + aTraiter.positionTraite()
 				+ " positions du jeu.\nSon execution a pris " + tempExec
@@ -67,31 +67,36 @@ public class Algo extends Thread {
 	}
 	
 	/**
-	 * Getter position finale
+	 * Getter position finale.
 	 * @return
-	 * Retourne la position finale trouvee par l'algorithme
+	 * Retourne la position finale trouvee par l'algorithme.
 	 */
 	public Jeu getFinale() {
 		return finale;
 	}
 	
+	/**
+	 * Getter position initiale.
+	 * @return
+	 * Retourne la position initiale.
+	 */
 	public Jeu getInitial() {
 		return initial;
 	}
 	
 	/**
-	 * Getter solution
+	 * Getter solution.
 	 * @return
-	 * La solution sous forme d'une ArrayList
+	 * La solution sous forme d'une ArrayList.
 	 */
 	public ArrayList<Action> getSolution() {
 		return solution;
 	}
 	
 	/**
-	 * Fonction toString de la solution
+	 * Fonction toString de la solution.
 	 * @return
-	 * Une chaine de caractere representant la solution
+	 * Une chaine de caractere representant la solution.
 	 */
 	public String getStringSolution() {
 		String s = "";
@@ -102,14 +107,14 @@ public class Algo extends Thread {
 	}
 	
 	/**
-	 * Fonction d'elagage
+	 * Fonction d'elagage.
 	 * <p>
-	 * C'est cette methode qui fait appel a l'automate
+	 * C'est cette methode qui fait appel a l'automate.
 	 * </p>
 	 * @param aReduire
-	 * La liste des positions a traiter
+	 * La liste des positions a traiter.
 	 * @return
-	 * La liste avec les positions
+	 * La liste avec les positions.
 	 */
 	private ArrayList<Jeu> reduireSucc(ArrayList<Jeu> aReduire) {
 		ArrayList<Jeu> res = new ArrayList<Jeu>();
@@ -120,14 +125,14 @@ public class Algo extends Thread {
 	}
 	
 	/**
-	 * Fonction run de l'algo
+	 * Fonction run de l'algo.
 	 * <p>
-	 * C'est cette fonction qui permet la resolution du jeu
+	 * C'est cette fonction qui permet la resolution du jeu.
 	 * </p>
 	 * @param temps
-	 * C'est le temps imparti pour que l'algo trouve une solution, ou 0 s'il n'y a pas de limite
+	 * C'est le temps imparti pour que l'algo trouve une solution, ou 0 s'il n'y a pas de limite.
 	 * @return
-	 * On retourne un booleen pour savoir si l'algorithme a trouve une solution ou pas
+	 * On retourne un booleen pour savoir si l'algorithme a trouve une solution ou pas.
 	 */
 	public boolean run(int temps) {
 		int nbUtilAutomate = 0;
@@ -155,7 +160,6 @@ public class Algo extends Thread {
 					nbIterations++;
 					if(!marque.appartient(p)) {
 						if(p.estResolu()) {
-							System.out.println("On a une sol");
 							fin = true;
 							finale = p;
 							Toolkit.getDefaultToolkit().beep();
@@ -166,8 +170,9 @@ public class Algo extends Thread {
 						}
 					}
 				}
-			setSolution();
-		}
+				setSolution();
+			}
+		if(!fin) System.out.println("Aucune solution trouve !");
 		long timeFin = System.currentTimeMillis();
 		tempExec = timeFin-timeDeb;
 		t.cancel();
@@ -175,9 +180,9 @@ public class Algo extends Thread {
 	}
 	
 	/**
-	 * Methode run progressif
+	 * Methode run progressif.
 	 * <p>
-	 * Cette methode vaut pour la partie E du sujet
+	 * Cette methode vaut pour la partie E du sujet.
 	 * </p>
 	 */
 	public void runProgressif() {
@@ -193,9 +198,9 @@ public class Algo extends Thread {
 	}
 	
 	/**
-	 * Fonction d'initialisation de la solution
+	 * Fonction d'initialisation de la solution.
 	 * <p>
-	 * Cette fonction permet de remonter tous les peres a partir de l'etat final jusqu'au dernier pour avoir le chemin menant a la solution
+	 * Cette fonction permet de remonter tous les peres a partir de l'etat final jusqu'au dernier pour avoir le chemin menant a la solution.
 	 * </p>
 	 */
 	public void setSolution() {

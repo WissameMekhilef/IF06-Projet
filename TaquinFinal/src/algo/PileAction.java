@@ -15,14 +15,14 @@ public class PileAction implements EnsembleATraiter {
 	private Stack<Stack <Action>> ensemble = new Stack<>();
 	
 	/**
-	 * Constructeur sans parametre
+	 * Constructeur sans parametre.
 	 */
 	public PileAction() {
 		
 	}
 	
 	/**
-	 * Constructeur d'une pile avec une taille limitee
+	 * Constructeur d'une pile avec une taille limitee.
 	 * @param maxSize
 	 * La taille limite voulue
 	 */
@@ -33,12 +33,12 @@ public class PileAction implements EnsembleATraiter {
 	/**
 	 * Ajout
 	 * <p>
-	 * Fonction qui permet d'ajouter un jeu a l'ensemble, dans cet ensemble de pile d'actions, on ajoute les actions qui ont menees au jeu
+	 * Fonction qui permet d'ajouter un jeu a l'ensemble, dans cet ensemble de pile d'actions, on ajoute les actions qui ont menees au jeu.
 	 * </p>
 	 * @param p
 	 * Le jeu a ajouter
 	 * @return
-	 * On retourne un booleen pour attester de l'ajout du jeu a l'ensemble
+	 * On retourne un booleen pour attester de l'ajout du jeu a l'ensemble.
 	 */
 	public boolean ajout(Jeu p) {
 		Stack<Action> temp = new Stack<Action>();
@@ -52,10 +52,10 @@ public class PileAction implements EnsembleATraiter {
 	}
 	
 	/**
-	 * Fonction qui permet de savoir si un jeu est dans la pile
+	 * Fonction qui permet de savoir si un jeu est dans la pile.
 	 * <p>
-	 * Cette fonction est necessaire pour le fonctionnement de l'automate, mais cet ensemble ne tourne jamais avec l'automate
-	 * Donc la methode retourne false pour ne pas perturber l'algorithme en supprimant des positions de jeu
+	 * Cette fonction est necessaire pour le fonctionnement de l'automate, mais cet ensemble ne tourne jamais avec l'automate.
+	 * Donc la methode retourne false pour ne pas perturber l'algorithme en supprimant des positions de jeu.
 	 * </p>
 	 */
 	public boolean appartient(Jeu p) {
@@ -63,9 +63,9 @@ public class PileAction implements EnsembleATraiter {
 	}
 	
 	/**
-	 * Fonction permettant de savoir si la liste est vide
+	 * Fonction permettant de savoir si la liste est vide.
 	 * @return
-	 * Un boolean true si la liste n'est pas vide, false sinon
+	 * Un boolean true si la liste n'est pas vide, false sinon.
 	 */
 	public boolean nonVide() {
 		return !ensemble.isEmpty();
@@ -74,11 +74,11 @@ public class PileAction implements EnsembleATraiter {
 	/**
 	 * Premier ajout d'un jeu
 	 * <p>
-	 * Dans le cas d'une pile d'actions, on stocke l'etat initial pour pouvoir recalculer tous les autres
+	 * Dans le cas d'une pile d'actions, on stocke l'etat initial pour pouvoir recalculer tous les autres.
 	 * @param initial
-	 * Le jeu initial a ajouter
+	 * Le jeu initial a ajouter.
 	 * @return
-	 * Un boolean qui permet de savoir si le jeu a ete ajoute
+	 * Un boolean qui permet de savoir si le jeu a ete ajoute.
 	 */
 	public boolean premierAjout(Jeu initial){
 		this.initial = initial;
@@ -86,21 +86,21 @@ public class PileAction implements EnsembleATraiter {
 	}
 	
 	/**
-	 * positionTraite
+	 * positionTraite.
 	 * <p>
-	 * Permet de savoir le nombre de positions qui sont sorties de l'ensemble
+	 * Permet de savoir le nombre de positions qui sont sorties de l'ensemble.
 	 * </p>
 	 * @return
-	 * On retourne cet entier
+	 * On retourne cet entier.
 	 */
 	public int positionTraite() {
 		return PosTraite;
 	}
 
 	/**
-	 * Prend
+	 * Prend.
 	 * <p>
-	 * Fonction qui renvoie un jeu de l'ensemble, le type de l'ensemble differencie le type de parcours de graphe
+	 * Fonction qui renvoie un jeu de l'ensemble, le type de l'ensemble differencie le type de parcours de graphe.
 	 * </p>
 	 * @return
 	 * On retourne le jeu concerne

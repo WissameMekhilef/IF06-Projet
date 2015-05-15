@@ -9,9 +9,9 @@ public class EnsembleIncomplet implements EnsembleMarque {
 	private int taille;
 	
 	/**
-	 * Constructeur d'un ensemble incomplet
+	 * Constructeur d'un ensemble incomplet.
 	 * @param pTaille
-	 * La taille souhaite pour l'ensemble
+	 * La taille souhaite pour l'ensemble.
 	 */
 	public EnsembleIncomplet (int pTaille) {
 		taille = pTaille;
@@ -19,9 +19,9 @@ public class EnsembleIncomplet implements EnsembleMarque {
 	}
 
 	/**
-	 * Fonction d'ajout d'un jeu a l'ensemble
+	 * Fonction d'ajout d'un jeu a l'ensemble.
 	 * @param pSommet
-	 * Le jeu a ajouter
+	 * Le jeu a ajouter.
 	 */
 	public void ajout(Jeu pSommet) {
 		int indice = Math.abs(pSommet.hashCode() % taille);
@@ -30,11 +30,11 @@ public class EnsembleIncomplet implements EnsembleMarque {
 	}
 
 	/**
-	 * Fonction d'appartenance d'un jeu a l'ensemble
+	 * Fonction d'appartenance d'un jeu a l'ensemble.
 	 * @param pATester
-	 * Le jeu sur lequel tester l'appartenance
+	 * Le jeu sur lequel tester l'appartenance.
 	 * @return
-	 * Un boolean true si l'ensemble contient le jeu, et false sinon
+	 * Un boolean true si l'ensemble contient le jeu, et false sinon.
 	 */
 	public boolean appartient(Jeu pATester) {
 		int indice = Math.abs(pATester.hashCode() % taille);

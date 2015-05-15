@@ -31,9 +31,9 @@ public class Main {
 	private static Commande commande = new Commande();
 	
 	/**
-	 * Lecture de l'algorithme
+	 * Lecture de l'algorithme.
 	 * @return
-	 * Retourne un algorithme correspondant a l'algorithme precise dans les parametres du lancement
+	 * Retourne un algorithme correspondant a l'algorithme precise dans les parametres du lancement.
 	 */
 	private static void afficheSol(Jeu jeu, ArrayList<Action> action) {
 		System.out.println(jeu);
@@ -43,23 +43,23 @@ public class Main {
 			} catch(IndexOutOfBoundsException e) {
 				
 			} catch (MauvaiseTouche e) {
-				System.out.println("Mauvaise touche ");
+				
 			}
 			System.out.println(jeu);
 		}
 	}
 	
 	/**
-	 * Animation
+	 * Animation:
 	 * <p>
-	 * Permet l'animation d'une suite d'action sur un jeu quelconque
+	 * Permet l'animation d'une suite d'action sur un jeu quelconque.
 	 * </p>
 	 * @param jeu
-	 * Le jeu a animer
+	 * Le jeu a animer.
 	 * @param action
-	 * La liste d'actions a realiser
+	 * La liste d'actions a realiser.
 	 * @throws InterruptedException
-	 * Une exception levee dans le cas ou le sleep ne reprend pas
+	 * Une exception levee dans le cas ou le sleep ne reprend pas.
 	 */
 	private static void anim(Jeu jeu, ArrayList<Action> action) throws InterruptedException {
 		System.out.println((char) Event.ESCAPE + "7");
@@ -79,17 +79,17 @@ public class Main {
 	}
 	
 	/**
-	 * Initialise un jeu a partir d'un fichier
+	 * Initialise un jeu a partir d'un fichier.
 	 * @param destJeu
 	 * Source du fichier
 	 * @return
-	 * Un jeu initialise
+	 * Un jeu initialise.
 	 */
 	public static Jeu jeuFromFile(String destJeu) {
 		try {
 			return new Taquin(destJeu, commande);
 		} catch(NumberFormatException e) {
-			System.out.println("Erreur lors de la lecture du fichier .taq un entier été attendu");
+			System.out.println("Erreur lors de la lecture du fichier .taq un entier ete attendu");
 		} catch(NombreDouble e) {
 			System.out.println(e.getMessage());
 		} catch(FileNotFoundException e) {
@@ -102,9 +102,9 @@ public class Main {
 	}
 	
 	/**
-	 * Permet de jouer partir d'un fichier
+	 * Permet de jouer partir d'un fichier.
 	 * @param destJeu
-	 * La destination du fichier source
+	 * La destination du fichier source.
 	 */
 	private static void joue(String destJeu){
 		jouer(jeuFromFile(destJeu), new Scanner(System.in), System.out);
@@ -114,11 +114,11 @@ public class Main {
 	 * Permet de jouer a un jeu quelconque sur un flux d'entree et de sortie parametrable
 	 * 
 	 * @param pJeu
-	 * Le jeu a jouer
+	 * Le jeu a jouer.
 	 * @param pScan
-	 * Le flux d'entree
+	 * Le flux d'entree.
 	 * @param pSortie
-	 * Le flux de sortie
+	 * Le flux de sortie.
 	 */
 	public static void jouer(Jeu pJeu, Scanner pScan, PrintStream pSortie) {
 		Action actionARealiser;
@@ -148,7 +148,6 @@ public class Main {
 		case "pile":
 			return new Algo(jeuFromFile(param[param.length - 1]), new Pile(), new EnsembleComplet(), false);
 		case "file":
-			System.out.println("On veut une fil");
 			return new Algo(jeuFromFile(param[param.length - 1]), new File(), new EnsembleComplet(), false);
 		case "manhattan":
 			return new Algo(jeuFromFile(param[param.length - 1]),new Tas(new Manhattan()), new EnsembleComplet(), false);
@@ -192,45 +191,45 @@ public class Main {
 	}
 	
 	/**
-	 * Lecture des touches
+	 * Lecture des touches.
 	 * @param pScan
-	 * Le scanner a partir duquel les actions sont lus
+	 * Le scanner a partir duquel les actions sont lus.
 	 * @return
-	 * Une action correspondant a l'action lue
+	 * Une action correspondant a l'action lue.
 	 */
 	private static Action lireAction(Scanner pScan) {
 		return commande.getTabCorrespondance().get(pScan.nextLine());
 	}
 	
 	/**
-	 * Fonction d'affichage des noms des personnes de l'equipe
+	 * Fonction d'affichage des noms des personnes de l'equipe.
 	 */
 	private static void printName() {
-		System.out.println("Ce programme a� �t� d�velopp� par : ARNOULT Simon, MEKHILEF Wissame, OUSSAD Jihad et RETY Martin");
+		System.out.println("Ce programme a ete developpe par : ARNOULT Simon, MEKHILEF Wissame, OUSSAD Jihad et RETY Martin");
 	}
 	
 	/**
-	 * Imprime la liste des options disponibles
+	 * Imprime la liste des options disponibles.
 	 */
 	private static void printOptionList() {
 		String gras = (char) Event.ESCAPE + "[1m";
 		String defaut = (char) Event.ESCAPE + "[0m";
 		System.out.print("Voici une liste des options disponible :\n");
-		System.out.print("\t" + gras + "-name" + defaut + "\t: java -jar taquin.jar -name\n\t\tAfficher le nom des développeurs\n");
-		System.out.print("\t" + gras + "-h" + defaut + "\t: java -jar taquin.jar -h\n\t\tAfficher les différentes options possible\n");
-		System.out.print("\t" + gras + "-sol" + defaut + "\t: java -jar taquin.jar -sol [fichier.taq] -j\n\t\tTest si le fichier .taq passé en paramètre à une solution, finir par -j\n");
-		System.out.print("\t" + gras + "-joue" + defaut + "\t: java -jar taquin.jar -joue [fichier.taq]\n\t\t Permet de jouer sur un fichier .taq placé en paramètre\n");
+		System.out.print("\t" + gras + "-name" + defaut + "\t: java -jar taquin.jar -name\n\t\tAfficher le nom des developpeurs\n");
+		System.out.print("\t" + gras + "-h" + defaut + "\t: java -jar taquin.jar -h\n\t\tAfficher les differentes options possible\n");
+		System.out.print("\t" + gras + "-sol" + defaut + "\t: java -jar taquin.jar -sol [fichier.taq] -j\n\t\tTest si le fichier .taq passe en parametre a� une solution, finir par -j\n");
+		System.out.print("\t" + gras + "-joue" + defaut + "\t: java -jar taquin.jar -joue [fichier.taq]\n\t\t Permet de jouer sur un fichier .taq place en parametre\n");
 		System.out.print("\t" + gras + "-cal" + defaut + "\t: java -jar taquin.jar -cal [delai] [algo] fichier.taq\n\t\tCalcule une position en utilisant l'ago dans le temps du delai\n");
-		System.out.print("\t" + gras + "-anime" + defaut + "\t: java -jar taquin.jar -anime [delai] [algo] fichier.taq\n\t\tComme précédement mais avec une animation de la solution\n");
-		System.out.print("\t" + gras + "-stat" + defaut + "\t: java -jar taquin.jar -stat [delai] [algo] fichier.taq\n\t\tComme précédement mais avec un retour de statistiques sur l'exection.\n");
-		System.out.print("\t" + gras + "-stat" + defaut + "\t: java -jar taquin.jar -stat [delai] fichier.taq\n\t\tComme précédement mais avec un retour html de toutes les statistiques.\n");
-		System.out.print("\t" + gras + "-alea" + defaut + "\t: java -jar taquin.jar -aleatoire [n] [largeur] [hauteur] [delai] fichier.taq\n\t\tApplique tous les algorithmes n fois a des taquin de largeur et hauteur.\n\t\tOn recoit des informations détaillées sur le déroulement.\n");
+		System.out.print("\t" + gras + "-anime" + defaut + "\t: java -jar taquin.jar -anime [delai] [algo] fichier.taq\n\t\tComme precedement mais avec une animation de la solution\n");
+		System.out.print("\t" + gras + "-stat" + defaut + "\t: java -jar taquin.jar -stat [delai] [algo] fichier.taq\n\t\tComme precedement mais avec un retour de statistiques sur l'exection.\n");
+		System.out.print("\t" + gras + "-stat" + defaut + "\t: java -jar taquin.jar -stat [delai] fichier.taq\n\t\tComme precedement mais avec un retour html de toutes les statistiques.\n");
+		System.out.print("\t" + gras + "-alea" + defaut + "\t: java -jar taquin.jar -aleatoire [n] [largeur] [hauteur] [delai] fichier.taq\n\t\tApplique tous les algorithmes n fois a des taquin de largeur et hauteur.\n\t\tOn recoit des informations detaillees sur le deroulement.\n");
 	}
 	
 	/**
-	 * Test solvable
+	 * Test solvable.
 	 * @param jeuaTester
-	 * Retourne true si le jeu est solvable, false sinon
+	 * Retourne true si le jeu est solvable, false sinon.
 	 */
 	private static void testSolvable(String jeuaTester) {
 		String res = "Le jeu a tester est ";

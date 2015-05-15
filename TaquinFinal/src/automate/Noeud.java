@@ -14,11 +14,11 @@ public class Noeud implements Automate {
 	private String chemin;
 	
 	/**
-	 * Constructeur d'un noeud avec parametre
+	 * Constructeur d'un noeud avec parametre.
 	 * @param pTraite
-	 * L'ensemble sur lequel travaille l'automate
+	 * L'ensemble sur lequel travaille l'automate.
 	 * @param c
-	 * Un pointeur vers les commandes du jeu
+	 * Un pointeur vers les commandes du jeu.
 	 */
 	public Noeud(EnsembleATraiter pTraite, Commande c) {
 		fail = new ArrayList<String>();
@@ -39,7 +39,8 @@ public class Noeud implements Automate {
 	 * chemin dans notre fail.
 	 * @param pJeu
 	 * @param action
-	 * @return boolean
+	 * @return boolean pour dire s'il a pu passer a la position suivante par cette action
+	 * ou non.
 	 */
 	public boolean suivant(Jeu pJeu, Action action) {
 		if (!fail.contains(chemin + action.getAction())) {

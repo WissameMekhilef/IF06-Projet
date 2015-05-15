@@ -8,18 +8,18 @@ import jeu.*;
 public class Manhattan implements Comparator<Jeu> {
 	
 	/**
-	 * Fonction de comparaison
+	 * Fonction de comparaison.
 	 * <p>
-	 * On utilise dans ce comparateur uniquement la distance de Manhattan
+	 * On utilise dans ce comparateur uniquement la distance de Manhattan.
 	 * </p>
 	 * @param t
-	 * Le 1er jeu a comparer
+	 * Le 1er jeu a comparer.
 	 * @param t1
-	 * Le 2eme jeu a comparer
+	 * Le 2eme jeu a comparer.
 	 * @return
-	 * -1 : t1 plus petit que t2
-	 * 0 : t1 = t2
-	 * 1 : t1 plus grand que t2
+	 * -1 : t1 plus petit que t2.
+	 * 0 : t1 = t2.
+	 * 1 : t1 plus grand que t2.
 	 */
 	public int compare(Jeu t, Jeu t1) {
 		int m1 = t.getNbCoupsfinale();

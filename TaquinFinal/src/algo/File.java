@@ -12,7 +12,7 @@ public class File implements EnsembleATraiter{
 	
 	
 	/**
-	 * Constructeur sans parametre
+	 * Constructeur sans parametre.
 	 */
 	public File(){
 		file= new ArrayList<Jeu>();
@@ -20,60 +20,60 @@ public class File implements EnsembleATraiter{
 	}
 	
 	/**
-	 * Ajoute un Taquin a la fin de la file
+	 * Ajoute un Taquin a la fin de la file.
 	 * @param p
-	 * Le jeu a ajouter
+	 * Le jeu a ajouter.
 	 * @return
-	 * true si le jeu a bien ete ajoute, false sinon
+	 * true si le jeu a bien ete ajoute, false sinon.
 	 */
 	public boolean ajout(Jeu p) {
 		return file.add(p);
 	}
 	
 	/**
-	 * Test d'appartenance d'un jeu a la file
+	 * Test d'appartenance d'un jeu a la file.
 	 * @param p
-	 * Le jeu a tester
+	 * Le jeu a tester.
 	 * @return
-	 * true si le jeu est dans l'ensemble, false sinon
+	 * true si le jeu est dans l'ensemble, false sinon.
 	 */
 	public boolean appartient(Jeu p) {
 		return file.contains(p);
 	}
 	
 	/**
-	 * Permet de savoir si la file est vide ou non
+	 * Permet de savoir si la file est vide ou non.
 	 * @return
-	 * true si l'ensemble est non vide, false sinon
+	 * true si l'ensemble est non vide, false sinon.
 	 */
 	public boolean nonVide() {
 		return !file.isEmpty();
 	}
 	
 	/**
-	 * Fonction de premier ajout a l'ensemble
+	 * Fonction de premier ajout a l'ensemble.
 	 * @param initial
-	 * Le jeu initial a ajouter
+	 * Le jeu initial a ajouter.
 	 * @return
-	 * true si le jeu a bien ete ajoute, false sinon
+	 * true si le jeu a bien ete ajoute, false sinon.
 	 */	
 	public boolean premierAjout(Jeu initial) {
 		return ajout(initial);
 	}
 	
 	/**
-	 * Donne le nombre de positions traitees
+	 * Donne le nombre de positions traitees.
 	 * @return
-	 * Le nombre de positions traitees
+	 * Le nombre de positions traitees.
 	 */
 	public int positionTraite() {
 		return nombrePositionTraite;
 	}
 	
 	/**
-	 * Permet de defiler
+	 * Permet de defiler.
 	 * @return
-	 * La tete de la file
+	 * La tete de la file.
 	 */	
 	public Jeu prend() {
 		nombrePositionTraite++;

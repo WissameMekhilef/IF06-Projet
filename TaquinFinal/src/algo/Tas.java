@@ -11,9 +11,9 @@ public class Tas implements EnsembleATraiter {
 	private PriorityQueue<Jeu> file;
 	
 	/**
-	 * Constructeur principal
+	 * Constructeur principal.
 	 * @param c
-	 * Le comparateur a utiliser
+	 * Le comparateur a utiliser.
 	 */
 	public Tas(Comparator<Jeu> c) {
 		file = new PriorityQueue<Jeu>(11, c);
@@ -21,40 +21,40 @@ public class Tas implements EnsembleATraiter {
 	}
 	
 	/**
-	 * Fonction d'ajout d'un jeu
+	 * Fonction d'ajout d'un jeu.
 	 * @param p
-	 * Le jeu a ajouter
+	 * Le jeu a ajouter.
 	 * @return
-	 * Un booleen attestant de l'ajout du jeu
+	 * Un booleen attestant de l'ajout du jeu.
 	 */
 	public boolean ajout(Jeu p) {
 		return file.add(p);
 	}
 	
 	/**
-	 * Fonction d'appartenance d'un jeu a l'ensemble
+	 * Fonction d'appartenance d'un jeu a l'ensemble.
 	 * @param p
-	 * Le jeu sur lequel il faut tester l'appartenance
+	 * Le jeu sur lequel il faut tester l'appartenance.
 	 * @return
-	 * true si le jeu est dans le tas, false sinon
+	 * true si le jeu est dans le tas, false sinon.
 	 */
 	public boolean appartient(Jeu p) {
 		return file.contains(p);
 	}
 	
 	/**
-	 * NonVide
+	 * NonVide.
 	 * @return
-	 * Un boolean true si le tas n'est pas vide, false sinon
+	 * Un boolean true si le tas n'est pas vide, false sinon.
 	 */
 	public boolean nonVide() {
 		return !file.isEmpty();
 	}
 	
 	/**
-	 * Fonction de premier ajout
+	 * Fonction de premier ajout.
 	 * <p>
-	 * Fais appel a ajout(Jeu p)
+	 * Fais appel a ajout(Jeu p).
 	 * </p>
 	 */
 	public boolean premierAjout(Jeu initial) {
@@ -62,18 +62,18 @@ public class Tas implements EnsembleATraiter {
 	}
 	
 	/**
-	 * Getter nombre de positions traitees
+	 * Getter nombre de positions traitees.
 	 * @return
-	 * Le nombre de poisitions traitees
+	 * Le nombre de poisitions traitees.
 	 */
 	public int positionTraite() {
 		return nombrePositionTraite;
 	}
 	
 	/**
-	 * Fonction de retrait d'un jeu
+	 * Fonction de retrait d'un jeu.
 	 * @return
-	 * On retourne le jeu retourne par le tas selon le comparateur choisi
+	 * On retourne le jeu retourne par le tas selon le comparateur choisi.
 	 */
 	public Jeu prend() {
 		nombrePositionTraite++;
