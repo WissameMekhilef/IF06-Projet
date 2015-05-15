@@ -232,7 +232,7 @@ Enfin, nous avons aussi rencontrer des soucis de lecture des Junit et benchmarks
 %
 \par
 Les benchmarks fournis par le module h2, nous ont permis d'améliorer l'efficacité de l'application, mais aussi de montrer le bon fonctionnement des méthodes.
-Nous avons donc pour Algo et pour Taquin créé deux classes, une prouvant que le programme tourne correctement et l'autre pour montrer la rapidité d'éxécution
+Nous avons donc pour Algo et pour Taquin créés deux classes, une prouvant que le programme tourne correctement et l'autre pour montrer la rapidité d'éxécution
 avec un problème de plus en plus grand. Nous avons aussi écrit un test pour l'ensemble incomplet pour observer la résolution et le temps nécessaire à celle-ci, en
 fonction de la taille de l'ensemble utilisé.
 %
@@ -242,13 +242,15 @@ Ci-dessous vous pouvez voir un récapitulatif des fonctions coûteuses de la cla
 \monimage{taquinSpeed.png}{Efficacité des fonctions du Taquin}{Eff}{0.6}
 %
 \subsection{Efficacité des algorithmes}
-Les tests suivants ont été réalisés à l'aide de taq1.taq qui est un taquin de taille 3x3. On peut les différentes vitesse de résolution pour le même Taquin en fonction de
+Les tests suivants ont été réalisés à l'aide de taq1.taq qui est un taquin de taille 3x3. On peut observer les différentes vitesse de résolution pour le même Taquin en fonction de
 l'algorithme.
 \ml
 Les algorithmes utilisant un ensemble complet sont plus lent que les algortihmes utilisant un ensemble incomplet. De meme on observe que les tas sont plus rapide que les
-files et que les piles, qui demande le plus de temps de calcule.
+files et piles, qui demande le plus de temps de calcule.
 \ml
-Les algorithmes basé sur un automate sont les plus efficace, mais l'efficacité dépend de la profondeur de l'apprentissage de l'automate.
+Les algorithmes basées sur un automate sont les plus efficace, cependant l'efficacité dépend de la profondeur de l'apprentissage de l'automate et de la taille du taquin.
+\ml
+ En effet, le nombre de coup redondant grandit en même temps que la taille du taquin, il est donc préférable d'utiliser cette automate sur un taquin de grande taille.
 \monimage{algoSpeed.png}{Diagramme des temps d'execution}{tempsExec}{0.6}
 
 \subsection{Etude sur l'ensemble incomplet}
