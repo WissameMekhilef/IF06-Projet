@@ -147,6 +147,14 @@ public class Taquin implements Jeu {
 	}
 	
 	/**
+	* Modifie le damier par celui en parmetre
+	* @param un damier
+	*/
+	public void setDamier(int[][] damier) {
+		this.damier = damier;
+	}
+
+	/**
 	 * Permet de deplacer la case vide.
 	 * @param direction
 	 * L'action a realiser.
@@ -190,7 +198,7 @@ public class Taquin implements Jeu {
 	public int distanceManhattan(int i) {
 		int[] pos = this.indexOf(i);
 		int[] posFin = this.situationFinale.getDamierFin().get(i);
-		return (int)(Math.abs(posFin[1] - pos[1]) + Math.abs(posFin[0] - pos[0]));
+		return (int)(Math.sqrt(Math.pow((posFin[1] - pos[1]), 2)+Math.pow((posFin[0] - pos[0]), 2)));
 	}
 	
 	/**
@@ -345,11 +353,20 @@ public class Taquin implements Jeu {
 	 * Le nombre de permutions pour ramener toutes les cases a leur position ideale.
 	 */
 	public int nbPermutFin() {
+		int[][]d=this.copieTableau();
 		int res = 0;
-		for(int j = 0; j < damier.length; j++)
-			for(int i = 0; i < damier[0].length; i++)
-				if(damier[j][i] != 0)
-					res += this.distanceManhattan(damier[j][i]);
+		int nb=1;
+		while(nb!=this.damier.length*this.damier[0].length-1){
+			int[] pos = this.indexOf(nb);
+			int[] posFin = this.situationFinale.getDamierFin().get(nb);
+			if(this.damier[pos[0]][pos[1]]!=this.damier[posFin[0]][posFin[1]]){
+				this.damier[pos[0]][pos[1]]=this.damier[posFin[0]][posFin[1]];
+				this.damier[posFin[0]][posFin[1]]=nb;
+				res++;
+			}
+			nb++;
+		}
+		this.setDamier(d);
 		return res;
 	}
 	
